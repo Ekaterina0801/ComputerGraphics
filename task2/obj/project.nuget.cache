@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "vkSqdcFuP2Smh/o9tQ6Q57YoiRiWd4dKx16/JBjAnRAg9psGpBhdgVwOSUk9AWkt32kwhGEMCdGb6oRmd77xkA==",
+  "success": true,
+  "projectFilePath": "\\\\Mac\\Home\\Documents\\4 курс\\Компьютерная графика\\task2\\lab2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ekaterinaaleksandrov\\.nuget\\packages\\winforms.datavisualization\\1.8.0\\winforms.datavisualization.1.8.0.nupkg.sha512"
+  ],
+  "logs": []
+}
