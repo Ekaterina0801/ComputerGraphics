@@ -68,19 +68,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ekaterinaaleksandrov\\.nuget\\packages\\": {}
+    "C:\\Users\\LastHero\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\Mac\\Home\\Documents\\4 курс\\Компьютерная графика\\task2\\lab2.csproj",
+      "projectUniqueName": "C:\\Users\\LastHero\\Source\\Repos\\ComputerGraphics\\task2\\lab2.csproj",
       "projectName": "lab2",
-      "projectPath": "\\\\Mac\\Home\\Documents\\4 курс\\Компьютерная графика\\task2\\lab2.csproj",
-      "packagesPath": "C:\\Users\\ekaterinaaleksandrov\\.nuget\\packages\\",
-      "outputPath": "\\\\Mac\\Home\\Documents\\4 курс\\Компьютерная графика\\task2\\obj\\",
+      "projectPath": "C:\\Users\\LastHero\\Source\\Repos\\ComputerGraphics\\task2\\lab2.csproj",
+      "packagesPath": "C:\\Users\\LastHero\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LastHero\\Source\\Repos\\ComputerGraphics\\task2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ekaterinaaleksandrov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LastHero\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -130,7 +130,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
