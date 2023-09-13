@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LastHero\\Source\\Repos\\ComputerGraphics\\task2\\lab2.csproj": {}
+    "C:\\Users\\LastHero\\source\\repos\\ComputerGraphics\\task2\\lab2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LastHero\\Source\\Repos\\ComputerGraphics\\task2\\lab2.csproj": {
+    "C:\\Users\\LastHero\\source\\repos\\ComputerGraphics\\task2\\lab2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LastHero\\Source\\Repos\\ComputerGraphics\\task2\\lab2.csproj",
+        "projectUniqueName": "C:\\Users\\LastHero\\source\\repos\\ComputerGraphics\\task2\\lab2.csproj",
         "projectName": "lab2",
-        "projectPath": "C:\\Users\\LastHero\\Source\\Repos\\ComputerGraphics\\task2\\lab2.csproj",
+        "projectPath": "C:\\Users\\LastHero\\source\\repos\\ComputerGraphics\\task2\\lab2.csproj",
         "packagesPath": "C:\\Users\\LastHero\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LastHero\\Source\\Repos\\ComputerGraphics\\task2\\obj\\",
+        "outputPath": "C:\\Users\\LastHero\\source\\repos\\ComputerGraphics\\task2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LastHero\\AppData\\Roaming\\NuGet\\NuGet.Config",

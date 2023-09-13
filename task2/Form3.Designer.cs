@@ -43,44 +43,49 @@
             // 
             // pbOriginal
             // 
-            pbOriginal.Location = new Point(69, 59);
+            pbOriginal.Location = new Point(42, 37);
+            pbOriginal.Margin = new Padding(2, 2, 2, 2);
             pbOriginal.Name = "pbOriginal";
-            pbOriginal.Size = new Size(706, 329);
+            pbOriginal.Size = new Size(458, 264);
             pbOriginal.TabIndex = 0;
             pbOriginal.TabStop = false;
             // 
             // numHue
             // 
-            numHue.Location = new Point(886, 59);
+            numHue.Location = new Point(545, 37);
+            numHue.Margin = new Padding(2, 2, 2, 2);
             numHue.Maximum = 180;
             numHue.Minimum = -180;
             numHue.Name = "numHue";
-            numHue.Size = new Size(437, 90);
+            numHue.Size = new Size(269, 56);
             numHue.TabIndex = 2;
             // 
             // numSaturation
             // 
-            numSaturation.Location = new Point(895, 209);
+            numSaturation.Location = new Point(551, 131);
+            numSaturation.Margin = new Padding(2, 2, 2, 2);
             numSaturation.Maximum = 100;
             numSaturation.Minimum = -100;
             numSaturation.Name = "numSaturation";
-            numSaturation.Size = new Size(437, 90);
+            numSaturation.Size = new Size(269, 56);
             numSaturation.TabIndex = 3;
             // 
             // numValue
             // 
-            numValue.Location = new Point(886, 325);
+            numValue.Location = new Point(545, 203);
+            numValue.Margin = new Padding(2, 2, 2, 2);
             numValue.Maximum = 100;
             numValue.Minimum = -100;
             numValue.Name = "numValue";
-            numValue.Size = new Size(437, 90);
+            numValue.Size = new Size(269, 56);
             numValue.TabIndex = 4;
             // 
             // btnProcess
             // 
-            btnProcess.Location = new Point(895, 435);
+            btnProcess.Location = new Point(551, 272);
+            btnProcess.Margin = new Padding(2, 2, 2, 2);
             btnProcess.Name = "btnProcess";
-            btnProcess.Size = new Size(410, 46);
+            btnProcess.Size = new Size(252, 29);
             btnProcess.TabIndex = 5;
             btnProcess.Text = "Обработать";
             btnProcess.UseVisualStyleBackColor = true;
@@ -88,9 +93,10 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(895, 547);
+            btnSave.Location = new Point(551, 342);
+            btnSave.Margin = new Padding(2, 2, 2, 2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(410, 46);
+            btnSave.Size = new Size(252, 29);
             btnSave.TabIndex = 6;
             btnSave.Text = "Сохранить";
             btnSave.UseVisualStyleBackColor = true;
@@ -98,9 +104,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(218, 435);
+            button1.Location = new Point(135, 342);
+            button1.Margin = new Padding(2, 2, 2, 2);
             button1.Name = "button1";
-            button1.Size = new Size(410, 46);
+            button1.Size = new Size(252, 29);
             button1.TabIndex = 7;
             button1.Text = "Открыть изображение";
             button1.UseVisualStyleBackColor = true;
@@ -108,9 +115,9 @@
             // 
             // Form3
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1458, 664);
+            ClientSize = new Size(897, 415);
             Controls.Add(button1);
             Controls.Add(btnSave);
             Controls.Add(btnProcess);
@@ -118,6 +125,7 @@
             Controls.Add(numSaturation);
             Controls.Add(numHue);
             Controls.Add(pbOriginal);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "Form3";
             Text = "Form3";
             ((System.ComponentModel.ISupportInitialize)pbOriginal).EndInit();
