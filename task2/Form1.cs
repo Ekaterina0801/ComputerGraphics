@@ -25,6 +25,7 @@ namespace lab2
                 // «агрузка исходного изображени€
                 originalImage = new Bitmap(openFileDialog.FileName);
 
+                originalPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                 // ќтображение исходного изображени€
                 originalPictureBox.Image = originalImage;
 
@@ -32,6 +33,8 @@ namespace lab2
                 ConvertToGrayscale();
 
                 // ќтображение преобразованных изображений
+                grayscalePictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                grayscalePictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                 grayscalePictureBox1.Image = grayscaleImage1;
                 grayscalePictureBox2.Image = grayscaleImage2;
 
