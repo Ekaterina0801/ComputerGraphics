@@ -9,6 +9,7 @@ namespace lab2
         private Bitmap originalImage;
         private Bitmap grayscaleImage1;
         private Bitmap grayscaleImage2;
+        private Bitmap grayscaleImage3;
 
         public Form1()
         {
@@ -35,8 +36,10 @@ namespace lab2
                 // Отображение преобразованных изображений
                 grayscalePictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                 grayscalePictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBoxDiff.SizeMode = PictureBoxSizeMode.Zoom;
                 grayscalePictureBox1.Image = grayscaleImage1;
                 grayscalePictureBox2.Image = grayscaleImage2;
+                pictureBoxDiff.Image = grayscaleImage3;
 
                 // Построение гистограмм интенсивности
                 PlotIntensityHistograms();
@@ -48,6 +51,7 @@ namespace lab2
             // Создание Bitmap-объектов для хранения полутоновых изображений
             grayscaleImage1 = new Bitmap(originalImage.Width, originalImage.Height);
             grayscaleImage2 = new Bitmap(originalImage.Width, originalImage.Height);
+            grayscaleImage3 = new Bitmap(originalImage.Width, originalImage.Height);
 
             // Обход пикселей исходного изображения
             for (int y = 0; y < originalImage.Height; y++)
@@ -56,19 +60,20 @@ namespace lab2
                 {
                     Color originalColor = originalImage.GetPixel(x, y);
 
-                    // Вычисление интенсивности по первой формуле
+                    // Вычисление интенсивности по первой формуле из презентации
                     int intensity1 = (int)((0.299 * originalColor.R) + (0.587 * originalColor.G) + (0.114 * originalColor.B));
 
-                    // Вычисление интенсивности по второй формуле
+                    // Вычисление интенсивности по второй формуле из презентации
                     int intensity2 = (originalColor.R + originalColor.G + originalColor.B) / 3;
 
                     // Создание нового цвета с полученной интенсивностью
                     Color grayscaleColor1 = Color.FromArgb(intensity1, intensity1, intensity1);
                     Color grayscaleColor2 = Color.FromArgb(intensity2, intensity2, intensity2);
-
+                    Color diff = Color.FromArgb(Math.Abs(intensity2-intensity1), Math.Abs(intensity2 - intensity1), Math.Abs(intensity2-intensity1));
                     // Запись полутоновых пикселей в соответствующие изображения
                     grayscaleImage1.SetPixel(x, y, grayscaleColor1);
                     grayscaleImage2.SetPixel(x, y, grayscaleColor2);
+                    grayscaleImage3.SetPixel(x, y, diff);
                 }
             }
         }
@@ -92,11 +97,9 @@ namespace lab2
                 }
             }
 
-            // Очистка графиков
             intensityChart.Series[0].Points.Clear();
             intensityChart.Series[1].Points.Clear();
 
-            // Заполнение гистограмм данными
             for (int i = 0; i < 256; i++)
             {
                 intensityChart.Series[0].Points.AddXY(i, histogram1[i]);

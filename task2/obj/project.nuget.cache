@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "2Am9MNcXXQI+R6x9/tFZ2FlVq6VRsDZzlJFt7c3lWu/Lp7y/14fxQtG3j9ZQSTM7bvYJieWaSyjlKeM2mzBrtw==",
+  "dgSpecHash": "J7jeZYzLVassm8gck6v3T588buTNU3ovY6yaKrmXdkgqta151/62zFXHdy+a/TKbODIEWze8j+0LsQeDlDiz9w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LastHero\\source\\repos\\ComputerGraphics\\task2\\lab2.csproj",
+  "projectFilePath": "\\\\Mac\\Home\\Documents\\4 курс\\Компьютерная графика\\ComputerGraphics\\task2\\lab2.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\LastHero\\.nuget\\packages\\winforms.datavisualization\\1.8.0\\winforms.datavisualization.1.8.0.nupkg.sha512"
+    "C:\\Users\\ekaterinaaleksandrov\\.nuget\\packages\\winforms.datavisualization\\1.8.0\\winforms.datavisualization.1.8.0.nupkg.sha512"
   ],
   "logs": []
 }

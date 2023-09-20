@@ -37,10 +37,12 @@
             grayscalePictureBox1 = new PictureBox();
             grayscalePictureBox2 = new PictureBox();
             intensityChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            pictureBoxDiff = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)originalPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)grayscalePictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)grayscalePictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)intensityChart).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDiff).BeginInit();
             SuspendLayout();
             // 
             // openButton
@@ -97,11 +99,20 @@
             intensityChart.TabIndex = 4;
             intensityChart.Text = "chart1";
             // 
+            // pictureBoxDiff
+            // 
+            pictureBoxDiff.Location = new Point(1323, 56);
+            pictureBoxDiff.Name = "pictureBoxDiff";
+            pictureBoxDiff.Size = new Size(365, 267);
+            pictureBoxDiff.TabIndex = 5;
+            pictureBoxDiff.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1275, 981);
+            ClientSize = new Size(1776, 981);
+            Controls.Add(pictureBoxDiff);
             Controls.Add(intensityChart);
             Controls.Add(grayscalePictureBox2);
             Controls.Add(grayscalePictureBox1);
@@ -113,6 +124,7 @@
             ((System.ComponentModel.ISupportInitialize)grayscalePictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)grayscalePictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)intensityChart).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDiff).EndInit();
             ResumeLayout(false);
         }
 
@@ -123,5 +135,6 @@
         private PictureBox grayscalePictureBox1;
         private PictureBox grayscalePictureBox2;
         private System.Windows.Forms.DataVisualization.Charting.Chart intensityChart;
+        private PictureBox pictureBoxDiff;
     }
 }

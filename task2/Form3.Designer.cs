@@ -35,6 +35,9 @@
             btnProcess = new Button();
             btnSave = new Button();
             button1 = new Button();
+            label1 = new Label();
+            label3 = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pbOriginal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numHue).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numSaturation).BeginInit();
@@ -43,49 +46,44 @@
             // 
             // pbOriginal
             // 
-            pbOriginal.Location = new Point(42, 37);
-            pbOriginal.Margin = new Padding(2, 2, 2, 2);
+            pbOriginal.Location = new Point(68, 59);
             pbOriginal.Name = "pbOriginal";
-            pbOriginal.Size = new Size(458, 264);
+            pbOriginal.Size = new Size(744, 422);
             pbOriginal.TabIndex = 0;
             pbOriginal.TabStop = false;
             // 
             // numHue
             // 
-            numHue.Location = new Point(545, 37);
-            numHue.Margin = new Padding(2, 2, 2, 2);
+            numHue.Location = new Point(886, 59);
             numHue.Maximum = 180;
             numHue.Minimum = -180;
             numHue.Name = "numHue";
-            numHue.Size = new Size(269, 56);
+            numHue.Size = new Size(437, 90);
             numHue.TabIndex = 2;
             // 
             // numSaturation
             // 
-            numSaturation.Location = new Point(551, 131);
-            numSaturation.Margin = new Padding(2, 2, 2, 2);
+            numSaturation.Location = new Point(886, 172);
             numSaturation.Maximum = 100;
             numSaturation.Minimum = -100;
             numSaturation.Name = "numSaturation";
-            numSaturation.Size = new Size(269, 56);
+            numSaturation.Size = new Size(437, 90);
             numSaturation.TabIndex = 3;
             // 
             // numValue
             // 
-            numValue.Location = new Point(545, 203);
-            numValue.Margin = new Padding(2, 2, 2, 2);
+            numValue.Location = new Point(886, 313);
             numValue.Maximum = 100;
             numValue.Minimum = -100;
             numValue.Name = "numValue";
-            numValue.Size = new Size(269, 56);
+            numValue.Size = new Size(437, 90);
             numValue.TabIndex = 4;
             // 
             // btnProcess
             // 
-            btnProcess.Location = new Point(551, 272);
-            btnProcess.Margin = new Padding(2, 2, 2, 2);
+            btnProcess.Location = new Point(895, 480);
             btnProcess.Name = "btnProcess";
-            btnProcess.Size = new Size(252, 29);
+            btnProcess.Size = new Size(410, 46);
             btnProcess.TabIndex = 5;
             btnProcess.Text = "Обработать";
             btnProcess.UseVisualStyleBackColor = true;
@@ -93,10 +91,9 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(551, 342);
-            btnSave.Margin = new Padding(2, 2, 2, 2);
+            btnSave.Location = new Point(895, 547);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(252, 29);
+            btnSave.Size = new Size(410, 46);
             btnSave.TabIndex = 6;
             btnSave.Text = "Сохранить";
             btnSave.UseVisualStyleBackColor = true;
@@ -104,20 +101,49 @@
             // 
             // button1
             // 
-            button1.Location = new Point(135, 342);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Location = new Point(219, 547);
             button1.Name = "button1";
-            button1.Size = new Size(252, 29);
+            button1.Size = new Size(410, 46);
             button1.TabIndex = 7;
             button1.Text = "Открыть изображение";
             button1.UseVisualStyleBackColor = true;
             button1.Click += btnOpen_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(1076, 117);
+            label1.Name = "label1";
+            label1.Size = new Size(58, 32);
+            label1.TabIndex = 8;
+            label1.Text = "Hue";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(1051, 251);
+            label3.Name = "label3";
+            label3.Size = new Size(123, 32);
+            label3.TabIndex = 10;
+            label3.Text = "Saturation";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(1051, 396);
+            label4.Name = "label4";
+            label4.Size = new Size(125, 32);
+            label4.TabIndex = 11;
+            label4.Text = "Brightness";
+            // 
             // Form3
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(897, 415);
+            ClientSize = new Size(1458, 664);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label1);
             Controls.Add(button1);
             Controls.Add(btnSave);
             Controls.Add(btnProcess);
@@ -125,9 +151,8 @@
             Controls.Add(numSaturation);
             Controls.Add(numHue);
             Controls.Add(pbOriginal);
-            Margin = new Padding(2, 2, 2, 2);
             Name = "Form3";
-            Text = "Form3";
+            Text = "HueSaturationBrightness";
             ((System.ComponentModel.ISupportInitialize)pbOriginal).EndInit();
             ((System.ComponentModel.ISupportInitialize)numHue).EndInit();
             ((System.ComponentModel.ISupportInitialize)numSaturation).EndInit();
@@ -145,5 +170,9 @@
         private Button btnProcess;
         private Button btnSave;
         private Button button1;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
     }
 }
