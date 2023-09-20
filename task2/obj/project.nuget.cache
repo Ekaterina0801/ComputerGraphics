@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2Am9MNcXXQI+R6x9/tFZ2FlVq6VRsDZzlJFt7c3lWu/Lp7y/14fxQtG3j9ZQSTM7bvYJieWaSyjlKeM2mzBrtw==",
+  "dgSpecHash": "XppFZv2Wo1eRKBAnptvdYgHeJ0hxMeIA2iikaW38M/5VTQvtuZ3Ck9eVhR4Q0yumKdVLmcUhyFxgz1u2lz4o5g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LastHero\\source\\repos\\ComputerGraphics\\task2\\lab2.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\LastHero\\.nuget\\packages\\winforms.datavisualization\\1.8.0\\winforms.datavisualization.1.8.0.nupkg.sha512"
-  ],
+  "projectFilePath": "D:\\PROJECTS\\Graphics_lab_2\\ComputerGraphics\\task2\\lab2.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
