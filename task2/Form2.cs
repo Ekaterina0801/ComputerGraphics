@@ -16,6 +16,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace lab2
 {
@@ -49,17 +50,17 @@ namespace lab2
                     {
                         Color pixelColor = image.GetPixel(x, y);
 
-           
+
                         int red = pixelColor.R;
 
                         redImage.SetPixel(x, y, Color.FromArgb(red, 0, 0));
 
-        
+
                         int green = pixelColor.G;
 
                         greenImage.SetPixel(x, y, Color.FromArgb(0, green, 0));
 
-    
+
                         int blue = pixelColor.B;
 
                         blueImage.SetPixel(x, y, Color.FromArgb(0, 0, blue));
@@ -83,7 +84,7 @@ namespace lab2
                     {
                         Color pixelColor = image.GetPixel(x, y);
 
- 
+
                         redHistogram[pixelColor.R]++;
                         greenHistogram[pixelColor.G]++;
                         blueHistogram[pixelColor.B]++;
@@ -95,29 +96,109 @@ namespace lab2
                 chart.ChartAreas[0].AxisX.Title = "Color Intensity";
                 chart.ChartAreas[0].AxisY.Title = "Frequency";
 
-                Series redSeries = new Series("Red");
-                redSeries.ChartType = SeriesChartType.Column;
-                for (int i = 0; i < 256; i++)
-                {
-                    redSeries.Points.AddXY(i, redHistogram[i]);
-                }
-                chart.Series.Add(redSeries);
 
-                Series greenSeries = new Series("Green");
-                greenSeries.ChartType = SeriesChartType.Column;
-                for (int i = 0; i < 256; i++)
+                string s = comboBox1.SelectedItem.ToString();
+                switch (s)
                 {
-                    greenSeries.Points.AddXY(i, greenHistogram[i]);
+                    case "Red":
+                        Series redSeries = new Series("Red");
+                        redSeries.ChartType = SeriesChartType.Column;
+                        for (int i = 0; i < 256; i++)
+                        {
+                            redSeries.Points.AddXY(i, redHistogram[i]);
+                        }
+                        chart.Series.Add(redSeries);
+                        chart.Series[0].Color = Color.Red;
+                        break;
+                    case "Green":
+                        Series greenSeries = new Series("Green");
+                        greenSeries.ChartType = SeriesChartType.Column;
+                        for (int i = 0; i < 256; i++)
+                        {
+                            greenSeries.Points.AddXY(i, greenHistogram[i]);
+                        }
+                        chart.Series.Add(greenSeries);
+                        chart.Series[0].Color = Color.Green;
+                        break;
+                    case "Blue":
+                        Series blueSeries = new Series("Blue");
+                        blueSeries.ChartType = SeriesChartType.Column;
+                        for (int i = 0; i < 256; i++)
+                        {
+                            blueSeries.Points.AddXY(i, blueHistogram[i]);
+                        }
+                        chart.Series.Add(blueSeries);
+                        chart.Series[0].Color = Color.Blue;
+                        break;
+                    default:
+                        break;
                 }
-                chart.Series.Add(greenSeries);
+            }
+        }
 
-                Series blueSeries = new Series("Blue");
-                blueSeries.ChartType = SeriesChartType.Column;
-                for (int i = 0; i < 256; i++)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int[] redHistogram = new int[256];
+            int[] greenHistogram = new int[256];
+            int[] blueHistogram = new int[256];
+
+            Bitmap image = (Bitmap)originalPictureBox.Image;
+
+            for (int x = 0; x < image.Width; x++)
+            {
+                for (int y = 0; y < image.Height; y++)
                 {
-                    blueSeries.Points.AddXY(i, blueHistogram[i]);
+                    Color pixelColor = image.GetPixel(x, y);
+
+                    redHistogram[pixelColor.R]++;
+                    greenHistogram[pixelColor.G]++;
+                    blueHistogram[pixelColor.B]++;
                 }
-                chart.Series.Add(blueSeries);
+            }
+
+            chart.Series.Clear();
+            chart.ChartAreas[0].AxisX.Title = "Color Intensity";
+            chart.ChartAreas[0].AxisY.Title = "Frequency";
+
+            string s = comboBox1.SelectedItem.ToString();
+            switch (s)
+            {
+                case "Red":
+                    Series redSeries = new Series("Red");
+                    redSeries.ChartType = SeriesChartType.Column;
+                    for (int i = 0; i < 256; i++)
+                    {
+                        redSeries.Points.AddXY(i, redHistogram[i]);
+                    }
+                    chart.Series.Add(redSeries);
+                    chart.Series[0].Color = Color.Red;
+                    break;
+                case "Green":
+                    Series greenSeries = new Series("Green");
+                    greenSeries.ChartType = SeriesChartType.Column;
+                    for (int i = 0; i < 256; i++)
+                    {
+                        greenSeries.Points.AddXY(i, greenHistogram[i]);
+                    }
+                    chart.Series.Add(greenSeries);
+                    chart.Series[0].Color = Color.Green;
+                    break;
+                case "Blue":
+                    Series blueSeries = new Series("Blue");
+                    blueSeries.ChartType = SeriesChartType.Column;
+                    for (int i = 0; i < 256; i++)
+                    {
+                        blueSeries.Points.AddXY(i, blueHistogram[i]);
+                    }
+                    chart.Series.Add(blueSeries);
+                    chart.Series[0].Color = Color.Blue;
+                    break;
+                default:
+                    break;
             }
         }
     }
