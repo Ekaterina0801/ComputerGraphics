@@ -99,7 +99,7 @@ namespace lab2
                 redSeries.ChartType = SeriesChartType.Column;
                 for (int i = 0; i < 256; i++)
                 {
-                    redSeries.Points.AddXY(i, redHistogram[i]);
+                    redSeries.Points.AddXY(i, (int)redHistogram[i]/1000);
                 }
                 chart.Series.Add(redSeries);
 

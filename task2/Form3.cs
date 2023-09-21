@@ -85,10 +85,12 @@ namespace lab2
             value = originalColor.GetBrightness();
 
             hue += (float)numHue.Value;
+            //hue += 180;
             saturation += (float)numSaturation.Value / 100;
             value += (float)numValue.Value / 100;
 
-            hue = Math.Max(0, Math.Min(360, hue));
+            //hue = Math.Max(0, Math.Min(360, hue));
+            hue = (hue + 180) % 360;
             saturation = Math.Max(0, Math.Min(1, saturation));
             value = Math.Max(0, Math.Min(1, value));
 
