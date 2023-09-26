@@ -15,6 +15,7 @@ namespace lab3
     {
         private Bitmap bitmap;
         private Point[] triangleVertices = new Point[3];
+        private Color[] vertexColors = new Color[3];
         int selected = 0;
 
         public RasterTriangle()
@@ -82,13 +83,13 @@ namespace lab3
             Random random = new Random();
 
             Color[] colors = new Color[3];
-            colors[0] = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
-            colors[1] = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
-            colors[2] = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+            colors[0] = vertexColors[0] != Color.Empty ? vertexColors[0] : Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+            colors[1] = vertexColors[1] != Color.Empty ? vertexColors[1] : Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+            colors[2] = vertexColors[2] != Color.Empty ? vertexColors[2] : Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
 
             return colors;
         }
-       
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -104,7 +105,17 @@ namespace lab3
 
                 }
                 triangleVertices[selected] = new Point(e.X, e.Y);
+
                 selected += 1;
+                // Открываем диалоговое окно выбора цвета
+                ColorDialog colorDialog = new ColorDialog();
+                DialogResult result = colorDialog.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    // Применяем выбранный цвет к выбранной вершине треугольника
+                    vertexColors[selected - 1] = colorDialog.Color;
+                }
 
                 // Перерисовываем треугольник
                 Refresh();
