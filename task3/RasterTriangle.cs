@@ -14,6 +14,8 @@ namespace lab3
     public partial class RasterTriangle : Form
     {
         private Bitmap bitmap;
+        private Point[] triangleVertices = new Point[3];
+        int selected = 0;
 
         public RasterTriangle()
         {
@@ -24,39 +26,41 @@ namespace lab3
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
             // Создаем треугольник со случайными вершинами и цветами
-            Point[] triangleVertices = GenerateTriangleVertices(ClientSize.Width, ClientSize.Height);
-            Color[] triangleColors = GenerateTriangleColors();
-
-            // Получаем границы треугольника
-            int minX = Math.Min(Math.Min(triangleVertices[0].X, triangleVertices[1].X), triangleVertices[2].X);
-            int minY = Math.Min(Math.Min(triangleVertices[0].Y, triangleVertices[1].Y), triangleVertices[2].Y);
-            int maxX = Math.Max(Math.Max(triangleVertices[0].X, triangleVertices[1].X), triangleVertices[2].X);
-            int maxY = Math.Max(Math.Max(triangleVertices[0].Y, triangleVertices[1].Y), triangleVertices[2].Y);
-
-            // Рисуем треугольник
-            using (var graphics = Graphics.FromImage(bitmap))
+            if (triangleVertices[2] != Point.Empty)
             {
-                for (int y = minY; y <= maxY; y++)
+
+                Color[] triangleColors = GenerateTriangleColors();
+
+                // Получаем границы треугольника
+                int minX = Math.Min(Math.Min(triangleVertices[0].X, triangleVertices[1].X), triangleVertices[2].X);
+                int minY = Math.Min(Math.Min(triangleVertices[0].Y, triangleVertices[1].Y), triangleVertices[2].Y);
+                int maxX = Math.Max(Math.Max(triangleVertices[0].X, triangleVertices[1].X), triangleVertices[2].X);
+                int maxY = Math.Max(Math.Max(triangleVertices[0].Y, triangleVertices[1].Y), triangleVertices[2].Y);
+
+                // Рисуем треугольник
+                using (var graphics = Graphics.FromImage(bitmap))
                 {
-                    for (int x = minX; x <= maxX; x++)
+                    for (int y = minY; y <= maxY; y++)
                     {
-                        if (IsPointInTriangle(x, y, triangleVertices))
+                        for (int x = minX; x <= maxX; x++)
                         {
-                            float barycentricU, barycentricV, barycentricW;
-                            CalculateBarycentricCoordinates(x, y, triangleVertices, out barycentricU, out barycentricV, out barycentricW);
+                            if (IsPointInTriangle(x, y, triangleVertices))
+                            {
+                                float barycentricU, barycentricV, barycentricW;
+                                CalculateBarycentricCoordinates(x, y, triangleVertices, out barycentricU, out barycentricV, out barycentricW);
 
-                            Color interpolatedColor = InterpolateColor(triangleColors[0], triangleColors[1], triangleColors[2], barycentricU, barycentricV, barycentricW);
+                                Color interpolatedColor = InterpolateColor(triangleColors[0], triangleColors[1], triangleColors[2], barycentricU, barycentricV, barycentricW);
 
-                            bitmap.SetPixel(x, y, interpolatedColor);
+                                bitmap.SetPixel(x, y, interpolatedColor);
+                            }
                         }
                     }
                 }
-            }
 
-            // Отрисовываем треугольник в окне
-            e.Graphics.DrawImage(bitmap, 0, 0);
+                // Отрисовываем треугольник в окне
+                e.Graphics.DrawImage(bitmap, 0, 0);
+            }
         }
 
         // Генерация случайных вершин треугольника
@@ -83,6 +87,28 @@ namespace lab3
             colors[2] = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
 
             return colors;
+        }
+       
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            if (e.Button == MouseButtons.Left)
+            {
+              
+                if (selected == 3)
+                {
+                    selected = 0;
+                    triangleVertices[0] = triangleVertices[1] = triangleVertices[2] = Point.Empty;
+                    bitmap = new Bitmap(ClientSize.Width, ClientSize.Height);
+
+                }
+                triangleVertices[selected] = new Point(e.X, e.Y);
+                selected += 1;
+
+                // Перерисовываем треугольник
+                Refresh();
+            }
         }
 
         // Проверка, находится ли точка внутри треугольника
