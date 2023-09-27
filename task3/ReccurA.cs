@@ -10,6 +10,28 @@ namespace lab3
     public partial class ReccurA : Form
     {
         Bitmap bmp;
+        private Point start;
+        private bool drawing = false;
+        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!drawing) return;
+            var finish = new Point(e.X, e.Y);
+            var pen = new Pen(Color.Black, 1f);
+
+            var g = Graphics.FromImage(pictureBox1.Image);
+            g.DrawLine(pen, start, finish);
+            pen.Dispose();
+            g.Dispose();
+            pictureBox1.Image = pictureBox1.Image;
+            pictureBox1.Invalidate();
+            start = finish;
+        }
+
+        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            drawing = false;
+        }
+
         public ReccurA()
         {
             InitializeComponent();
@@ -50,12 +72,11 @@ namespace lab3
             pictureBox1.Image = bmp;
         }
 
-        //Color formColor;
         Pen needColor;
         private void pictureBox1_MouseDown2(object sender, MouseEventArgs e)
         {
             Point firstPoint = new Point(e.X, e.Y);
-            fill(firstPoint);
+            Fill(firstPoint);
         }
 
         private bool equalColors(Color c1, Color c2)
@@ -63,7 +84,7 @@ namespace lab3
             return c1.R == c2.R && c1.G == c2.G && c1.B == c2.B;
         }
 
-        private void fill(Point p)
+        private void Fill(Point p)
         {
             Color formColor = bmp.GetPixel(p.X, p.Y);
             if (0 <= p.X && p.X < bmp.Width && 0 <= p.Y && p.Y < bmp.Height - 1 && !equalColors(formColor, Color.Black) &&
@@ -91,10 +112,10 @@ namespace lab3
                 g.DrawLine(needColor, leftBound, rightBound);
                 pictureBox1.Image = bmp;
                 for (int i = leftBound.X; i < rightBound.X + 1; ++i)
-                    fill(new Point(i, p.Y + 1));
+                    Fill(new Point(i, p.Y + 1));
                 for (int i = leftBound.X; i < rightBound.X + 1; ++i)
                     if (p.Y > 0)
-                        fill(new Point(i, p.Y - 1));
+                        Fill(new Point(i, p.Y - 1));
             }
         }
 
@@ -137,7 +158,6 @@ namespace lab3
             Color c = colorDialog1.Color;
             label5.BackColor = c;
             needColor.Color = c;
-            //button2_Click(sender, e);
         }
     }
 
