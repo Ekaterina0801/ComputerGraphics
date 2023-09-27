@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1b.Designer.cs">
+      <DependentUpon>1b.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bresenham.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,12 +66,27 @@
     <Compile Include="RasterTriangle.Designer.cs">
       <DependentUpon>RasterTriangle.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReccurA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReccurA.Designer.cs">
+      <DependentUpon>ReccurA.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReccurC.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReccurC.Designer.cs">
       <DependentUpon>ReccurC.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecurB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecurB.Designer.cs">
+      <DependentUpon>RecurB.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="1b.resx">
+      <DependentUpon>1b.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bresenham.resx">
       <DependentUpon>Bresenham.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,6 +102,9 @@
     </Compile>
     <EmbeddedResource Include="RasterTriangle.resx">
       <DependentUpon>RasterTriangle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReccurA.resx">
+      <DependentUpon>ReccurA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReccurC.resx">
       <DependentUpon>ReccurC.cs</DependentUpon>
