@@ -14,8 +14,7 @@ namespace lab4
         List<Segment> segments = new List<Segment>();
         List<Point> polygon = new List<Point>();
         Boolean isMouseDown = false;
-        Point startPoint, endPoint;
-        Point minPolygonCoord, maxPolygonCoord;
+        bool isChecked = false;
 
         public Form1()
         {
