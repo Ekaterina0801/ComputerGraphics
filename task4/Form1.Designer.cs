@@ -125,7 +125,7 @@
             clearBtn.TabIndex = 3;
             clearBtn.Text = "Очистить";
             clearBtn.UseVisualStyleBackColor = true;
-            clearBtn.Click += ClearBtn_Click;
+            clearBtn.Click += ButtonClear;
             // 
             // segmentRB
             // 
