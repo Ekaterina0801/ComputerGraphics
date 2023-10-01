@@ -83,7 +83,7 @@
             pictureBox1.Size = new Size(1464, 822);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            pictureBox1.Paint += PictureBox1_Paint;
+            pictureBox1.Paint += Draw;
             pictureBox1.MouseDown += PictureBox1_MouseDown;
             pictureBox1.MouseMove += PictureBox1_MouseMove;
             pictureBox1.MouseUp += PictureBox1_MouseUp;
@@ -177,7 +177,7 @@
             biasBtn.TabIndex = 5;
             biasBtn.Text = "Применить";
             biasBtn.UseVisualStyleBackColor = true;
-            biasBtn.Click += BiasBtn_Click;
+            biasBtn.Click += MoveButton;
             // 
             // biasYNumUD
             // 
@@ -265,7 +265,7 @@
             scaleBtn.TabIndex = 5;
             scaleBtn.Text = "Применить";
             scaleBtn.UseVisualStyleBackColor = true;
-            scaleBtn.Click += ScaleBtn_Click;
+            scaleBtn.Click += ScaleButton;
             // 
             // scaleYNumUD
             // 
@@ -415,7 +415,7 @@
             angle90Btn.TabIndex = 1;
             angle90Btn.Text = "90";
             angle90Btn.UseVisualStyleBackColor = true;
-            angle90Btn.Click += Angle90_Click;
+            angle90Btn.Click += DefAngle;
             // 
             // rotationBtn
             // 
@@ -426,7 +426,7 @@
             rotationBtn.TabIndex = 5;
             rotationBtn.Text = "Применить";
             rotationBtn.UseVisualStyleBackColor = true;
-            rotationBtn.Click += RotationBtn_Click;
+            rotationBtn.Click += RotationButton;
             // 
             // angleNumUD
             // 
