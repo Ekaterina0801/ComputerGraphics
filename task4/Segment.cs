@@ -10,10 +10,10 @@ namespace lab4
     // Класс Segment для задания отрезка (начало и конец отрезка) 
     class Segment
     {
-        public Point leftP, rightP;
+        public Point startP, endP;
 
-        public Segment() { leftP = new Point(); rightP = new Point(); }
+        public Segment() { startP = new Point(); endP = new Point(); }
 
-        public Segment(Point l, Point r) { leftP = l; rightP = r; }
+        public Segment(Point l, Point r) { startP = l; endP = r; }
     }
 }

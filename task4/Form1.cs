@@ -10,27 +10,81 @@ namespace lab4
     {
         Bitmap bmp;
         Graphics g;
-        Point pointLocation;
+        Point pointLocation, startPoint, endPoint, minPolygonCoord, maxPolygonCoord;
+        // список отрезков
         List<Segment> segments = new List<Segment>();
+        // полигон
         List<Point> polygon = new List<Point>();
-        Boolean isMouseDown = false;
-        Point startPoint, endPoint;
-        Point minPolygonCoord, maxPolygonCoord;
-
+        // Галочку поставили на отрезок или полигон(не на точку)
+        bool isChecked = false;
         public Form1()
         {
             InitializeComponent();
             bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = bmp;
             g = Graphics.FromImage(pictureBox1.Image);
-            g.Clear(Color.White);
-            segmentRB.Checked = true;
-            startPoint = Point.Empty;
-            endPoint = Point.Empty;
-            pointLocation = new Point(0, 0);
         }
 
-        private void ClearBtn_Click(object sender, EventArgs e)
+        // MouseDown возникает, когда пользователь
+        // нажимает кнопку мыши на элементе управления
+        private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Если поставлены галочки(нарисовать отрезок или полигон)
+            isChecked = segmentRB.Checked || polygonRB.Checked ? true : false;
+            // Для отрезка 
+            startPoint = segmentRB.Checked ? e.Location : startPoint;
+            // Для полигона
+            if (polygonRB.Checked && polygon.Count == 0)
+            {
+                startPoint = e.Location;
+                polygon.Add(startPoint);
+                minPolygonCoord = e.Location;
+                maxPolygonCoord = e.Location;
+
+            }
+        }
+        // Перемещение мыши для черчения отрезка или полигона
+        private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            endPoint = isChecked ? e.Location : endPoint;
+            pictureBox1.Invalidate();
+        }
+
+        // происходит, когда кнопка мыши отпускается (поднимается) после нажатия.
+        private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            pointLocation = pointRB.Checked ? e.Location : pointLocation;
+            if (segmentRB.Checked)
+            {
+                isChecked = false;
+                //при мгновенном отпускании(start = end)
+                if (endPoint == Point.Empty)
+                    return;
+                // Добавить новый отрезок
+                segments.Add(new Segment(startPoint, endPoint));
+                startPoint = Point.Empty;
+                endPoint = Point.Empty;
+
+            }
+            if (polygonRB.Checked)
+            {
+                isChecked = false;
+                //при мгновенном отпускании(start = end)
+                if (endPoint == Point.Empty)
+                    return;
+                polygon.Add(endPoint);
+                minPolygonCoord.X = Math.Min(minPolygonCoord.X, endPoint.X);
+                minPolygonCoord.Y = Math.Min(minPolygonCoord.Y, endPoint.Y);
+                maxPolygonCoord.X = Math.Max(maxPolygonCoord.X, endPoint.X);
+                maxPolygonCoord.Y = Math.Max(maxPolygonCoord.Y, endPoint.Y);
+                startPoint = endPoint;
+                endPoint = Point.Empty;
+            }
+            // перерисовка 
+            pictureBox1.Invalidate();
+        }
+
+        private void ButtonClear(object sender, EventArgs e)
         {
             g = Graphics.FromImage(pictureBox1.Image);
             g.Clear(Color.White);
@@ -42,317 +96,176 @@ namespace lab4
             intersectionPointLabel.Text = "-";
             pictureBox1.Invalidate();
         }
-
-        private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
+        // смещение на dx, dy
+        private void Transform(double dx, double dy)
         {
-            if (segmentRB.Checked)
+            //матрица переноса из лекции 4 слайд 15
+            Matrix M = new Matrix(3, 3);
+            Matrix v = new Matrix(1, 3);
+            for (int i = 0; i < 3; i++)
             {
-                isMouseDown = true;
-                startPoint = e.Location;
-            }
-            else if (polygonRB.Checked)
-            {
-                isMouseDown = true;
-                if (polygon.Count == 0)
+                for (int j = 0; j < 3; j++)
                 {
-                    startPoint = e.Location;
-                    minPolygonCoord = e.Location;
-                    maxPolygonCoord = e.Location;
-                    polygon.Add(startPoint);
+                    if (i == j)
+                    {
+                        M[i, j] = 1;
+                        continue;
+                    }
+                    if (i == 2)
+                    {
+                        M[i, j] = j == 0 ? dx : dy;
+                        continue;
+                    }
+                    M[i, j] = 0;
                 }
             }
-        }
-        private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (segmentRB.Checked && isMouseDown)
+            if (polygonRB.Checked)
             {
-                endPoint = e.Location;
+                for (int i = 0; i < polygon.Count; ++i)
+                {
+                    prodPolygon(M, i);
+                }
             }
-            else if (polygonRB.Checked && isMouseDown)
-            {
-                endPoint = e.Location;
-            }
-            pictureBox1.Invalidate();
-        }
-
-        private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (segmentRB.Checked && isMouseDown)
-            {
-                isMouseDown = false;
-                //если нажали и отпустили сразу
-                if (endPoint == Point.Empty)
-                    return;
-                segments.Add(new Segment(startPoint, endPoint));
-                startPoint = Point.Empty;
-                endPoint = Point.Empty;
-
-            }
-            else if (polygonRB.Checked && isMouseDown)
-            {
-                isMouseDown = false;
-                //мгновенное нажатие
-                if (endPoint == Point.Empty)
-                    return;
-                polygon.Add(endPoint);
-                if (endPoint.X < minPolygonCoord.X)
-                    minPolygonCoord.X = endPoint.X;
-                if (endPoint.Y < minPolygonCoord.Y)
-                    minPolygonCoord.Y = endPoint.Y;
-                if (endPoint.X > maxPolygonCoord.X)
-                    maxPolygonCoord.X = endPoint.X;
-                if (endPoint.Y > maxPolygonCoord.Y)
-                    maxPolygonCoord.Y = endPoint.Y;
-
-                startPoint = endPoint;
-                endPoint = Point.Empty;
-            }
-            else if (pointRB.Checked)
-            {
-                pointLocation = e.Location;
-            }
-            pictureBox1.Invalidate();
-        }
-
-        private void transferCoordinates(double dx, double dy)
-        {
-            //матрица переноса
-            Matrix M = new Matrix(3, 3);
-            M[0, 2] = M[1, 2] = M[0, 1] = M[1, 0] = 0;
-            M[2, 2] = 1;
-            M[0, 0] = 1;
-            M[1, 1] = 1;
-            M[2, 0] = dx;
-            M[2, 1] = dy;
             if (segmentRB.Checked)
             {
                 for (int i = 0; i < segments.Count; ++i)
                 {
-                    Matrix vec = new Matrix(1, 3);
-                    vec[0, 0] = segments[i].leftP.X;
-                    vec[0, 1] = segments[i].leftP.Y;
-                    vec[0, 2] = 1;
-                    vec *= M;
-                    Point leftP = new Point((int)vec[0, 0], (int)vec[0, 1]);
-                    vec[0, 0] = segments[i].rightP.X;
-                    vec[0, 1] = segments[i].rightP.Y;
-                    vec[0, 2] = 1;
-                    vec *= M;
-                    Point rightP = new Point((int)vec[0, 0], (int)vec[0, 1]);
-                    segments[i] = new Segment(leftP, rightP);
-                }
-            }
-            else if (polygonRB.Checked)
-            {
-                for (int i = 0; i < polygon.Count; ++i)
-                {
-                    Matrix vec = new Matrix(1, 3);
-                    vec[0, 0] = polygon[i].X;
-                    vec[0, 1] = polygon[i].Y;
-                    vec[0, 2] = 1;
-                    vec *= M;
-                    polygon[i] = new Point((int)vec[0, 0], (int)vec[0, 1]);
+                    prodSegments(M, i);
                 }
             }
         }
 
-        private void BiasBtn_Click(object sender, EventArgs e)
-        {
-            int x = (int)biasXNumUD.Value;
-            int y = (int)biasYNumUD.Value;
-            transferCoordinates(x, y);
-            pictureBox1.Invalidate();
-        }
 
 
-        private void ScaleBtn_Click(object sender, EventArgs e)
-        {
-            double x = (double)scaleXNumUD.Value / 100;
-            double y = (double)scaleYNumUD.Value / 100;
-            //матрица сжатия/растяжения
+        //Сжатие/растяжение
+        private void ScaleButton(object sender, EventArgs e)
+        {      
             Matrix M = new Matrix(3, 3);
-            M[0, 2] = M[1, 2] = M[0, 1] = M[1, 0] = M[2, 0] = M[2, 1] = 0;
-            M[2, 2] = 1;
-            M[0, 0] = x;
-            M[1, 1] = y;
-            rotateOrScale(M, true);
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (i == j)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                M[i, j] = (double)scaleXNumUD.Value / 100; break;
+                            case 1:
+                                M[i, j] = (double)scaleYNumUD.Value / 100; break;
+                            case 2:
+                                M[i, j] = 1; break;
+                            default:
+                                break;
+                        }
+                    }
+                    else M[i, j] = 0;
+                }
+            }
+            ScaleRotate(M, true);
             pictureBox1.Invalidate();
         }
-        private void rotateOrScale(Matrix M, Boolean action)
+
+        private void prodSegments(Matrix M, int i)
+        {
+            Matrix vec = new Matrix(1, 3);
+            // (x,y,1)
+            vec[0, 0] = segments[i].startP.X;
+            vec[0, 1] = segments[i].startP.Y;
+            vec[0, 2] = 1;
+            vec *= M;// слайд 17 (x,y,1)*M
+            Point leftP = new Point((int)vec[0, 0], (int)vec[0, 1]);
+            vec[0, 0] = segments[i].endP.X;
+            vec[0, 1] = segments[i].endP.Y;
+            vec[0, 2] = 1;
+            vec *= M;
+            Point rightP = new Point((int)vec[0, 0], (int)vec[0, 1]);
+            segments[i] = new Segment(leftP, rightP);
+        }
+
+        private void prodPolygon(Matrix M, int i)
+        {
+            Matrix vec = new Matrix(1, 3);
+            vec[0, 0] = polygon[i].X;
+            vec[0, 1] = polygon[i].Y;
+            vec[0, 2] = 1;
+            vec *= M;// слайд 17 (x,y,1)*M
+            polygon[i] = new Point((int)vec[0, 0], (int)vec[0, 1]);
+        }
+        private void MoveButton(object sender, EventArgs e)
+        {
+            Transform((int)biasXNumUD.Value, (int)biasYNumUD.Value);
+            pictureBox1.Invalidate();
+        }
+        private void ScaleRotate(Matrix M, bool action)
         {
             CheckBox aroundPointCB;
-            if (action)
-                aroundPointCB = scaleAroundPointCB;
-            else
-                aroundPointCB = rotationAroundPointCB;
+            aroundPointCB = action ? scaleAroundPointCB : rotationAroundPointCB;
 
             if (segmentRB.Checked)
             {
                 for (int i = 0; i < segments.Count; ++i)
                 {
-                    //точка, относительно которой масштабировать
                     PointF translationPoint;
 
-                    //окружение заданной точки
+                    //производить действия вокруг точки
                     if (aroundPointCB.Checked)
                     {
-                        if (pointLocation == Point.Empty)
+                        if (pointLocation != Point.Empty)
+                            translationPoint = pointLocation;
+                        else
                             return;
-                        translationPoint = pointLocation;
                     }
-                    //вокруг центра отрезка
+                    //производить действия вокруг отрезка
                     else
-                        translationPoint = new PointF((segments[i].leftP.X + segments[i].rightP.X) / 2,
-                                                          (segments[i].leftP.Y + segments[i].rightP.Y) / 2);
-                    //начало координат
-                    transferCoordinates(-1 * translationPoint.X, -1 * translationPoint.Y);
+                    {
+                        var PX = (segments[i].startP.X + segments[i].endP.X) / 2;
+                        var PY = (segments[i].startP.Y + segments[i].endP.Y) / 2;
+                        translationPoint = new PointF(PX, PY);
+                    }
+                    //переходим к новой системе координат
+                    Transform(-1 * translationPoint.X, -1 * translationPoint.Y);
 
-                    //масштабирование
-                    Matrix vec = new Matrix(1, 3);
-                    vec[0, 0] = segments[i].leftP.X;
-                    vec[0, 1] = segments[i].leftP.Y;
-                    vec[0, 2] = 1;
-                    vec *= M;
-                    Point leftP = new Point((int)vec[0, 0], (int)vec[0, 1]);
-                    vec[0, 0] = segments[i].rightP.X;
-                    vec[0, 1] = segments[i].rightP.Y;
-                    vec[0, 2] = 1;
-                    vec *= M;
-                    Point rightP = new Point((int)vec[0, 0], (int)vec[0, 1]);
-                    segments[i] = new Segment(leftP, rightP);
-                    //перенос обратно
-                    transferCoordinates(translationPoint.X, translationPoint.Y);
+                    //поворачиваем или масштабируем
+                    prodSegments(M, i);
+                    //возвращаемся к старой системе
+                    Transform(translationPoint.X, translationPoint.Y);
                 }
             }
-            else if (polygonRB.Checked)
+           if (polygonRB.Checked)
             {
                 for (int i = 0; i < polygon.Count; ++i)
                 {
-                    //точка, относительно которой масштабировать
                     PointF translationPoint;
-                    //вокруг заданной точки
+                    //производить действия вокруг точки
                     if (aroundPointCB.Checked)
                     {
-                        if (pointLocation == Point.Empty)
+                        if (pointLocation != Point.Empty)
+                            translationPoint = pointLocation;
+                        else
                             return;
-                        translationPoint = pointLocation;
                     }
-                    //вокруг центра полигона
+                    //производить действия вокруг полигона
                     else
-                        translationPoint = new PointF((minPolygonCoord.X + maxPolygonCoord.X) / 2,
-                                                      (minPolygonCoord.Y + maxPolygonCoord.Y) / 2);
-                    //перенос в начало координат
-                    transferCoordinates(-1 * translationPoint.X, -1 * translationPoint.Y);
-                    //масштабирование
-                    Matrix vec = new Matrix(1, 3);
-                    vec[0, 0] = polygon[i].X;
-                    vec[0, 1] = polygon[i].Y;
-                    vec[0, 2] = 1;
-                    vec *= M;
-                    polygon[i] = new Point((int)vec[0, 0], (int)vec[0, 1]);
-                    //перенос обратно
-                    transferCoordinates(translationPoint.X, translationPoint.Y);
+                    {
+                        var PX = (minPolygonCoord.X + maxPolygonCoord.X) / 2;
+                        var PY = (minPolygonCoord.Y + maxPolygonCoord.Y) / 2;
+                        translationPoint = new PointF(PX, PY);
+                    }
+                    //переходим к новой системе координат
+                    Transform(-1 * translationPoint.X, -1 * translationPoint.Y);
+                    //поворачиваем или масштабируем
+                    prodPolygon(M, i);
+                    //возвращаемся к старой системе
+                    Transform(translationPoint.X, translationPoint.Y);
                 }
             }
         }
 
-        private void Angle90_Click(object sender, EventArgs e)
+        private void DefAngle(object sender, EventArgs e)
         {
             angleNumUD.Value = 90;
         }
-
-        private void RotationBtn_Click(object sender, EventArgs e)
-        {
-            double angle = (double)angleNumUD.Value;
-            //матрица сжатия/растяжения
-            Matrix M = new Matrix(3, 3);
-            M[0, 2] = M[1, 2] = M[2, 0] = M[2, 1] = 0;
-            M[2, 2] = 1;
-            M[0, 0] = Math.Cos(angle * Math.PI / 180);
-            M[0, 1] = Math.Sin(angle * Math.PI / 180);
-            M[1, 0] = -Math.Sin(angle * Math.PI / 180);
-            M[1, 1] = Math.Cos(angle * Math.PI / 180);
-            rotateOrScale(M, false);
-            pictureBox1.Invalidate();
-        }
-
-        private void PictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-            pictureBox1.Image = bmp;
-            g = Graphics.FromImage(pictureBox1.Image);
-            g.Clear(Color.White);
-            if (segments.Count > 0)
-            {
-                foreach (Segment seg in segments)
-                    g.DrawLine(Pens.Red, seg.leftP, seg.rightP);
-            }
-
-            if (polygon.Count > 1)
-            {
-                for (int i = 0; i < polygon.Count - 1; ++i)
-                {
-                    g.DrawLine(Pens.Red, polygon[i], polygon[i + 1]);
-                }
-                g.DrawLine(Pens.Red, polygon[0], polygon[polygon.Count - 1]);
-
-            }
-            //растягивание ребра
-            if (startPoint != Point.Empty && endPoint != Point.Empty)
-                g.DrawLine(Pens.Red, startPoint, endPoint);
-            //точка
-            g.DrawEllipse(Pens.Blue, pointLocation.X - 1, pointLocation.Y - 1, 3, 3);
-            g.FillEllipse(Brushes.Blue, pointLocation.X - 1, pointLocation.Y - 1, 3, 3);
-
-            updateText();
-        }
-
-        //обновление информации
-        private void updateText()
-        {
-            if (segments.Count > 0)
-            {
-                int n = segments.Count - 1; //индекс последнего ребра
-                int pos = findPoint(pointLocation, segments[n].leftP, segments[n].rightP);
-                if (pos == 0)
-                    posRelativeToSegmentLabel.Text = "Лежит на линии";
-                else if (pos > 0)
-                    posRelativeToSegmentLabel.Text = "Лежит слева от линии";
-                else
-                    posRelativeToSegmentLabel.Text = "Лежит справа от линии";
-            }
-
-            if (polygon.Count > 2)
-            {
-                if (isInPoligon(polygon, pointLocation))
-                    posRelativeToPolygonLabel.Text = "Точка принадлежит полигону";
-                else
-                    posRelativeToPolygonLabel.Text = "Точка не принадлежит полигону";
-            }
-
-            if (segments.Count > 1)
-            {
-                PointF intersection = new PointF(-1, -1);
-                int n = segments.Count - 1;
-                intersection = pointOfIntersection(segments[n - 1].leftP, segments[n - 1].rightP, segments[n].leftP, segments[n].rightP);
-                if (intersection.X == -1 && intersection.Y == -1)
-                    intersectionPointLabel.Text = "Отрезки не пересекаются";
-                else
-                {
-                    intersectionPointLabel.Text = " " + intersection.ToString();
-                    g.DrawEllipse(Pens.Green, intersection.X - 2, intersection.Y - 2, 5, 5);
-                    g.FillEllipse(Brushes.Green, intersection.X - 2, intersection.Y - 2, 5, 5);
-                    pictureBox1.Invalidate();
-                }
-            }
-        }
-
-        // Классифицирует положение точки относительно ребра     
-        int findPoint(PointF p, Point A, Point B)
-        {
-            return (int)((p.X - A.X) * (B.Y - A.Y) - (p.Y - A.Y) * (B.X - A.X));
-        }
-
-        //определяет принадлежит ли точка полигону
         bool isInPoligon(List<Point> polygon, Point p)
         {
             int n = polygon.Count;
@@ -367,8 +280,8 @@ namespace lab4
                 PointF intersection = pointOfIntersection(polygon[i], polygon[next], p, extreme);
                 if (intersection.X != -1)
                 {
-                    if (orientation(polygon[i], p, polygon[next]) == 0)
-                        return on_segment(polygon[i], p, polygon[next]);
+                    if (FindOrientation(polygon[i], p, polygon[next]) == 0)
+                        return IsInSegment(polygon[i], p, polygon[next]);
 
                     count++;
                 }
@@ -377,25 +290,84 @@ namespace lab4
 
             return count % 2 == 1;
         }
+        bool IsInSegment(PointF q, PointF p, PointF r)
+        {
+            return q.X <= Math.Max(p.X, r.X) && q.X >= Math.Min(p.X, r.X) &&
+                    q.Y <= Math.Max(p.Y, r.Y) && q.Y >= Math.Min(p.Y, r.Y) ? true : false;
+        }
+        private void RotationButton(object sender, EventArgs e)
+        {
+            double angle = (double)angleNumUD.Value;
+            //матрица вращения
+            Matrix M = new Matrix(3, 3);
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (i == j)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                M[i,j] = Math.Cos(angle * Math.PI / 180); 
+                                break;
+                            case 1:
+                                M[i, j] = Math.Cos(angle * Math.PI / 180);
+                                break;
+                            case 2:
+                                M[i, j] = 1;
+                                break;
+                            default:
+                                break;
+                        }
+                        continue;
+                    }
+                    if (i == 0 && j == 1)
+                    {
+                        M[i, j] = Math.Sin(angle * Math.PI / 180);
+                        continue;
+                    }
+                    if (i == 1 && j == 0)
+                    {
+                        M[i, j] = -Math.Sin(angle * Math.PI / 180);
+                        continue;
+                    }
+                    M[i, j] = 0;
+                }
+            }
+            ScaleRotate(M, false);
+            pictureBox1.Invalidate();
+        }
 
-        //ориентация
-        int orientation(PointF p, PointF q, PointF r)
+
+
+        // Классифицирует положение точки относительно ребра     
+        int GetPointLocation(PointF p, Point A, Point B)
+        {
+            if (p.IsEmpty)
+            {
+                return -404;
+            }
+            return (int)((p.X - A.X) * (B.Y - A.Y) - (p.Y - A.Y) * (B.X - A.X));
+        }
+
+        //определяет принадлежит ли точка полигону
+
+        int FindOrientation(PointF p, PointF q, PointF r)
         {
             float val = (q.Y - p.Y) * (r.X - q.X) -
                       (q.X - p.X) * (r.Y - q.Y);
-            if (val == 0) return 0;
-            return (val > 0) ? 1 : 2;
+            switch (val)
+            {
+                case 0:
+                    return 0;
+                default:
+                    return (val > 0) ? 1 : 2;
+            }
         }
 
-        bool on_segment(PointF q, PointF p, PointF r)
-        {
-            if (q.X <= Math.Max(p.X, r.X) && q.X >= Math.Min(p.X, r.X) &&
-                    q.Y <= Math.Max(p.Y, r.Y) && q.Y >= Math.Min(p.Y, r.Y))
-                return true;
-            return false;
-        }
 
-        //точка пересечения
+
         PointF pointOfIntersection(PointF p0, PointF p1, PointF p2, PointF p3)
         {
             PointF i = new PointF(-1, -1);
@@ -415,6 +387,80 @@ namespace lab4
                 i.Y = p0.Y + (t * s1.Y);
             }
             return i;
+        }
+
+        private void Draw(object sender, PaintEventArgs e)
+        {
+            pictureBox1.Image = bmp;
+            g = Graphics.FromImage(pictureBox1.Image);
+            g.Clear(Color.White);
+            if (segments.Count > 0)
+            {
+                foreach (Segment seg in segments)
+                    g.DrawLine(Pens.Red, seg.startP, seg.endP);
+            }
+
+            if (polygon.Count > 1)
+            {
+                for (int i = 0; i < polygon.Count - 1; ++i)
+                {
+                    g.DrawLine(Pens.Red, polygon[i], polygon[i + 1]);
+                }
+                // автоматически достраивает до полигона
+                g.DrawLine(Pens.Red, polygon[0], polygon[polygon.Count - 1]);
+
+            }
+            // нужно чтобы было видно что будет нарисовано при отпускании мыши
+            if (startPoint != Point.Empty && endPoint != Point.Empty)
+                g.DrawLine(Pens.Red, startPoint, endPoint);
+
+            // рисуем полигон
+            g.DrawEllipse(Pens.Blue, pointLocation.X - 1, pointLocation.Y - 1, 3, 3);
+            g.FillEllipse(Brushes.Blue, pointLocation.X - 1, pointLocation.Y - 1, 3, 3);
+
+            ChangeText();
+        }
+
+        private void ChangeText()
+        {
+            if (segments.Count > 0)
+            {
+                int pos = GetPointLocation(pointLocation, segments[segments.Count - 1].startP,
+                    segments[segments.Count - 1].endP);
+
+                if (pos >= 0)
+                    posRelativeToSegmentLabel.Text = "Лежит слева от линии";
+                else if (pos == -404)
+                    posRelativeToSegmentLabel.Text = "-";
+                else
+                    posRelativeToSegmentLabel.Text = "Лежит справа от линии";
+            }
+
+            if (polygon.Count > 2)
+            {
+                posRelativeToPolygonLabel.Text = isInPoligon(polygon, pointLocation)
+                    ? "Точка принадлежит полигону" : "Точка не принадлежит полигону";
+                if (pointLocation.IsEmpty)
+                {
+                    posRelativeToPolygonLabel.Text = "-";
+                }
+            }
+
+            if (segments.Count > 1)
+            {
+                PointF intersection = new PointF(-1, -1);
+                int n = segments.Count - 1;
+                intersection = pointOfIntersection(segments[n - 1].startP, segments[n - 1].endP, segments[n].startP, segments[n].endP);
+                if (intersection.X == -1 && intersection.Y == -1)
+                    intersectionPointLabel.Text = "Отрезки не пересекаются";
+                else
+                {
+                    intersectionPointLabel.Text = " " + intersection.ToString();
+                    g.DrawEllipse(Pens.Green, intersection.X - 2, intersection.Y - 2, 5, 5);
+                    g.FillEllipse(Brushes.Green, intersection.X - 2, intersection.Y - 2, 5, 5);
+                    pictureBox1.Invalidate();
+                }
+            }
         }
     }
 }

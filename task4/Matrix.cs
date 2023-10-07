@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace lab4
 {
-    //класс матрицы 
     class Matrix
     {
         private double[,] data;
@@ -54,22 +53,16 @@ namespace lab4
             var n1 = matr.N;
             var m2 = matr2.M;
             var n2 = matr2.N;
-            if (n1 != m2)
-            {
-                throw new ArgumentException("матрицы нельзя перемножать");
-            }
 
             var res = new Matrix(m1, n2);
             for (int i = 0; i < res.M; i++)
             {
                 for (int j = 0; j < res.N; j++)
                 {
-                    double sum = 0;
                     for (int k = 0; k < n1; k++)
                     {
-                        sum += matr[i,k] * matr2[k,j];
+                        res[i, j] += matr[i,k] * matr2[k,j];
                     }
-                    res[i,j] = sum;
                 }
             }
             return res;
