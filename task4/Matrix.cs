@@ -8,7 +8,7 @@ namespace lab4
 {
     class Matrix
     {
-        private double[,] data;
+        private float[,] data;
 
         private int m;
         public int M { get => this.m; }
@@ -20,9 +20,9 @@ namespace lab4
         {
             this.m = m;
             this.n = n;
-            this.data = new double[m, n];
+            this.data = new float[m, n];
         }
-        public double this[int x, int y]
+        public float this[int x, int y]
         {
             get
             {
@@ -34,7 +34,7 @@ namespace lab4
             }
         }
 
-        public static Matrix operator *(Matrix matrix, double value)
+        public static Matrix operator *(Matrix matrix, float value)
         {
             var res = new Matrix(matrix.M, matrix.N);
             for (var i = 0; i < res.M; i++)

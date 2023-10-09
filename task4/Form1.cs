@@ -97,7 +97,7 @@ namespace lab4
             pictureBox1.Invalidate();
         }
         // смещение на dx, dy
-        private void Transform(double dx, double dy)
+        private void Transform(float dx, float dy)
         {
             //матрица переноса из лекции 4 слайд 15
             Matrix M = new Matrix(3, 3);
@@ -150,9 +150,9 @@ namespace lab4
                         switch (i)
                         {
                             case 0:
-                                M[i, j] = (double)scaleXNumUD.Value / 100; break;
+                                M[i, j] = (float)scaleXNumUD.Value / 100; break;
                             case 1:
-                                M[i, j] = (double)scaleYNumUD.Value / 100; break;
+                                M[i, j] = (float)scaleYNumUD.Value / 100; break;
                             case 2:
                                 M[i, j] = 1; break;
                             default:
@@ -297,7 +297,7 @@ namespace lab4
         }
         private void RotationButton(object sender, EventArgs e)
         {
-            double angle = (double)angleNumUD.Value;
+            float angle = (float)angleNumUD.Value;
             //матрица вращения
             Matrix M = new Matrix(3, 3);
             for (int i = 0; i < 3; i++)
@@ -309,10 +309,10 @@ namespace lab4
                         switch (i)
                         {
                             case 0:
-                                M[i,j] = Math.Cos(angle * Math.PI / 180); 
+                                M[i,j] = (float)Math.Cos(angle * Math.PI / 180); 
                                 break;
                             case 1:
-                                M[i, j] = Math.Cos(angle * Math.PI / 180);
+                                M[i, j] = (float)Math.Cos(angle * Math.PI / 180);
                                 break;
                             case 2:
                                 M[i, j] = 1;
@@ -324,12 +324,12 @@ namespace lab4
                     }
                     if (i == 0 && j == 1)
                     {
-                        M[i, j] = Math.Sin(angle * Math.PI / 180);
+                        M[i, j] = (float)Math.Sin(angle * Math.PI / 180);
                         continue;
                     }
                     if (i == 1 && j == 0)
                     {
-                        M[i, j] = -Math.Sin(angle * Math.PI / 180);
+                        M[i, j] = (float)-Math.Sin(angle * Math.PI / 180);
                         continue;
                     }
                     M[i, j] = 0;
