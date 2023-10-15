@@ -23,11 +23,15 @@ namespace lab5
             InitializeComponent();
             points = new List<PointF>();
             random = new Random();
-            roughness = 1;
-            displacement = 1;
+            roughness = 5;
+            displacement = 5;
             generate = false;
             this.Width = 1000;
             this.Height = 600;
+            trackBarDisplacement.Minimum = 1;
+            trackBarRoughness.Maximum = 15;
+            trackBarDisplacement.Maximum = 100;
+
         }
 
         private async void btnGenerate_Click(object sender, EventArgs e)
@@ -54,20 +58,24 @@ namespace lab5
 
         private async Task midpointDisplacementAsync(PointF p1, PointF p2, float variance, float roughness)
         {
-            if (p2.X - p1.X < 1 || !generate)
+            if (p2.X - p1.X < displacement || !generate)
                 return;
 
             float midX = (p1.X + p2.X) / 2;
             float midY = (p1.Y + p2.Y) / 2;
+            float k = random.Next(-1, 2) * variance * roughness;
+            while (midY+k <= 0 || midY+k>=pbCanvas.Height)
+            {
+                k = random.Next(-1, 2) * variance * roughness;
 
-            midY += random.Next(-1, 2) * variance * roughness;
-
+            }
+            midY += k;
             PointF midPoint = new PointF(midX, midY);
             points.Insert(points.IndexOf(p2), midPoint);
 
             pbCanvas.Invalidate();
 
-            await Task.Delay(50);
+            await Task.Delay(0);
 
             await midpointDisplacementAsync(p1, midPoint, variance / 2, roughness);
             await midpointDisplacementAsync(midPoint, p2, variance / 2, roughness);
@@ -86,12 +94,15 @@ namespace lab5
 
         private void trackBarRoughness_Scroll(object sender, EventArgs e)
         {
+            
+            
             roughness = trackBarRoughness.Value / 10.0f;
             lblRoughness.Text = $"Roughness: {roughness}";
         }
 
         private void trackBarDisplacement_Scroll(object sender, EventArgs e)
         {
+            
             displacement = trackBarDisplacement.Value;
             lblDisplacement.Text = $"Displacement: {displacement}";
         }
