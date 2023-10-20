@@ -54,6 +54,7 @@
             this.trackBarRoughness.Name = "trackBarRoughness";
             this.trackBarRoughness.Size = new System.Drawing.Size(612, 90);
             this.trackBarRoughness.TabIndex = 1;
+            this.trackBarRoughness.Value = 5;
             this.trackBarRoughness.Scroll += new System.EventHandler(this.trackBarRoughness_Scroll);
             // 
             // trackBarDisplacement
@@ -62,6 +63,7 @@
             this.trackBarDisplacement.Name = "trackBarDisplacement";
             this.trackBarDisplacement.Size = new System.Drawing.Size(612, 90);
             this.trackBarDisplacement.TabIndex = 2;
+            this.trackBarDisplacement.Value = 5;
             this.trackBarDisplacement.Scroll += new System.EventHandler(this.trackBarDisplacement_Scroll);
             // 
             // lblRoughness
