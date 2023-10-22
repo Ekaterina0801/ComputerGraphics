@@ -9,8 +9,10 @@ namespace lab63D
 {
     interface Primitive
     {
-        void Draw(Graphics g, AffineTransformer projection, int width, int height);
+        void Draw(Graphics g, AffineTransformer projection, int width, int height, short pen_color = 1);
 
         void MultiplyWithTransformMatr(AffineTransformer t);
+
+        Point3D Center { get; }
     }
 }

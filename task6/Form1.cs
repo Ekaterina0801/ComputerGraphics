@@ -72,6 +72,10 @@ namespace lab63D
             Point3D c = new Point3D(0, 0.8, 0);
             Point3D d = new Point3D(0, 0, 0.8);
 
+            Point3D A0 = new Point3D((double)numericUpDown14.Value, (double)numericUpDown15.Value, (double)numericUpDown16.Value);
+            Point3D B0 = new Point3D((double)numericUpDown17.Value, (double)numericUpDown18.Value, (double)numericUpDown19.Value);
+            Line3D rotation_line = new Line3D(A0, B0);
+
             var p = new List<Primitive>
             {
             a,
@@ -86,8 +90,24 @@ namespace lab63D
 
             foreach (Primitive x in p)
             {
-                x.Draw(g, t, width, height);
+                try
+                {
+                    x.Draw(g, t, width, height);
+                }
+                catch (ArgumentException ex)
+                {
+                    ErrorMBox.Text = "Координаты не допустимы для смещения в этом направлении";
+                    numericUpDown1.Value = (decimal)-cur_primitive.Center.X;
+                    numericUpDown2.Value = (decimal)-cur_primitive.Center.Y;
+                    numericUpDown3.Value = (decimal)-cur_primitive.Center.Z;
+                    Translate();
+                    numericUpDown1.Value = 0;
+                    numericUpDown2.Value = 0;
+                    numericUpDown3.Value = 0;
+                }
             }
+
+            rotation_line.Draw(g, t, width, height, 2);
         }
 
         private void GetPrimitive()
@@ -277,11 +297,11 @@ namespace lab63D
 
         private void ApplyAffin_Click(object sender, EventArgs e)
         {
+            ErrorMBox.Text = "-";
             Clear();
             Translate();
             Rotate();
             Scale();
-
             DrawAxis(perspective_g, get_perpective_transform(), PerspectiveBox.Width, PerspectiveBox.Height);
             DrawAxis(orthographic_g, get_orthographic_transform(), OrthographicBox.Width, OrthographicBox.Height);
         }
@@ -315,11 +335,42 @@ namespace lab63D
 
         private void ApplyLineRotation_Click(object sender, EventArgs e)
         {
+            if (numericUpDown14.Value == 0 && numericUpDown15.Value == 0 && numericUpDown16.Value == 0 && numericUpDown17.Value == 0 && numericUpDown18.Value == 0 && numericUpDown19.Value == 0)
+            {
+                return;
+            }
             Clear();
             RotateLine();
 
             DrawAxis(perspective_g, get_perpective_transform(), PerspectiveBox.Width, PerspectiveBox.Height);
             DrawAxis(orthographic_g, get_orthographic_transform(), OrthographicBox.Width, OrthographicBox.Height);
+        }
+
+        private void OrthographicLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            Clear();
+            cur_primitive = new Tetrahedron(0.5);
+
+            DrawAxis(perspective_g, get_perpective_transform(), PerspectiveBox.Width, PerspectiveBox.Height);
+            DrawAxis(orthographic_g, get_orthographic_transform(), OrthographicBox.Width, OrthographicBox.Height);
+        }
+
+        private void ToZero_Click(object sender, EventArgs e)
+        {
+            numericUpDown1.Value = 0;
+            numericUpDown2.Value = 0;
+            numericUpDown3.Value = 0;
+            numericUpDown4.Value = 0;
+            numericUpDown5.Value = 0;
+            numericUpDown6.Value = 0;
+            numericUpDown7.Value = 1;
+            numericUpDown8.Value = 1;
+            numericUpDown9.Value = 1;
         }
     }
 }
