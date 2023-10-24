@@ -13,10 +13,10 @@ namespace lab63D
         private List<Point3D> points = new List<Point3D>();
 
         // кол-во граней = 6
-        private List<Face> verges = new List<Face>();
+        private List<Face> faces = new List<Face>();
 
         public List<Point3D> Points { get { return points; } }
-        public List<Face> Verges { get { return verges; } }
+        public List<Face> Faces { get { return faces; } }
 
         public Point3D Center
         {
@@ -49,12 +49,12 @@ namespace lab63D
             points.Add(new Point3D(size / 2, size / 2, -size / 2));
             points.Add(new Point3D(size / 2, size / 2, size / 2));
 
-            Verges.Add(new Face(new Point3D[] { points[0], points[1], points[5], points[3] }));
-            Verges.Add(new Face(new Point3D[] { points[2], points[6], points[3], points[0] }));
-            Verges.Add(new Face(new Point3D[] { points[4], points[1], points[0], points[2] }));
-            Verges.Add(new Face(new Point3D[] { points[7], points[5], points[3], points[6] }));
-            Verges.Add(new Face(new Point3D[] { points[2], points[4], points[7], points[6] }));
-            Verges.Add(new Face(new Point3D[] { points[4], points[1], points[5], points[7] }));
+            Faces.Add(new Face(new Point3D[] { points[0], points[1], points[5], points[3] }));
+            Faces.Add(new Face(new Point3D[] { points[2], points[6], points[3], points[0] }));
+            Faces.Add(new Face(new Point3D[] { points[4], points[1], points[0], points[2] }));
+            Faces.Add(new Face(new Point3D[] { points[7], points[5], points[3], points[6] }));
+            Faces.Add(new Face(new Point3D[] { points[2], points[4], points[7], points[6] }));
+            Faces.Add(new Face(new Point3D[] { points[4], points[1], points[5], points[7] }));
 
         }
 
@@ -64,11 +64,11 @@ namespace lab63D
                 point.MultiplyWithTransformMatr(t);
         }
 
-        public void Draw(Graphics g, AffineTransformer projection, int width, int height)
+        public void Draw(Graphics g, AffineTransformer projection, int width, int height, short pen_color = 1)
         {
             if (Points.Count != 8) return;
 
-            foreach (var Verge in Verges)
+            foreach (var Verge in Faces)
                 Verge.Draw(g, projection, width, height);
         }
     }

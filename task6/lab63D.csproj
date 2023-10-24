@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AffineTransformer.cs" />
+    <Compile Include="Dodecahedron.cs" />
     <Compile Include="Face.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -54,8 +55,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hexahedron.cs" />
+    <Compile Include="Isocahedron.cs" />
     <Compile Include="Line3D.cs" />
     <Compile Include="Matrix.cs" />
+    <Compile Include="Octahedron.cs" />
     <Compile Include="Point3D.cs" />
     <Compile Include="Primitive.cs" />
     <Compile Include="Program.cs" />

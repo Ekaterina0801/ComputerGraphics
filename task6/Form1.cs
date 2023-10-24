@@ -121,20 +121,20 @@ namespace lab63D
                     }
                 case "Гексаэдр":
                     {
-                        cur_primitive = new Tetrahedron(0.5);
-                        //cur_primitive = new Hexahedron(0.5);
+                        //cur_primitive = new Tetrahedron(0.5);
+                        cur_primitive = new Hexahedron(0.5);
                         break;
                     }
                 case "Октаэдр":
                     {
-                        cur_primitive = new Tetrahedron(0.5);
-                        //cur_primitive = new Octahedron(0.5);
+                        //cur_primitive = new Tetrahedron(0.5);
+                        cur_primitive = new Octahedron(0.5);
                         break;
                     }
                 case "Икосаэдр":
                     {
-                        cur_primitive = new Tetrahedron(0.5);
-                        //cur_primitive = new Icosahedron(0.5);
+                        //cur_primitive = new Tetrahedron(0.5);
+                        cur_primitive = new Isocahedron(0.5);
                         break;
                     }
                 case "Додекаэдр":

@@ -10,7 +10,7 @@ namespace lab63D
 {
     class Tetrahedron:Primitive
     {
-        // первые три точки - основание тетраэдра, четвертая точка - его вершина
+        // первые 3 точки - основание тетраэдра, четвертая точка - вершина
         private List<Point3D> points = new List<Point3D>();
 
         private List<Face> faces = new List<Face>();
