@@ -16,7 +16,7 @@ namespace lab63D
         private List<Face> faces = new List<Face>();
 
         public List<Point3D> Points { get { return points; } }
-        public List<Face> Faces { get { return Faces; } }
+        public List<Face> Faces { get { return faces; } }
 
         public Point3D Center
         {
