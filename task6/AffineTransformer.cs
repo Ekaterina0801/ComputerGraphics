@@ -34,6 +34,7 @@ namespace lab63D
                     { 0, sin, cos, 0 },
                     { 0, 0, 0, 1 }
                 }));
+
         }
 
         public static AffineTransformer RotateY(double angle)
@@ -68,19 +69,22 @@ namespace lab63D
         {
             double cos = Math.Cos(angle);
             double sin = Math.Sin(angle);
+            var l1 = line.A;
+            var l2 = line.B;
             double l = Math.Sign(line.B.X - line.A.X);
             double m = Math.Sign(line.B.Y - line.A.Y);
             double n = Math.Sign(line.B.Z - line.A.Z);
             double length = Math.Sqrt(l * l + m * m + n * n);
             l /= length; m /= length; n /= length;
-            return new AffineTransformer(
-                new Matrix(new double[,]
+            var j = new Matrix(new double[,]
                 {
                    { l * l + cos * (1 - l * l),   l * (1 - cos) * m + n * sin,   l * (1 - cos) * n - m * sin,  0  },
                    { l * (1 - cos) * m - n * sin,   m * m + cos * (1 - m * m),    m * (1 - cos) * n + l * sin,  0 },
                    { l * (1 - cos) * n + m * sin,  m * (1 - cos) * n - l * sin,    n * n + cos * (1 - n * n),   0 },
                    {            0,                            0,                             0,               1   }
-                }));
+                });
+            return new AffineTransformer(
+                j);
 
         }
 
