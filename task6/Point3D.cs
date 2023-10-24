@@ -29,6 +29,11 @@ namespace lab63D
             edges = points;
         }
 
+        public Point3D Center
+        {
+            get { return this; }
+        }
+
         public static Point3D FromPoint(Point point)
         {
             return new Point3D(point.X, point.Y, 0);
@@ -53,13 +58,13 @@ namespace lab63D
             return p;
         }
 
-        public void Draw(Graphics g, AffineTransformer projection, int width, int height)
+        public void Draw(Graphics g, AffineTransformer projection, int width, int height, short pen_color = 1)
         {
             var projected = TransformPoint(projection);
             if (Z < -1 || 1 < Z) return;
             var x = (projected.X + 1) / 2 * width;
             var y = (-projected.Y + 1) / 2 * height;
-            g.DrawEllipse(new Pen(Color.Black, 2), (float)x, (float)y, 2, 2);
+            g.DrawEllipse(new Pen(Color.Black, 2), (float)x-1, (float)y-1, 2, 2);
         }
 
         /// <summary>

@@ -63,7 +63,7 @@ namespace lab63D
                 point.MultiplyWithTransformMatr(t);
         }
 
-        public void Draw(Graphics g, AffineTransformer projection, int width, int height)
+        public void Draw(Graphics g, AffineTransformer projection, int width, int height, short pen_color = 1)
         {
             foreach (var Face in Faces)
                 Face.Draw(g, projection, width, height);

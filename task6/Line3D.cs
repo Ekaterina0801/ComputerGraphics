@@ -21,17 +21,42 @@ namespace lab63D
             B = b;
         }
 
+        public Point3D Center
+        {
+            get
+            {
+                Point3D center = new Point3D((A.X + B.X) / 2, (A.Y + B.Y) / 2, (A.Y + B.Y) / 2);
+                return center; 
+            }
+        }
+
         public void MultiplyWithTransformMatr(AffineTransformer t)
         {
             A = A.TransformPoint(t);
             B = B.TransformPoint(t);
         }
 
-        public void Draw(Graphics g, AffineTransformer projection, int width, int height)
+        public void Draw(Graphics g, AffineTransformer projection, int width, int height, short pen_color = 1)
         {
             var c = A.TransformPoint(projection).NormalizedToDisplay(width, height);
             var d = B.TransformPoint(projection).NormalizedToDisplay(width, height);
-            g.DrawLine(Pens.Black, (float)c.X, (float)c.Y, (float)d.X, (float)d.Y);
+            Pen draw_pen;
+            switch (pen_color)
+            {
+                case 1:
+                    draw_pen = Pens.Black;
+                    break;
+                case 2:
+                    draw_pen = Pens.Red;
+                    break;
+                case 3:
+                    draw_pen = Pens.Green;
+                    break;
+                default:
+                    draw_pen = Pens.Black;
+                    break;
+            }
+            g.DrawLine(draw_pen, (float)c.X, (float)c.Y, (float)d.X, (float)d.Y);
         }
     }
 }

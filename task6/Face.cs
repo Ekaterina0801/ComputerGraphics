@@ -21,6 +21,24 @@ namespace lab63D
             this.points = points;
         }
 
+        public Point3D Center
+        {
+            get
+            {
+                double sumX = 0, sumY = 0, sumZ = 0;
+                int n = 0;
+                foreach (Point3D p in points)
+                {
+                    sumX += p.X;
+                    sumY += p.Y;
+                    sumZ += p.Z;
+                    n += 1;
+                }
+                Point3D center = new Point3D(sumX/n, sumY/n, sumZ/n);
+                return center;
+            }
+        }
+
         public void AddPoint(Point3D p)
         {
             points.Add(p);
@@ -32,7 +50,7 @@ namespace lab63D
                 point.MultiplyWithTransformMatr(t);
         }
 
-        public void Draw(Graphics g, AffineTransformer projection, int width, int height)
+        public void Draw(Graphics g, AffineTransformer projection, int width, int height, short pen_color = 1)
         {
             if (Points.Count == 1)
                 Points[0].Draw(g, projection, width, height);

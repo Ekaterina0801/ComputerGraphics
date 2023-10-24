@@ -78,6 +78,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.ErrorMBox = new System.Windows.Forms.Label();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.ToZero = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PerspectiveBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrthographicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -106,9 +109,9 @@
             // 
             this.PerspectiveBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PerspectiveBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PerspectiveBox.Location = new System.Drawing.Point(849, 12);
+            this.PerspectiveBox.Location = new System.Drawing.Point(684, -3);
             this.PerspectiveBox.Name = "PerspectiveBox";
-            this.PerspectiveBox.Size = new System.Drawing.Size(617, 415);
+            this.PerspectiveBox.Size = new System.Drawing.Size(559, 372);
             this.PerspectiveBox.TabIndex = 0;
             this.PerspectiveBox.TabStop = false;
             // 
@@ -116,9 +119,9 @@
             // 
             this.OrthographicBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.OrthographicBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.OrthographicBox.Location = new System.Drawing.Point(847, 457);
+            this.OrthographicBox.Location = new System.Drawing.Point(684, 360);
             this.OrthographicBox.Name = "OrthographicBox";
-            this.OrthographicBox.Size = new System.Drawing.Size(619, 405);
+            this.OrthographicBox.Size = new System.Drawing.Size(559, 356);
             this.OrthographicBox.TabIndex = 1;
             this.OrthographicBox.TabStop = false;
             // 
@@ -130,7 +133,7 @@
             "Изометрическая"});
             this.PerspectiveComboBox.Location = new System.Drawing.Point(18, 64);
             this.PerspectiveComboBox.Name = "PerspectiveComboBox";
-            this.PerspectiveComboBox.Size = new System.Drawing.Size(180, 44);
+            this.PerspectiveComboBox.Size = new System.Drawing.Size(180, 35);
             this.PerspectiveComboBox.TabIndex = 2;
             // 
             // OrthographicComboBox
@@ -140,9 +143,9 @@
             "Ортографическая XY",
             "Ортографическая XZ",
             "Ортографическая YZ"});
-            this.OrthographicComboBox.Location = new System.Drawing.Point(42, 669);
+            this.OrthographicComboBox.Location = new System.Drawing.Point(291, 557);
             this.OrthographicComboBox.Name = "OrthographicComboBox";
-            this.OrthographicComboBox.Size = new System.Drawing.Size(190, 44);
+            this.OrthographicComboBox.Size = new System.Drawing.Size(190, 35);
             this.OrthographicComboBox.TabIndex = 3;
             // 
             // ApplyPerspective
@@ -157,9 +160,9 @@
             // 
             // ApplyOrthographic
             // 
-            this.ApplyOrthographic.Location = new System.Drawing.Point(42, 732);
+            this.ApplyOrthographic.Location = new System.Drawing.Point(504, 559);
             this.ApplyOrthographic.Name = "ApplyOrthographic";
-            this.ApplyOrthographic.Size = new System.Drawing.Size(190, 48);
+            this.ApplyOrthographic.Size = new System.Drawing.Size(156, 33);
             this.ApplyOrthographic.TabIndex = 5;
             this.ApplyOrthographic.Text = "Применить";
             this.ApplyOrthographic.UseVisualStyleBackColor = true;
@@ -176,7 +179,7 @@
             "Додекаэдр"});
             this.PrimitiveComboBox.Location = new System.Drawing.Point(221, 64);
             this.PrimitiveComboBox.Name = "PrimitiveComboBox";
-            this.PrimitiveComboBox.Size = new System.Drawing.Size(183, 44);
+            this.PrimitiveComboBox.Size = new System.Drawing.Size(183, 35);
             this.PrimitiveComboBox.TabIndex = 6;
             // 
             // PerspectiveLabel
@@ -185,7 +188,7 @@
             this.PerspectiveLabel.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PerspectiveLabel.Location = new System.Drawing.Point(22, 16);
             this.PerspectiveLabel.Name = "PerspectiveLabel";
-            this.PerspectiveLabel.Size = new System.Drawing.Size(244, 45);
+            this.PerspectiveLabel.Size = new System.Drawing.Size(182, 33);
             this.PerspectiveLabel.TabIndex = 7;
             this.PerspectiveLabel.Text = "Тип проекции\r\n";
             // 
@@ -193,19 +196,20 @@
             // 
             this.OrthographicLabel.AutoSize = true;
             this.OrthographicLabel.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OrthographicLabel.Location = new System.Drawing.Point(24, 616);
+            this.OrthographicLabel.Location = new System.Drawing.Point(22, 555);
             this.OrthographicLabel.Name = "OrthographicLabel";
-            this.OrthographicLabel.Size = new System.Drawing.Size(340, 45);
+            this.OrthographicLabel.Size = new System.Drawing.Size(254, 33);
             this.OrthographicLabel.TabIndex = 8;
             this.OrthographicLabel.Text = "Выберите проекцию";
+            this.OrthographicLabel.Click += new System.EventHandler(this.OrthographicLabel_Click);
             // 
             // PrimitiveLabel
             // 
             this.PrimitiveLabel.AutoSize = true;
             this.PrimitiveLabel.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PrimitiveLabel.Location = new System.Drawing.Point(229, 16);
+            this.PrimitiveLabel.Location = new System.Drawing.Point(210, 16);
             this.PrimitiveLabel.Name = "PrimitiveLabel";
-            this.PrimitiveLabel.Size = new System.Drawing.Size(324, 45);
+            this.PrimitiveLabel.Size = new System.Drawing.Size(240, 33);
             this.PrimitiveLabel.TabIndex = 9;
             this.PrimitiveLabel.Text = "Тип многогранника\r\n";
             // 
@@ -239,7 +243,7 @@
             0,
             -2147483648});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown1.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown1.TabIndex = 11;
             // 
             // numericUpDown2
@@ -262,7 +266,7 @@
             0,
             -2147483648});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown2.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown2.TabIndex = 12;
             // 
             // numericUpDown3
@@ -285,7 +289,7 @@
             0,
             -2147483648});
             this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(54, 44);
+            this.numericUpDown3.Size = new System.Drawing.Size(54, 35);
             this.numericUpDown3.TabIndex = 13;
             // 
             // label1
@@ -294,7 +298,7 @@
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(26, 174);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 45);
+            this.label1.Size = new System.Drawing.Size(32, 33);
             this.label1.TabIndex = 14;
             this.label1.Text = "X";
             // 
@@ -304,7 +308,7 @@
             this.label2.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(99, 174);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 45);
+            this.label2.Size = new System.Drawing.Size(31, 33);
             this.label2.TabIndex = 15;
             this.label2.Text = "Y";
             // 
@@ -314,7 +318,7 @@
             this.label3.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(180, 174);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 45);
+            this.label3.Size = new System.Drawing.Size(32, 33);
             this.label3.TabIndex = 16;
             this.label3.Text = "Z";
             // 
@@ -324,7 +328,7 @@
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(229, 221);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(180, 45);
+            this.label4.Size = new System.Drawing.Size(133, 33);
             this.label4.TabIndex = 17;
             this.label4.Text = "Смещение";
             // 
@@ -347,7 +351,7 @@
             0,
             -2147483648});
             this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(54, 44);
+            this.numericUpDown4.Size = new System.Drawing.Size(54, 35);
             this.numericUpDown4.TabIndex = 20;
             // 
             // numericUpDown5
@@ -369,7 +373,7 @@
             0,
             -2147483648});
             this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown5.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown5.TabIndex = 19;
             // 
             // numericUpDown6
@@ -391,7 +395,7 @@
             0,
             -2147483648});
             this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown6.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown6.TabIndex = 18;
             // 
             // numericUpDown7
@@ -404,7 +408,7 @@
             65536});
             this.numericUpDown7.Location = new System.Drawing.Point(12, 334);
             this.numericUpDown7.Maximum = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -414,7 +418,7 @@
             0,
             -2147483648});
             this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(54, 44);
+            this.numericUpDown7.Size = new System.Drawing.Size(54, 35);
             this.numericUpDown7.TabIndex = 23;
             this.numericUpDown7.Value = new decimal(new int[] {
             1,
@@ -432,7 +436,7 @@
             65536});
             this.numericUpDown8.Location = new System.Drawing.Point(86, 334);
             this.numericUpDown8.Maximum = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -442,7 +446,7 @@
             0,
             -2147483648});
             this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown8.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown8.TabIndex = 22;
             this.numericUpDown8.Value = new decimal(new int[] {
             1,
@@ -460,7 +464,7 @@
             65536});
             this.numericUpDown9.Location = new System.Drawing.Point(158, 334);
             this.numericUpDown9.Maximum = new decimal(new int[] {
-            5,
+            2,
             0,
             0,
             0});
@@ -470,7 +474,7 @@
             0,
             65536});
             this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown9.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown9.TabIndex = 21;
             this.numericUpDown9.Value = new decimal(new int[] {
             1,
@@ -484,7 +488,7 @@
             this.label5.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.Location = new System.Drawing.Point(233, 279);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(154, 45);
+            this.label5.Size = new System.Drawing.Size(115, 33);
             this.label5.TabIndex = 24;
             this.label5.Text = "Поворот";
             // 
@@ -494,15 +498,15 @@
             this.label6.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(233, 336);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(152, 45);
+            this.label6.Size = new System.Drawing.Size(115, 33);
             this.label6.TabIndex = 25;
             this.label6.Text = "Масштаб";
             // 
             // ApplyAffin
             // 
-            this.ApplyAffin.Location = new System.Drawing.Point(31, 386);
+            this.ApplyAffin.Location = new System.Drawing.Point(18, 386);
             this.ApplyAffin.Name = "ApplyAffin";
-            this.ApplyAffin.Size = new System.Drawing.Size(167, 29);
+            this.ApplyAffin.Size = new System.Drawing.Size(140, 29);
             this.ApplyAffin.TabIndex = 26;
             this.ApplyAffin.Text = "Применить";
             this.ApplyAffin.UseVisualStyleBackColor = true;
@@ -515,16 +519,16 @@
             "Отражение по X",
             "Отражение по Y",
             "Отражение по Z"});
-            this.ReflectionComboBox.Location = new System.Drawing.Point(12, 484);
+            this.ReflectionComboBox.Location = new System.Drawing.Point(158, 462);
             this.ReflectionComboBox.Name = "ReflectionComboBox";
-            this.ReflectionComboBox.Size = new System.Drawing.Size(186, 44);
+            this.ReflectionComboBox.Size = new System.Drawing.Size(171, 35);
             this.ReflectionComboBox.TabIndex = 27;
             // 
             // ApplyReflection
             // 
-            this.ApplyReflection.Location = new System.Drawing.Point(30, 546);
+            this.ApplyReflection.Location = new System.Drawing.Point(335, 462);
             this.ApplyReflection.Name = "ApplyReflection";
-            this.ApplyReflection.Size = new System.Drawing.Size(202, 44);
+            this.ApplyReflection.Size = new System.Drawing.Size(158, 35);
             this.ApplyReflection.TabIndex = 28;
             this.ApplyReflection.Text = "Применить";
             this.ApplyReflection.UseVisualStyleBackColor = true;
@@ -534,9 +538,9 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(66, 434);
+            this.label7.Location = new System.Drawing.Point(12, 462);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(190, 45);
+            this.label7.Size = new System.Drawing.Size(140, 33);
             this.label7.TabIndex = 29;
             this.label7.Text = "Отражение";
             // 
@@ -548,7 +552,7 @@
             0,
             0,
             65536});
-            this.numericUpDown10.Location = new System.Drawing.Point(463, 496);
+            this.numericUpDown10.Location = new System.Drawing.Point(363, 513);
             this.numericUpDown10.Maximum = new decimal(new int[] {
             5,
             0,
@@ -560,7 +564,7 @@
             0,
             65536});
             this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(118, 44);
+            this.numericUpDown10.Size = new System.Drawing.Size(118, 35);
             this.numericUpDown10.TabIndex = 30;
             this.numericUpDown10.Value = new decimal(new int[] {
             1,
@@ -570,9 +574,9 @@
             // 
             // ApplyScaleCenter
             // 
-            this.ApplyScaleCenter.Location = new System.Drawing.Point(387, 546);
+            this.ApplyScaleCenter.Location = new System.Drawing.Point(500, 513);
             this.ApplyScaleCenter.Name = "ApplyScaleCenter";
-            this.ApplyScaleCenter.Size = new System.Drawing.Size(195, 44);
+            this.ApplyScaleCenter.Size = new System.Drawing.Size(157, 35);
             this.ApplyScaleCenter.TabIndex = 31;
             this.ApplyScaleCenter.Text = "Применить";
             this.ApplyScaleCenter.UseVisualStyleBackColor = true;
@@ -581,9 +585,9 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(327, 457);
+            this.label8.Location = new System.Drawing.Point(19, 513);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(435, 36);
+            this.label8.Size = new System.Drawing.Size(329, 27);
             this.label8.TabIndex = 32;
             this.label8.Text = "Масштаб относительно центра";
             // 
@@ -616,7 +620,7 @@
             0,
             -2147483648});
             this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Size = new System.Drawing.Size(54, 44);
+            this.numericUpDown11.Size = new System.Drawing.Size(54, 35);
             this.numericUpDown11.TabIndex = 39;
             // 
             // numericUpDown12
@@ -638,7 +642,7 @@
             0,
             -2147483648});
             this.numericUpDown12.Name = "numericUpDown12";
-            this.numericUpDown12.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown12.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown12.TabIndex = 38;
             // 
             // numericUpDown13
@@ -660,7 +664,7 @@
             0,
             -2147483648});
             this.numericUpDown13.Name = "numericUpDown13";
-            this.numericUpDown13.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown13.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown13.TabIndex = 37;
             // 
             // label9
@@ -668,7 +672,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(432, 174);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(295, 36);
+            this.label9.Size = new System.Drawing.Size(225, 27);
             this.label9.TabIndex = 40;
             this.label9.Text = "Вращение по центру";
             // 
@@ -687,7 +691,7 @@
             0,
             0});
             this.numericUpDown14.Name = "numericUpDown14";
-            this.numericUpDown14.Size = new System.Drawing.Size(54, 44);
+            this.numericUpDown14.Size = new System.Drawing.Size(54, 35);
             this.numericUpDown14.TabIndex = 43;
             // 
             // numericUpDown15
@@ -705,7 +709,7 @@
             0,
             0});
             this.numericUpDown15.Name = "numericUpDown15";
-            this.numericUpDown15.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown15.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown15.TabIndex = 42;
             // 
             // numericUpDown16
@@ -723,7 +727,7 @@
             0,
             0});
             this.numericUpDown16.Name = "numericUpDown16";
-            this.numericUpDown16.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown16.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown16.TabIndex = 41;
             // 
             // numericUpDown17
@@ -741,7 +745,7 @@
             0,
             0});
             this.numericUpDown17.Name = "numericUpDown17";
-            this.numericUpDown17.Size = new System.Drawing.Size(54, 44);
+            this.numericUpDown17.Size = new System.Drawing.Size(54, 35);
             this.numericUpDown17.TabIndex = 46;
             // 
             // numericUpDown18
@@ -759,7 +763,7 @@
             0,
             0});
             this.numericUpDown18.Name = "numericUpDown18";
-            this.numericUpDown18.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown18.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown18.TabIndex = 45;
             // 
             // numericUpDown19
@@ -777,7 +781,7 @@
             0,
             0});
             this.numericUpDown19.Name = "numericUpDown19";
-            this.numericUpDown19.Size = new System.Drawing.Size(56, 44);
+            this.numericUpDown19.Size = new System.Drawing.Size(56, 35);
             this.numericUpDown19.TabIndex = 44;
             // 
             // label10
@@ -785,7 +789,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(423, 318);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(339, 36);
+            this.label10.Size = new System.Drawing.Size(255, 27);
             this.label10.TabIndex = 47;
             this.label10.Text = "Поворот вокруг прямой";
             // 
@@ -796,7 +800,7 @@
             0,
             0,
             0});
-            this.numericUpDown20.Location = new System.Drawing.Point(469, 64);
+            this.numericUpDown20.Location = new System.Drawing.Point(465, 52);
             this.numericUpDown20.Maximum = new decimal(new int[] {
             180,
             0,
@@ -808,7 +812,7 @@
             0,
             -2147483648});
             this.numericUpDown20.Name = "numericUpDown20";
-            this.numericUpDown20.Size = new System.Drawing.Size(69, 44);
+            this.numericUpDown20.Size = new System.Drawing.Size(69, 35);
             this.numericUpDown20.TabIndex = 48;
             // 
             // ApplyLineRotation
@@ -825,9 +829,9 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(476, 16);
+            this.label11.Location = new System.Drawing.Point(463, 16);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(95, 45);
+            this.label11.Size = new System.Drawing.Size(71, 33);
             this.label11.TabIndex = 47;
             this.label11.Text = "Угол";
             // 
@@ -836,7 +840,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(349, 360);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(109, 36);
+            this.label12.Size = new System.Drawing.Size(82, 27);
             this.label12.TabIndex = 47;
             this.label12.Text = "Точка1";
             // 
@@ -845,16 +849,49 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(349, 408);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(109, 36);
+            this.label13.Size = new System.Drawing.Size(82, 27);
             this.label13.TabIndex = 47;
             this.label13.Text = "Точка2";
             // 
+            // ErrorMBox
+            // 
+            this.ErrorMBox.AutoSize = true;
+            this.ErrorMBox.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ErrorMBox.Location = new System.Drawing.Point(26, 598);
+            this.ErrorMBox.Name = "ErrorMBox";
+            this.ErrorMBox.Size = new System.Drawing.Size(25, 36);
+            this.ErrorMBox.TabIndex = 50;
+            this.ErrorMBox.Text = "-";
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.Location = new System.Drawing.Point(560, 12);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(118, 35);
+            this.ClearButton.TabIndex = 51;
+            this.ClearButton.Text = "В начало";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
+            // ToZero
+            // 
+            this.ToZero.Location = new System.Drawing.Point(177, 386);
+            this.ToZero.Name = "ToZero";
+            this.ToZero.Size = new System.Drawing.Size(152, 29);
+            this.ToZero.TabIndex = 52;
+            this.ToZero.Text = "Исход. знач.";
+            this.ToZero.UseVisualStyleBackColor = true;
+            this.ToZero.Click += new System.EventHandler(this.ToZero_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 36F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1478, 926);
+            this.ClientSize = new System.Drawing.Size(1345, 865);
+            this.Controls.Add(this.ToZero);
+            this.Controls.Add(this.ClearButton);
+            this.Controls.Add(this.ErrorMBox);
             this.Controls.Add(this.ApplyLineRotation);
             this.Controls.Add(this.numericUpDown20);
             this.Controls.Add(this.label13);
@@ -991,6 +1028,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label ErrorMBox;
+        private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.Button ToZero;
     }
 }
 
