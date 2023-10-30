@@ -68,9 +68,9 @@ namespace lab63D
         private void DrawAxis(Graphics g, AffineTransformer t, int width, int height)
         {
             Point3D a = new Point3D(0, 0, 0);
-            Point3D b = new Point3D(0.8, 0, 0);
-            Point3D c = new Point3D(0, 0.8, 0);
-            Point3D d = new Point3D(0, 0, 0.8);
+            Point3D b = new Point3D(0.9, 0, 0);
+            Point3D c = new Point3D(0, 0.9, 0);
+            Point3D d = new Point3D(0, 0, 0.9);
 
             Point3D A0 = new Point3D((double)numericUpDown14.Value, (double)numericUpDown15.Value, (double)numericUpDown16.Value);
             Point3D B0 = new Point3D((double)numericUpDown17.Value, (double)numericUpDown18.Value, (double)numericUpDown19.Value);
@@ -108,6 +108,7 @@ namespace lab63D
             }
 
             rotation_line.Draw(g, t, width, height, 2);
+            label14.Text = cur_primitive.Center.X.ToString() + " " + cur_primitive.Center.Y.ToString() + " " + cur_primitive.Center.Z.ToString();
         }
 
         private void GetPrimitive()
