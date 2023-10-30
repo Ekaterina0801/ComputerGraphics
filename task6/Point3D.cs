@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace lab63D
 {
-    class Point3D: Primitive
+    class Point3D: Primitive, IComparable
     {
         private double[] edges = new double[] { 0, 0, 0, 1 };
 
@@ -92,6 +92,53 @@ namespace lab63D
 
             // Создание и возврат новой точки
             return new Point3D(normalizedX, normalizedY, Z);
+        }
+
+        public int CompareTo(object p)
+        {
+            double rad_XZ = Math.Sqrt(Math.Pow(this.X, 2) + Math.Pow(this.Z, 2));
+            double rad_XZp = Math.Sqrt(Math.Pow(((Point3D)p).X, 2) + Math.Pow(((Point3D)p).Z, 2));
+            if (this.Y > ((Point3D)p).Y)
+            {
+                return 1;
+            }
+            else if (this.Y < ((Point3D)p).Y)
+            {
+                return -1;
+            }
+            else
+            {
+                short c1 = this.PositionXZ(this.X, this.Z);
+                short c2 = this.PositionXZ(((Point3D)p).X, ((Point3D)p).Z);
+                if (c1 != c2)
+                    return c1 - c2;
+                double cos = this.X / rad_XZ;
+                double cos_p = ((Point3D)p).X / rad_XZp;
+                double sin = this.Z / rad_XZ;
+                double sin_p = ((Point3D)p).Z / rad_XZp;
+                Math.Acos(cos);
+            }
+            return 0;
+        }
+
+        public short PositionXZ(double x, double z)
+        {
+            if (x >= 0 && z >= 0)
+            {
+                return 1;
+            }
+            else if (x >= 0 && z <= 0)
+            {
+                return 2;
+            }
+            else if (x <= 0 && z <= 0)
+            {
+                return 3;
+            }
+            else
+            {
+                return 4;
+            }
         }
     }
 }

@@ -139,8 +139,8 @@ namespace lab63D
                     }
                 case "Додекаэдр":
                     {
-                        cur_primitive = new Tetrahedron(0.5);
-                        //cur_primitive = new Dodecahedron(0.5);
+                        //cur_primitive = new Tetrahedron(0.5);
+                        cur_primitive = new Dodecahedron(0.5);
                         break;
                     }
                 default:

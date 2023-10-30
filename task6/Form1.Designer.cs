@@ -109,9 +109,9 @@
             // 
             this.PerspectiveBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PerspectiveBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PerspectiveBox.Location = new System.Drawing.Point(684, -3);
+            this.PerspectiveBox.Location = new System.Drawing.Point(684, 9);
             this.PerspectiveBox.Name = "PerspectiveBox";
-            this.PerspectiveBox.Size = new System.Drawing.Size(559, 372);
+            this.PerspectiveBox.Size = new System.Drawing.Size(500, 500);
             this.PerspectiveBox.TabIndex = 0;
             this.PerspectiveBox.TabStop = false;
             // 
@@ -119,7 +119,7 @@
             // 
             this.OrthographicBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.OrthographicBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.OrthographicBox.Location = new System.Drawing.Point(684, 360);
+            this.OrthographicBox.Location = new System.Drawing.Point(728, 559);
             this.OrthographicBox.Name = "OrthographicBox";
             this.OrthographicBox.Size = new System.Drawing.Size(559, 356);
             this.OrthographicBox.TabIndex = 1;
