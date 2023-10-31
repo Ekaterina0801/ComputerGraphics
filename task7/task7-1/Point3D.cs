@@ -70,12 +70,6 @@ namespace task7_1
             g.DrawEllipse(new Pen(Color.Black, 2), (float)x-1, (float)y-1, 2, 2);
         }
 
-        /// <summary>
-        /// Преобразует нормализованные координаты из диапазона ([-1, 1], [-1, 1], [-1, 1]) в координаты экрана ([0, width), [0, height), [-1, 1]).
-        /// </summary>
-        /// <param name="width">Ширина экрана.</param>
-        /// <param name="height">Высота экрана.</param>
-        /// <returns>Точка в координатах экрана.</returns>
         public Point3D NormalizedToDisplay(int width, int height)
         {
             // Проверка входных данных

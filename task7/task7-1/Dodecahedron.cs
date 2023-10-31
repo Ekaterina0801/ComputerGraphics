@@ -17,7 +17,35 @@ namespace task7_1
 
         public List<Point3D> Points { get { return points; } }
         public List<Face> Faces { get { return faces; } }
+        public Dodecahedron(List<Point3D> p)
+        {
+            Isocahedron iso = new Isocahedron(p);
+            points = p;
+            faces = new List<Face>();
 
+            points = new List<Point3D>();
+
+            foreach (Face f in iso.Faces)
+            {
+                Point3D center = f.Center;
+                points.Add(center);
+            }
+
+            for (int i = 0; i <= 8; i += 2)
+            {
+                faces.Add(new Face(new Point3D[] { points[i], points[i + 1], points[(i + 2) % 10], points[10 + (2 + i) % 10], points[10 + i] }));
+                faces.Add(new Face(new Point3D[] { points[i + 1], points[(i + 2) % 10], points[(i + 3) % 10], points[11 + (2 + i) % 10], points[11 + i] }));
+            }
+            List<Point3D> high = new List<Point3D>();
+            List<Point3D> low = new List<Point3D>();
+            for (int i = 0; i <= 8; i += 2)
+            {
+                high.Add(points[10 + i]);
+                low.Add(points[11 + i]);
+            }
+            faces.Add(new Face(high));
+            faces.Add(new Face(low));
+        }
         public Point3D Center
         {
             get
