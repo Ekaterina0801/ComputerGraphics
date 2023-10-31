@@ -11,9 +11,9 @@ namespace task7_1
     {
         private double[] edges = new double[] { 0, 0, 0, 1 };
         private List<Point3D> points = new List<Point3D>();
-        private List<Face> verges = new List<Face>();
+        private List<Face> faces = new List<Face>();
         public List<Point3D> Points { get { return points; } set { points = value; } }
-        public List<Face> Faces { get { return verges; } set { verges = value; } }
+        public List<Face> Faces { get { return faces; } set { faces = value; } }
         public double X { get { return edges[0]; } set { edges[0] = value; } }
         public double Y { get { return edges[1]; } set { edges[1] = value; } }
         public double Z { get { return edges[2]; } set { edges[2] = value; } }
@@ -72,23 +72,9 @@ namespace task7_1
 
         public Point3D NormalizedToDisplay(int width, int height)
         {
-            // Проверка входных данных
-            if (width <= 0 || height <= 0)
-            {
-                throw new ArgumentException("Width and height must be positive numbers.", nameof(width));
-            }
-
-            if (X < -1 || X > 1 || Y < -1 || Y > 1 || Z < -1 || Z > 1)
-            {
-                throw new ArgumentException("Normalized coordinates must be in the range [-1, 1].", nameof(X));
-            }
-
-            // Высчитывание координат
-            var normalizedX = (X / edges[3] + 1) / 2 * width;
-            var normalizedY = (-Y / edges[3] + 1) / 2 * height;
-
-            // Создание и возврат новой точки
-            return new Point3D(normalizedX, normalizedY, Z);
+            var x = (X + 1) / 2 * width;
+            var y = (-Y + 1) / 2 * height;
+            return new Point3D(x, y, Z);
         }
 
         public int CompareTo(object p)

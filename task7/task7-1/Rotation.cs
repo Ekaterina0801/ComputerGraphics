@@ -51,7 +51,7 @@ namespace task7_1
             var n = p.Count;
             for (int i = 0; i < density - 1; ++i)
                 for (int j = 0; j < n - 1; ++j)
-                    Faces.Add(new Face(new List<Point3D> {
+                    faces.Add(new Face(new List<Point3D> {
                         points[i * n + j], points[(i + 1) % (density - 1) * n + j],
                         points[(i + 1) % (density - 1) * n + j + 1], points[i * n + j + 1] }));
         }
@@ -72,7 +72,5 @@ namespace task7_1
         {
             return "Rotation Figure";
         }
-
-      
     }
 }

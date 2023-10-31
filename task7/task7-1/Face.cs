@@ -11,9 +11,7 @@ namespace task7_1
     {
 
         private IList<Point3D> points = new List<Point3D>();
-
         public IList<Point3D> Points { get { return points; } set { points = value; } }
-
         public Face() { }
 
         public Face(IList<Point3D> points)
