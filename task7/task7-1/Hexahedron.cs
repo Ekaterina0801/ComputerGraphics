@@ -84,5 +84,9 @@ namespace task7_1
             foreach (var Face in Faces)
                 Face.Draw(g, projection, width, height);
         }
+        override public string ToString()
+        {
+            return "Hexahedron";
+        }
     }
 }

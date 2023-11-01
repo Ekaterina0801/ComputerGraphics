@@ -504,6 +504,11 @@ namespace task7_1
                                 cur_primitive = new Isocahedron(points);
                                 break;
                             }
+                        case "Dodecahedron":
+                            {
+                                cur_primitive = new Dodecahedron(points);
+                                break;
+                            }
                         default:
                             {
                                 cur_primitive = new Tetrahedron(points);

@@ -33,8 +33,8 @@ namespace task7_1
 
             for (int i = 0; i <= 8; i += 2)
             {
-                faces.Add(new Face(new Point3D[] { points[i], points[i + 1], points[(i + 2) % 10], points[10 + (2 + i) % 10], points[10 + i] }));
-                faces.Add(new Face(new Point3D[] { points[i + 1], points[(i + 2) % 10], points[(i + 3) % 10], points[11 + (2 + i) % 10], points[11 + i] }));
+                Faces.Add(new Face(new Point3D[] { points[i], points[i + 1], points[(i + 2) % 10], points[10 + (2 + i) % 10], points[10 + i] }));
+                Faces.Add(new Face(new Point3D[] { points[i + 1], points[(i + 2) % 10], points[(i + 3) % 10], points[11 + (2 + i) % 10], points[11 + i] }));
             }
             List<Point3D> high = new List<Point3D>();
             List<Point3D> low = new List<Point3D>();
@@ -43,8 +43,8 @@ namespace task7_1
                 high.Add(points[10 + i]);
                 low.Add(points[11 + i]);
             }
-            faces.Add(new Face(high));
-            faces.Add(new Face(low));
+            Faces.Add(new Face(high));
+            Faces.Add(new Face(low));
         }
         public Point3D Center
         {
@@ -106,6 +106,11 @@ namespace task7_1
             {
                 face.Draw(g, projection, width, height);
             }
+        }
+
+        override public string ToString()
+        {
+            return "Dodecahedron";
         }
     }
 }
