@@ -75,6 +75,11 @@ void set_square(point points[])
     points[3].y = -0.5;
 }
 
+void set_pentagon(point points[])
+{
+    //!TODO
+}
+
 void set_fan(point points[], int n)
 {
     points[0].x = -0.9;
