@@ -20,9 +20,9 @@ struct point {
     GLfloat b;
 };
 
-void set_fan(point points[], int n)
+void set_square(point points[])
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < 4; i++)
     {
         points[i].r = 0.25;
         points[i].g = 0.9;
@@ -35,11 +35,44 @@ void set_fan(point points[], int n)
     points[2].x = -0.5;
     points[2].y = -0.5;
     points[3].x = 0.5;
-    points[3].y = 0.5;
-    points[4].x = -0.5;
-    points[4].y = -0.5;
-    points[5].x = 0.5;
-    points[5].y = -0.5;
+    points[3].y = -0.5;
+}
+
+void set_fan(point points[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        points[i].r = 0.25;
+        points[i].g = 0.9;
+        points[i].b = 0.0;
+    }
+    points[0].x = -0.9;
+    points[0].y = 0.0;
+
+    //supposed n is even
+    float increase_y = 0.1 * (18 / n);
+    float d_y = 4 * (1.8 - increase_y * n + 2 * increase_y) / (n * n - 6 * n + 8);
+    float increase_x = 0.1 * (30 / n);
+    float d_x = 4 * (1.4 - increase_x * n + 2 * increase_x) / (n * n - 6 * n + 8);
+
+    points[1].x = 0.2;
+    points[1].y = 0.9;
+    for (int i = 2; i < n; i++)
+    {
+        if (i <= n / 2)
+        {
+            points[i].x = points[i - 1].x + increase_x;
+            if (i < n/2) increase_x += d_x;
+        }
+        else
+        {
+            points[i].x = points[i - 1].x - increase_x;
+            increase_x -= d_x;
+        }
+        points[i].y = points[i - 1].y - increase_y;
+        if (i < n / 2) increase_y += d_y;
+        else if (i > n / 2) increase_y -= d_y;
+    }
 }
 
 const char* vertexShaderSource = "#version 330 core\n"
@@ -139,7 +172,7 @@ int main()
     glGenBuffers(1, &vboID);
     glGenVertexArrays(1, &vaoID);
 
-    const int n = 6;
+    const int n = 14;
 
     point fan[n];
     set_fan(fan, n);
@@ -162,7 +195,7 @@ int main()
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(1);
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
-        glDrawArrays(GL_TRIANGLES, 0, n);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, n);
 
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
