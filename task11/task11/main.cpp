@@ -242,12 +242,13 @@ int main()
     glGenBuffers(1, &vboID);
     glGenVertexArrays(1, &vaoID);
 
-    const int n = 6;
+    const int n = 12; //for fan - 6, 8, 10, 12, 14 ...
 
     //----------------------create figure--------------------------------------
 
-    point fan[n];
-    set_fan(fan, n);
+    point figure[n];
+    set_fan(figure, n);
+    //set_square(figure);
 
     glUseProgram(shaderProgram_PredefColor);
     glBindVertexArray(vaoID);
@@ -255,7 +256,7 @@ int main()
     //----------------------set up buffer---------------
 
     glBindBuffer(GL_ARRAY_BUFFER, vboID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(fan), fan, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(figure), figure, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 
@@ -276,14 +277,14 @@ int main()
 
     glUseProgram(shaderProgram_UniformColor);
 
-    set_color(fan, n, 0.15, 0.9, 0.3);
+    set_color(figure, n, 0.15, 0.9, 0.3);
 
     //----------------------set up buffer---------------
 
     glBindBuffer(GL_ARRAY_BUFFER, vboID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(fan), fan, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(figure), figure, GL_STATIC_DRAW);
     unsigned int location = glGetUniformLocation(shaderProgram_UniformColor, "color");
-    glUniform4f(location, fan[0].r, fan[0].g, fan[0].b, 1.0);
+    glUniform4f(location, figure[0].r, figure[0].g, figure[0].b, 1.0);
 
     // render loop
     // -----------
@@ -304,12 +305,12 @@ int main()
 
     glUseProgram(shaderProgram_HandColor);
 
-    set_gradient(fan, n);
+    set_gradient(figure, n);
 
     //----------------------set up buffer---------------
 
     glBindBuffer(GL_ARRAY_BUFFER, vboID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(fan), fan, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(figure), figure, GL_STATIC_DRAW);
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
 
@@ -330,12 +331,12 @@ int main()
         if (glfwWindowShouldClose(window)) break;
     }
 
-    set_smooth_gradient(fan, n);
+    set_smooth_gradient(figure, n);
 
     //----------------------set up buffer---------------
 
     glBindBuffer(GL_ARRAY_BUFFER, vboID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(fan), fan, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(figure), figure, GL_STATIC_DRAW);
 
     // render loop
     // -----------
