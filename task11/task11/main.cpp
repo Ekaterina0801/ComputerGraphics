@@ -24,9 +24,9 @@ void set_square(point points[])
 {
     for (int i = 0; i < 4; i++)
     {
-        points[i].r = 0.25;
+        points[i].r = 0.1;
         points[i].g = 0.9;
-        points[i].b = 0.0;
+        points[i].b = 0.05;
     }
     points[0].x = -0.5;
     points[0].y = 0.5;
@@ -87,7 +87,7 @@ const char* vertexShader1Source = "#version 330 core\n"
 const char* fragmentShader1Source = "#version 330 core\n"
 "void main(void)\n"
 "{\n"
-"gl_FragColor = vec4(0.7, 0.9, 0.3, 1.0);\n"
+"gl_FragColor = vec4(0.9, 0.1, 0.8, 1.0);\n"
 "}\n\0";
 
 //Shaders which receive colors from program
@@ -99,7 +99,7 @@ const char* vertexShader2Source = "#version 330 core\n"
 "void main(void)\n"
 "{\n"
 "gl_Position = vec4(position, 0.0, 1.0);\n"
-"frag_color = vec4(color.g, color.r, color.b, 1.0);\n"
+"frag_color = vec4(color.r, color.g, color.b, 1.0);\n"
 "}\0";
 
 const char* fragmentShader2Source = "#version 330 core\n"
@@ -215,7 +215,7 @@ int main()
 
     // render loop
     // -----------
-    while (!glfwWindowShouldClose(window))
+    while (true)
     {
         // render
         // ------
@@ -226,11 +226,39 @@ int main()
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) break;
+        if (glfwWindowShouldClose(window)) break;
+    }
+
+    glUseProgram(shaderProgram_PredefColor);
+
+    //----------------------set up buffer---------------
+
+    glBindBuffer(GL_ARRAY_BUFFER, vboID);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fan), fan, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glDisableVertexAttribArray(1);
+
+    while (true)
+    {
+        // render
+        // ------
+        glClearColor(0.0f, 0.2f, 0.2f, 0.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glDrawArrays(GL_TRIANGLE_FAN, 0, n);
+
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+        //if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) break;
+        if (glfwWindowShouldClose(window)) break;
     }
 
     glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
+    //glDisableVertexAttribArray(1);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 
     glDeleteVertexArrays(1, &vaoID);
     glDeleteBuffers(1, &vboID);
