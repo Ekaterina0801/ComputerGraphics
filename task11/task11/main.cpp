@@ -20,17 +20,43 @@ struct point {
     GLfloat b;
 };
 
+void set_fan(point points[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        points[i].r = 0.25;
+        points[i].g = 0.9;
+        points[i].b = 0.0;
+    }
+    points[0].x = -0.5;
+    points[0].y = 0.5;
+    points[1].x = 0.5;
+    points[1].y = 0.5;
+    points[2].x = -0.5;
+    points[2].y = -0.5;
+    points[3].x = 0.5;
+    points[3].y = 0.5;
+    points[4].x = -0.5;
+    points[4].y = -0.5;
+    points[5].x = 0.5;
+    points[5].y = -0.5;
+}
+
 const char* vertexShaderSource = "#version 330 core\n"
+"layout(location = 0) attribute vec2 position;\n"
+"layout(location = 1) attribute vec3 color;\n"
 "out vec4 frag_color;\n"
 "void main(void)\n"
 "{\n"
-""
+"gl_Position = vec4(position, 0.0, 1.0);\n"
+"frag_color = vec4(color.g, color.r, color.b, 1.0);\n"
 "}\0";
 
 const char* fragmentShaderSource = "#version 330 core\n"
+"in vec4 frag_color;\n"
 "void main(void)\n"
 "{\n"
-""
+"gl_FragColor = frag_color;\n"
 "}\n\0";
 
 int main()
@@ -48,7 +74,7 @@ int main()
 
     // glfw window creation
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "11 LAB", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -109,8 +135,14 @@ int main()
 
     //----------------------buffer initialization------------------------------
 
-    unsigned int vboID;
+    unsigned int vboID, vaoID;
     glGenBuffers(1, &vboID);
+    glGenVertexArrays(1, &vaoID);
+
+    const int n = 6;
+
+    point fan[n];
+    set_fan(fan, n);
 
     // render loop
     // -----------
@@ -118,17 +150,28 @@ int main()
     {
         // render
         // ------
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.0f, 0.2f, 0.2f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(shaderProgram);
+        glBindVertexArray(vaoID);
 
+        glBindBuffer(GL_ARRAY_BUFFER, vboID);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(fan), fan, GL_STATIC_DRAW);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
+        glDrawArrays(GL_TRIANGLES, 0, n);
+
+        glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
+    glDeleteVertexArrays(1, &vaoID);
     glDeleteBuffers(1, &vboID);
     glDeleteProgram(shaderProgram);
 
