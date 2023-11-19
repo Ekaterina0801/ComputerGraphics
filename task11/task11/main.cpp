@@ -44,16 +44,16 @@ void set_gradient(point points[], int n)
 
 void set_smooth_gradient(point points[], int n)
 {
-    points[0].r = (rand() % 3 + 6) / 10.0;
+    points[0].r = (rand() % 2 + 7) / 10.0;
     points[0].g = (rand() % 3 + 3) / 10.0;
-    points[0].b = (rand() % 4 + 4) / 10.0;
-    std::cout << points[0].r << " ";
+    points[0].b = (rand() % 2 + 4) / 10.0;
+    //std::cout << points[0].r << " ";
     for (int i = 1; i < n; i++)
     {
         points[i].r = points[i - 1].r + (rand() % 40 - 20) / 100.0;
-        points[i].g = points[i - 1].g + (rand() % 40 - 20) / 100.0;
+        points[i].g = points[i - 1].g + (rand() % 40 - 10) / 100.0;
         points[i].b = points[i - 1].b + (rand() % 40 - 20) / 100.0;
-        std::cout << points[i].r << " ";
+        //std::cout << points[i].r << " ";
     }
 }
 
@@ -121,9 +121,26 @@ const char* fragmentShader1Source = "#version 330 core\n"
 "gl_FragColor = vec4(0.9, 0.1, 0.8, 1.0);\n"
 "}\n\0";
 
-//Shaders which receive colors from program
+//Shaders which receive colors from program through Uniform variable
 
 const char* vertexShader2Source = "#version 330 core\n"
+"layout(location = 0) attribute vec2 position;\n"
+"uniform vec4 color;\n"
+"void main(void)\n"
+"{\n"
+"gl_Position = vec4(position, 0.0, 1.0);\n"
+"}\0";
+
+const char* fragmentShader2Source = "#version 330 core\n"
+"uniform vec4 color;\n"
+"void main(void)\n"
+"{\n"
+"gl_FragColor = color;\n"
+"}\n\0";
+
+//Shaders which receive colors from program
+
+const char* vertexShader3Source = "#version 330 core\n"
 "layout(location = 0) attribute vec2 position;\n"
 "layout(location = 1) attribute vec3 color;\n"
 "out vec4 frag_color;\n"
@@ -133,7 +150,7 @@ const char* vertexShader2Source = "#version 330 core\n"
 "frag_color = vec4(color.r, color.g, color.b, 1.0);\n"
 "}\0";
 
-const char* fragmentShader2Source = "#version 330 core\n"
+const char* fragmentShader3Source = "#version 330 core\n"
 "in vec4 frag_color;\n"
 "void main(void)\n"
 "{\n"
@@ -214,10 +231,10 @@ int main()
         return -1;
     }
 
-
     //----------------------build and compile our shader program---------------
     unsigned int shaderProgram_PredefColor = build_and_compile_program(vertexShader1Source, fragmentShader1Source);
-    unsigned int shaderProgram_HandColor = build_and_compile_program(vertexShader2Source, fragmentShader2Source);
+    unsigned int shaderProgram_UniformColor = build_and_compile_program(vertexShader2Source, fragmentShader2Source);
+    unsigned int shaderProgram_HandColor = build_and_compile_program(vertexShader3Source, fragmentShader3Source);
 
     //----------------------buffer initialization------------------------------
 
@@ -231,10 +248,8 @@ int main()
 
     point fan[n];
     set_fan(fan, n);
-    //set_color(fan, n, 0.15, 0.9, 0.3);
-    set_smooth_gradient(fan, n);
 
-    glUseProgram(shaderProgram_HandColor);
+    glUseProgram(shaderProgram_PredefColor);
     glBindVertexArray(vaoID);
 
     //----------------------set up buffer---------------
@@ -243,6 +258,58 @@ int main()
     glBufferData(GL_ARRAY_BUFFER, sizeof(fan), fan, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+
+    while (true)
+    {
+        // render
+        // ------
+        glClearColor(0.0f, 0.2f, 0.2f, 0.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glDrawArrays(GL_TRIANGLE_FAN, 0, n);
+
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+        if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) break;
+        if (glfwWindowShouldClose(window)) break;
+    }
+
+    glUseProgram(shaderProgram_UniformColor);
+
+    set_color(fan, n, 0.15, 0.9, 0.3);
+
+    //----------------------set up buffer---------------
+
+    glBindBuffer(GL_ARRAY_BUFFER, vboID);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fan), fan, GL_STATIC_DRAW);
+    unsigned int location = glGetUniformLocation(shaderProgram_UniformColor, "color");
+    glUniform4f(location, fan[0].r, fan[0].g, fan[0].b, 1.0);
+
+    // render loop
+    // -----------
+    while (true)
+    {
+        // render
+        // ------
+        glClearColor(0.0f, 0.2f, 0.2f, 0.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glDrawArrays(GL_TRIANGLE_FAN, 0, n);
+
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+        if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) break;
+        if (glfwWindowShouldClose(window)) break;
+    }
+
+    glUseProgram(shaderProgram_HandColor);
+
+    set_gradient(fan, n);
+
+    //----------------------set up buffer---------------
+
+    glBindBuffer(GL_ARRAY_BUFFER, vboID);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fan), fan, GL_STATIC_DRAW);
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
 
@@ -259,20 +326,19 @@ int main()
 
         glfwSwapBuffers(window);
         glfwPollEvents();
-        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) break;
+        if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) break;
         if (glfwWindowShouldClose(window)) break;
     }
 
-    glUseProgram(shaderProgram_PredefColor);
+    set_smooth_gradient(fan, n);
 
     //----------------------set up buffer---------------
 
     glBindBuffer(GL_ARRAY_BUFFER, vboID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(fan), fan, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-    glDisableVertexAttribArray(1);
 
+    // render loop
+    // -----------
     while (true)
     {
         // render
@@ -284,12 +350,11 @@ int main()
 
         glfwSwapBuffers(window);
         glfwPollEvents();
-        //if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) break;
         if (glfwWindowShouldClose(window)) break;
     }
 
     glDisableVertexAttribArray(0);
-    //glDisableVertexAttribArray(1);
+    glDisableVertexAttribArray(1);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
