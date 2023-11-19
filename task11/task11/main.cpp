@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <math.h>
+#include <random>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
@@ -15,10 +16,46 @@ bool redraw_after_size_change = true;
 struct point {
     GLfloat x;
     GLfloat y;
-    GLfloat g;
     GLfloat r;
+    GLfloat g;
     GLfloat b;
 };
+
+void set_color(point points[], int n, float r, float g, float b)
+{
+    for (int i = 0; i < n; i++)
+    {
+        points[i].r = r;
+        points[i].g = g;
+        points[i].b = b;
+    }
+}
+
+void set_gradient(point points[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        points[i].r = (rand() % 11) / 10.0;
+        points[i].g = (rand() % 11) / 10.0;
+        points[i].b = (rand() % 11) / 10.0;
+        //std::cout << points[i].r << " ";
+    }
+}
+
+void set_smooth_gradient(point points[], int n)
+{
+    points[0].r = (rand() % 3 + 6) / 10.0;
+    points[0].g = (rand() % 3 + 3) / 10.0;
+    points[0].b = (rand() % 4 + 4) / 10.0;
+    std::cout << points[0].r << " ";
+    for (int i = 1; i < n; i++)
+    {
+        points[i].r = points[i - 1].r + (rand() % 40 - 20) / 100.0;
+        points[i].g = points[i - 1].g + (rand() % 40 - 20) / 100.0;
+        points[i].b = points[i - 1].b + (rand() % 40 - 20) / 100.0;
+        std::cout << points[i].r << " ";
+    }
+}
 
 void set_square(point points[])
 {
@@ -40,12 +77,6 @@ void set_square(point points[])
 
 void set_fan(point points[], int n)
 {
-    for (int i = 0; i < n; i++)
-    {
-        points[i].r = 0.25;
-        points[i].g = 0.9;
-        points[i].b = 0.0;
-    }
     points[0].x = -0.9;
     points[0].y = 0.0;
 
@@ -194,12 +225,14 @@ int main()
     glGenBuffers(1, &vboID);
     glGenVertexArrays(1, &vaoID);
 
-    const int n = 14;
+    const int n = 6;
 
     //----------------------create figure--------------------------------------
 
     point fan[n];
     set_fan(fan, n);
+    //set_color(fan, n, 0.15, 0.9, 0.3);
+    set_smooth_gradient(fan, n);
 
     glUseProgram(shaderProgram_HandColor);
     glBindVertexArray(vaoID);
