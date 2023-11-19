@@ -247,18 +247,30 @@ int main()
     glGenBuffers(1, &vboID);
     glGenVertexArrays(1, &vaoID);
 
-    const int n = 12; //for fan - 6, 8, 10, 12, 14 ...
+    //----------------------create fan--------------------------------------
 
-    //----------------------create figure--------------------------------------
+    const int n = 12; //for fan - 6, 8, 10, 12, 14 ...
 
     point figure[n];
     set_fan(figure, n);
     //set_square(figure);
 
+    //----------------------create square--------------------------------------
+
+    point square[4];
+    set_square(square);
+    //set_square(figure);
+
+    //----------------------create pentagon--------------------------------------
+
+    point pentagon[5];
+    set_pentagon(pentagon);
+    //set_square(figure);
+
     glUseProgram(shaderProgram_PredefColor);
     glBindVertexArray(vaoID);
 
-    //----------------------set up buffer---------------
+    //----------------------set up buffer-----------------------------------
 
     glBindBuffer(GL_ARRAY_BUFFER, vboID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(figure), figure, GL_STATIC_DRAW);
@@ -280,13 +292,46 @@ int main()
         if (glfwWindowShouldClose(window)) break;
     }
 
+    glBufferData(GL_ARRAY_BUFFER, sizeof(square), square, GL_STATIC_DRAW);
+
+    while (true)
+    {
+        // render
+        // ------
+        glClearColor(0.0f, 0.2f, 0.2f, 0.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+        if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) break;
+        if (glfwWindowShouldClose(window)) break;
+    }
+
+    glBufferData(GL_ARRAY_BUFFER, sizeof(pentagon), pentagon, GL_STATIC_DRAW);
+
+    while (true)
+    {
+        // render
+        // ------
+        glClearColor(0.0f, 0.2f, 0.2f, 0.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 5);
+
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+        if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) break;
+        if (glfwWindowShouldClose(window)) break;
+    }
+
     glUseProgram(shaderProgram_UniformColor);
 
     set_color(figure, n, 0.15, 0.9, 0.3);
 
     //----------------------set up buffer---------------
 
-    glBindBuffer(GL_ARRAY_BUFFER, vboID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(figure), figure, GL_STATIC_DRAW);
     unsigned int location = glGetUniformLocation(shaderProgram_UniformColor, "color");
     glUniform4f(location, figure[0].r, figure[0].g, figure[0].b, 1.0);
@@ -304,7 +349,7 @@ int main()
 
         glfwSwapBuffers(window);
         glfwPollEvents();
-        if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) break;
+        if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS) break;
         if (glfwWindowShouldClose(window)) break;
     }
 
@@ -314,7 +359,6 @@ int main()
 
     //----------------------set up buffer---------------
 
-    glBindBuffer(GL_ARRAY_BUFFER, vboID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(figure), figure, GL_STATIC_DRAW);
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
@@ -332,7 +376,7 @@ int main()
 
         glfwSwapBuffers(window);
         glfwPollEvents();
-        if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) break;
+        if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS) break;
         if (glfwWindowShouldClose(window)) break;
     }
 
@@ -340,7 +384,6 @@ int main()
 
     //----------------------set up buffer---------------
 
-    glBindBuffer(GL_ARRAY_BUFFER, vboID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(figure), figure, GL_STATIC_DRAW);
 
     // render loop
