@@ -77,7 +77,21 @@ void set_square(point points[])
 
 void set_pentagon(point points[])
 {
-    //!TODO
+    float pi = atan(1) * 4;
+    float R = 0.7;
+    float alpha = 2*pi/5;
+    points[0].x = 0.0;
+    points[0].y = 0.7;
+    for (int i = 1; i < 5; i++)
+    {
+        points[i].x = cos(alpha) * points[i - 1].x - sin(alpha) * points[i - 1].y;
+        points[i].y = sin(alpha) * points[i - 1].x + cos(alpha) * points[i - 1].y;
+    }
+    std::cout << pi << " " << cos(pi/3) << "\n";
+    for (int j = 0; j < 5; j++)
+    {
+        std::cout << points[j].x << "-" << points[j].y << "\n";
+    }
 }
 
 void set_fan(point points[], int n)
