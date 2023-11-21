@@ -87,11 +87,6 @@ void set_pentagon(point points[])
         points[i].x = cos(alpha) * points[i - 1].x - sin(alpha) * points[i - 1].y;
         points[i].y = sin(alpha) * points[i - 1].x + cos(alpha) * points[i - 1].y;
     }
-    std::cout << pi << " " << cos(pi/3) << "\n";
-    for (int j = 0; j < 5; j++)
-    {
-        std::cout << points[j].x << "-" << points[j].y << "\n";
-    }
 }
 
 void set_fan(point points[], int n)
