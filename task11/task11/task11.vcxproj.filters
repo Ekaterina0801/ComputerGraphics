@@ -18,12 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\CPPLibraries\glad\src\glad.c">
+    <ClCompile Include="..\..\..\glad\src\glad.c">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\CPPLibraries\glad\include\glad\glad.h">
+    <ClInclude Include="..\..\..\glad\include\glad\glad.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

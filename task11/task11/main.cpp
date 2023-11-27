@@ -122,14 +122,14 @@ void set_fan(point points[], int n)
 
 //Shaders which define one color for figure
 
-const char* vertexShader1Source = "#version 330 core\n"
+const char* vertexShader1Source = "#version 410 core\n"
 "layout(location = 0) attribute vec2 position;\n"
 "void main(void)\n"
 "{\n"
 "gl_Position = vec4(position, 0.0, 1.0);\n"
 "}\0";
 
-const char* fragmentShader1Source = "#version 330 core\n"
+const char* fragmentShader1Source = "#version 410 core\n"
 "void main(void)\n"
 "{\n"
 "gl_FragColor = vec4(0.9, 0.1, 0.8, 1.0);\n"
@@ -137,7 +137,7 @@ const char* fragmentShader1Source = "#version 330 core\n"
 
 //Shaders which receive colors from program through Uniform variable
 
-const char* vertexShader2Source = "#version 330 core\n"
+const char* vertexShader2Source = "#version 410 core\n"
 "layout(location = 0) attribute vec2 position;\n"
 "uniform vec4 color;\n"
 "void main(void)\n"
@@ -145,7 +145,7 @@ const char* vertexShader2Source = "#version 330 core\n"
 "gl_Position = vec4(position, 0.0, 1.0);\n"
 "}\0";
 
-const char* fragmentShader2Source = "#version 330 core\n"
+const char* fragmentShader2Source = "#version 410 core\n"
 "uniform vec4 color;\n"
 "void main(void)\n"
 "{\n"
@@ -154,7 +154,7 @@ const char* fragmentShader2Source = "#version 330 core\n"
 
 //Shaders which receive colors from program
 
-const char* vertexShader3Source = "#version 330 core\n"
+const char* vertexShader3Source = "#version 410 core\n"
 "layout(location = 0) attribute vec2 position;\n"
 "layout(location = 1) attribute vec3 color;\n"
 "out vec4 frag_color;\n"
@@ -164,7 +164,7 @@ const char* vertexShader3Source = "#version 330 core\n"
 "frag_color = vec4(color.r, color.g, color.b, 1.0);\n"
 "}\0";
 
-const char* fragmentShader3Source = "#version 330 core\n"
+const char* fragmentShader3Source = "#version 410 core\n"
 "in vec4 frag_color;\n"
 "void main(void)\n"
 "{\n"
