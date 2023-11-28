@@ -26,8 +26,6 @@ namespace task9
                 sceneView1.Refresh();
             }
         }
-
-        //Camera variable
         private Camera camera;
 
         public Form1()
@@ -38,7 +36,6 @@ namespace task9
             if (listBox1.SelectedItem != null)
             {
                 str = listBox1.SelectedItem.ToString();
-                // Дальнейшие действия с выбранным элементом...
             }
             current_primitive = Graph.get_Graph(-0.8, 0.8, 0.1, -0.8, 0.8, 0.1, str);
             Matrix projection = Transformer.PerspectiveProjection(-0.1, 0.1, -0.1, 0.1, 0.1, 20);
@@ -47,14 +44,10 @@ namespace task9
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Получаем выбранный элемент
             string selectedValue = listBox1.SelectedItem.ToString();
 
-            // Здесь вы можете использовать выбранный элемент по своему усмотрению
-            // Например, выводить выбранный элемент в консоль или обновлять другие элементы управления на форме
 
             Console.WriteLine("Выбранный элемент: " + selectedValue);
-            // или
             label1.Text = selectedValue;
         }
 
