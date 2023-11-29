@@ -14,6 +14,8 @@ namespace task9
         * Counterclockwise - сторона, на которой вершины идут против часовой стрелки.
         * None - никакая сторона.
         */
+        public Bitmap ActiveTexture { get; set; }
+
         public enum Face { Clockwise, Counterclockwise, None }
 
         // Свойство, говорящее о том какую сторону треугольника не рисовать.
@@ -29,8 +31,8 @@ namespace task9
             };
 
         // Буфер цвета
-        private Bitmap colorBuffer;
-
+        public Bitmap colorBuffer;
+        private Graphics graphics;
         // флаг буфера глубины
         public bool ZBufferEnabled { get; set; } = true;
 
@@ -40,18 +42,33 @@ namespace task9
         private BitmapData bitmapData;
 
         private Scene sceneView;
+        //private double Width;
 
+        //private double Height;
+
+        private Vector Center;
+
+        private Vector CamPosition;
         private Matrix viewProjection;
 
-        private double Width { get { return sceneView.Width; } }
-        private double Height { get { return sceneView.Height; } }
+        private double Width; //{ get { return sceneView.Width; } set { Width = value; } }
+        private double Height;// { get { return sceneView.Height; } set { Height = value; } }
 
         public View3D(Scene sceneView)
         {
             this.sceneView = sceneView;
             Resize();
         }
-
+        public View3D(Graphics g, Matrix viewProjection, double w, double h, Vector center, Vector camPos)
+        {
+            graphics = g;
+            this.viewProjection = viewProjection;
+            Width = w;
+            Height = h;
+            colorBuffer = new Bitmap((int)Width + 1, (int)Height + 1);
+            Center = center;
+            CamPosition = camPos;
+        }
         public void Resize()
         {
             colorBuffer = new Bitmap((int)Width + 1, (int)Height + 1, PixelFormat.Format24bppRgb);

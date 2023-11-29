@@ -17,7 +17,7 @@ namespace task9
         public bool Solid { get; set; } = false;
 
         public virtual Vector Center
-        {
+        { 
             get
             {
                 Vector center = new Vector();
@@ -100,7 +100,17 @@ namespace task9
                 }
 
         }
+        public virtual void Draw(Graphics3D graphics)
+        {
+            foreach (var facet in Indices)
+                for (int i = 0; i < facet.Length; ++i)
+                {
+                    var a = new Vertex(Coordinates[facet[i]]);
+                    var b = new Vertex(Coordinates[facet[(i + 1) % facet.Length]]);
+                    graphics.DrawLine(a, b);
+                }
 
+        }
         public void Save(string path)
         {
             string info = "# File Created: " + DateTime.Now.ToString() + "\r\n";
