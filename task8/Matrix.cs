@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text;
 
-namespace ComputerGraphics8
+namespace task8
 {
     public class Matrix
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerGraphics8
+namespace task8
 {
     internal class Octahedron : Primitive
     {

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Windows.Media;
 
-namespace ComputerGraphics8
+namespace task8
 {
     public partial class Form1 : Form
     {

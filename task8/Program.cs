@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ComputerGraphics8
+namespace task8
 {
     static class Program
     {
