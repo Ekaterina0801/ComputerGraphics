@@ -141,7 +141,7 @@ namespace task9
         public static Mesh CubeTexture(double size)
         {
             double s = size / 2;
-            return new MeshWithTexture(Resources.Texture3,
+            return new MeshWithTexture(Resources.backgroundImage,
                 new Vector[24]
                 {
                     new Vector(-s, -s, s),

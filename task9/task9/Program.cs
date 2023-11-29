@@ -12,7 +12,8 @@ namespace task9
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new Guro());
-            Application.Run(new FloatingHorizon());
+            //Application.Run(new FloatingHorizon());
+            Application.Run(new Texturing());
         }
     }
 }

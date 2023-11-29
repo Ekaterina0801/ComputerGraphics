@@ -225,6 +225,7 @@ namespace task9
 
         public void DrawPoint(Vertex a)
         {
+            /*
             a.Coordinate = SpaceToClip(a.Coordinate);
             if (!ClipPoint(a.Coordinate)) return;
             a.Coordinate = ClipToScreen(a.Coordinate);
@@ -239,10 +240,20 @@ namespace task9
                     if (x < 0 || Width <= x) return;
                     SetPixel(x, y, a.Coordinate.Z, a.Color);
                 }
-            }
+            }*/
+            a.Coordinate = SpaceToClip(a.Coordinate);
+            a.Coordinate = ClipToScreen(a.Coordinate);
+            graphics.FillRectangle(new SolidBrush(a.Color), (float)a.Coordinate.X - 2, (float)a.Coordinate.Y - 2, 5, 5);
+        }
+        private bool ShouldBeDrawn(Vector vertex)
+        {
+            return ((vertex.X >= 0 && vertex.X < Width) &&
+                   (vertex.Y >= 0 && vertex.Y < Height) &&
+                   (vertex.Z < 1) && (vertex.Z > -1));
         }
         public void DrawLine(Vertex a, Vertex b)
         {
+            /*
             // Преобразование координат
             a.Coordinate = SpaceToClip(a.Coordinate);
             b.Coordinate = SpaceToClip(b.Coordinate);
@@ -304,7 +315,13 @@ namespace task9
                     err += dx;
                     currentY += sy;
                 }
-            }
+            }*/
+            var t = SpaceToClip(a.Coordinate);
+            var A = ClipToScreen(t);
+            var u = SpaceToClip(b.Coordinate);
+            var B = ClipToScreen(u);
+            if (ShouldBeDrawn(A))
+                graphics.DrawLine(new Pen(a.Color), (float)A.X, (float)A.Y, (float)B.X, (float)B.Y);
         }
 
 
@@ -367,6 +384,37 @@ namespace task9
         }
         public void DrawTriangle(Vertex a, Vertex b, Vertex c)
         {
+            Vector p1 = a.Coordinate;
+            Vector p2 = b.Coordinate;
+            Vector p3 = c.Coordinate;
+
+            double[,] matrix = new double[2, 3];
+            matrix[0, 0] = p2.X - p1.X;
+            matrix[0, 1] = p2.Y - p1.Y;
+            matrix[0, 2] = p2.Z - p1.Z;
+            matrix[1, 0] = p3.X - p1.X;
+            matrix[1, 1] = p3.Y - p1.Y;
+            matrix[1, 2] = p3.Z - p1.Z;
+
+            double ni = matrix[0, 1] * matrix[1, 2] - matrix[0, 2] * matrix[1, 1];
+            double nj = matrix[0, 2] * matrix[1, 0] - matrix[0, 0] * matrix[1, 2];
+            double nk = matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+            double d = -(ni * p1.X + nj * p1.Y + nk * p1.Z);
+
+            Vector pp = new Vector(p1.X + ni, p1.Y + nj, p1.Z + nk);
+            double val1 = ni * pp.X + nj * pp.Y + nk * pp.Z + d;
+            double val2 = ni * Center.X + nj * Center.Y + nk * Center.Z + d;
+
+            if (val1 * val2 > 0)
+            {
+                ni = -ni;
+                nj = -nj;
+                nk = -nk;
+            }
+
+            if (ni * (-CamPosition.X) + nj * (-CamPosition.Y) + nk * (-CamPosition.Z) + ni * p1.X + nj * p1.Y + nk * p1.Z < 0)
+                DrawTriangleInternal(a, b, c);
+            /*
             Color ac, bc, cc;
             ac = bc = cc = Color.Black;
             foreach (var lightSource in LightSources)
@@ -388,7 +436,7 @@ namespace task9
 
             for (int i = 0; i < vertices.Count; ++i)
                 vertices[i].Coordinate = ClipToScreen(vertices[i].Coordinate);
-            DrawPolygonInternal(vertices);
+            DrawPolygonInternal(vertices);*/
         }
 
         // Принимает на вход координаты в пространстве экрана.
@@ -402,6 +450,12 @@ namespace task9
         // Принимает на вход координаты в пространстве экрана.
         private void DrawTriangleInternal(Vertex a, Vertex b, Vertex c)
         {
+            a.Coordinate = SpaceToClip(a.Coordinate);
+            a.Coordinate = ClipToScreen(a.Coordinate);
+            b.Coordinate = SpaceToClip(b.Coordinate);
+            b.Coordinate = ClipToScreen(b.Coordinate);
+            c.Coordinate = SpaceToClip(c.Coordinate);
+            c.Coordinate = ClipToScreen(c.Coordinate);
             if (Face.None != CullFace)
             {
                 var u = b.Coordinate - a.Coordinate;

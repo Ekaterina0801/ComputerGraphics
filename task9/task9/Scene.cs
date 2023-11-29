@@ -20,6 +20,7 @@ namespace task9
                       | ControlStyles.UserPaint;
             SetStyle(flags, true);
             ResizeRedraw = true;
+            //View3D = new View3D(this);
             View3D = new View3D(this);
         }
 
