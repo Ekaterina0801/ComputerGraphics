@@ -48,8 +48,8 @@ namespace task9
         {
             for (int i = 0; i < imageWidth; ++i)
             {
-                lowerHorizon[i] = imageHeight;// double.MaxValue;
-                upperHorizon[i] = 0; // double.MinValue;
+                lowerHorizon[i] = imageHeight;
+                upperHorizon[i] = 0; 
             }
         }
 
@@ -296,23 +296,19 @@ namespace task9
         {
             if (currentPoint.Y < upperHorizon[(int)Math.Round(currentPoint.X)] && currentPoint.Y > lowerHorizon[(int)Math.Round(currentPoint.X)])
                 return VisibilityType.Invisible;
-            else
-                if (currentPoint.Y >= upperHorizon[(int)Math.Round(currentPoint.X)])
+            if (currentPoint.Y >= upperHorizon[(int)Math.Round(currentPoint.X)])
                 return VisibilityType.VisibleAndUpper;
-            else
-                return VisibilityType.VisibleAndLower;
+            return VisibilityType.VisibleAndLower;
         }
 
         private void ProcessEdge(Point2D prevPoint, ref Point2D currentPoint)
         {
             if (currentPoint.X != EMPTY_VALUE)
             {
-
-                int currentX = (int)Math.Round(currentPoint.X);
-                if (Math.Round(prevPoint.Y) >= Math.Round(upperHorizon[currentX]) ||
-                    Math.Round(prevPoint.Y) <= Math.Round(lowerHorizon[currentX]) ||
-                    Math.Round(currentPoint.Y) >= Math.Round(upperHorizon[currentX]) ||
-                    Math.Round(currentPoint.Y) <= Math.Round(lowerHorizon[currentX]))
+                if (Math.Round(prevPoint.Y) >= Math.Round(upperHorizon[(int)Math.Round(currentPoint.X)]) ||
+                    Math.Round(prevPoint.Y) <= Math.Round(lowerHorizon[(int)Math.Round(currentPoint.X)]) ||
+                    Math.Round(currentPoint.Y) >= Math.Round(upperHorizon[(int)Math.Round(currentPoint.X)]) ||
+                    Math.Round(currentPoint.Y) <= Math.Round(lowerHorizon[(int)Math.Round(currentPoint.X)]))
                     DrawLine(prevPoint, currentPoint);
 
                 LineApproximate(prevPoint, currentPoint);

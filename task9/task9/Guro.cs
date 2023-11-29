@@ -34,8 +34,6 @@ namespace task9
             InitializeComponent();
             ProjectionBox.SelectedItem = ProjectionBox.Items[0];
             FigureBox.SelectedItem = FigureBox.Items[1];
-            //CurrentDrawable = FigureBox.SelectedItem;
-                //Figures.Sphere(0.5, 20, 20);
             CurrentDrawable = Figures.Cube(0.25);
             Matrix projection = Transformer.PerspectiveProjection(-0.1, 0.1, -0.1, 0.1, 0.1, 20);
             camera = new Camera(new Vector(1, 1, 1), Math.PI / 4, -Math.Atan(1 / Math.Sqrt(3)), projection);
@@ -49,30 +47,23 @@ namespace task9
 
         private void Scale()
         {
-            double scalingX = (double)numericUpDown1.Value;
-            double scalingY = (double)numericUpDown2.Value;
-            double scalingZ = (double)numericUpDown3.Value;
-            CurrentDrawable.Apply(Transformer.Scale(scalingX, scalingY, scalingZ));
+            CurrentDrawable.Apply(Transformer.Scale((double)numericUpDown1.Value, 
+                (double)numericUpDown2.Value, (double)numericUpDown2.Value));
             sceneView1.Refresh();
         }
 
         private void Rotate()
         {
-            double rotatingX = DegreesToRadians((double)numericUpDown4.Value);
-            double rotatingY = DegreesToRadians((double)numericUpDown5.Value);
-            double rotatingZ = DegreesToRadians((double)numericUpDown6.Value);
-            CurrentDrawable.Apply(Transformer.RotateX(rotatingX)
-                * Transformer.RotateY(rotatingY)
-                * Transformer.RotateZ(rotatingZ));
+            CurrentDrawable.Apply(Transformer.RotateX(DegreesToRadians((double)numericUpDown4.Value))
+                * Transformer.RotateY(DegreesToRadians((double)numericUpDown5.Value))
+                * Transformer.RotateZ(DegreesToRadians((double)numericUpDown6.Value)));
             sceneView1.Refresh();
         }
 
         private void Translate()
         {
-            double translatingX = (double)numericUpDown7.Value;
-            double translatingY = (double)numericUpDown8.Value;
-            double translatingZ = (double)numericUpDown9.Value;
-            CurrentDrawable.Apply(Transformer.Translate(translatingX, translatingY, translatingZ));
+            CurrentDrawable.Apply(Transformer.Translate((double)numericUpDown7.Value, 
+                (double)numericUpDown8.Value, (double)numericUpDown9.Value));
             sceneView1.Refresh();
         }
 

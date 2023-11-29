@@ -11,32 +11,32 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace task9
 {
-    public partial class Form1 : Form
+    public partial class FloatingHorizon : Form
     {
-        Graph horizonDrawer = null;
-        List<functionType> functions = new List<functionType>();
+        Graph GraphicHorizon = null;
+        List<functionType> Functions = new List<functionType>();
         Point capturePoint;
         bool isMouseCaptured;
 
-        public Form1()
+        public FloatingHorizon()
         {
             InitializeComponent();
-            DoMyInitialization();
+            Initialization();
         }
 
-        private void DoMyInitialization()
+        private void Initialization()
         {
-            List<String> funcNames = new List<String>();
-            funcNames.Add("Y = Sin(x + z)");
-            funcNames.Add("Y = Sin(Cos(z) - Sin(x))");
-            funcNames.Add("Y = e^(Sin(Sqrt(x * x  + z * z )))");
+            List<string> Functions = new List<String>();
+            Functions.Add("Y = Sin(x + z)");
+            Functions.Add("Y = Sin(Cos(z) - Sin(x))");
+            Functions.Add("Y = e^(Sin(Sqrt(x * x  + z * z )))");
 
 
-            functions.Add(Functions.SinXplusZ);
-            functions.Add(Functions.CosDelta);
-            functions.Add(Functions.ExpSinR);
+            this.Functions.Add(task9.Functions.SinXplusZ);
+            this.Functions.Add(task9.Functions.CosDelta);
+            this.Functions.Add(task9.Functions.ExpSinR);
 
-            cmbBoxFunctions.Items.AddRange(funcNames.ToArray());
+            cmbBoxFunctions.Items.AddRange(Functions.ToArray());
             cmbBoxFunctions.SelectedIndex = 0;
    
 
@@ -56,72 +56,72 @@ namespace task9
 
 
     
-            horizonDrawer = new Graph(picBox.Width, picBox.Height);
-            InitializeHorizonDrawer();
+            GraphicHorizon = new Graph(picBox.Width, picBox.Height);
+            StartHorizon();
   
 
             isMouseCaptured = false;
         }
 
-        private void InitializeHorizonDrawer()
+        private void StartHorizon()
         {
             try
             {
-                horizonDrawer.SetBoundsOnX(Convert.ToDouble(txtBoxXBegin.Text), Convert.ToDouble(txtBoxXEnd.Text));
-                horizonDrawer.SetBoundsOnZ(Convert.ToDouble(txtBoxZBegin.Text), Convert.ToDouble(txtBoxZEnd.Text));
-                horizonDrawer.SetXZsteps(Convert.ToDouble(txtBoxXStep.Text), Convert.ToDouble(txtBoxZStep.Text));
-                horizonDrawer.SetAngleX(trackBarX.Value);
-                horizonDrawer.SetAngleY(trackBarY.Value);
-                horizonDrawer.SetAngleZ(trackBarZ.Value);
+                GraphicHorizon.SetBoundsOnX(Convert.ToDouble(txtBoxXBegin.Text), Convert.ToDouble(txtBoxXEnd.Text));
+                GraphicHorizon.SetBoundsOnZ(Convert.ToDouble(txtBoxZBegin.Text), Convert.ToDouble(txtBoxZEnd.Text));
+                GraphicHorizon.SetXZsteps(Convert.ToDouble(txtBoxXStep.Text), Convert.ToDouble(txtBoxZStep.Text));
+                GraphicHorizon.SetAngleX(trackBarX.Value);
+                GraphicHorizon.SetAngleY(trackBarY.Value);
+                GraphicHorizon.SetAngleZ(trackBarZ.Value);
             }
             catch (System.Exception)
             {
                 MessageBox.Show("Неверные входные данные");
             }
-            horizonDrawer.SetBackColor(btnBackColor.BackColor);
-            horizonDrawer.SetMainColor(btnMainColor.BackColor);
+            GraphicHorizon.SetBackColor(btnBackColor.BackColor);
+            GraphicHorizon.SetMainColor(btnMainColor.BackColor);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            InitializeHorizonDrawer();
+            StartHorizon();
             ReDraw();
         }
 
         private void trackBarX_ValueChanged(object sender, EventArgs e)
         {
-            horizonDrawer.SetAngleX(trackBarX.Value);
+            GraphicHorizon.SetAngleX(trackBarX.Value);
             ReDraw();
         }
 
         private void trackBarY_ValueChanged(object sender, EventArgs e)
         {
-            horizonDrawer.SetAngleY(trackBarY.Value);
+            GraphicHorizon.SetAngleY(trackBarY.Value);
             ReDraw();
         }
 
         private void trackBarZ_ValueChanged(object sender, EventArgs e)
         {
-            horizonDrawer.SetAngleZ(trackBarZ.Value);
+            GraphicHorizon.SetAngleZ(trackBarZ.Value);
             ReDraw();
         }
 
         private void ReDraw()
         {
-            horizonDrawer.Draw(picBox.CreateGraphics(), functions[cmbBoxFunctions.SelectedIndex]);
+            GraphicHorizon.Draw(picBox.CreateGraphics(), Functions[cmbBoxFunctions.SelectedIndex]);
         }
 
         private void btnBackColor_Click(object sender, EventArgs e)
         {
             colorDlg.ShowDialog();
-            horizonDrawer.SetBackColor(colorDlg.Color);
+            GraphicHorizon.SetBackColor(colorDlg.Color);
             btnBackColor.BackColor = colorDlg.Color;
         }
 
         private void btnMainColor_Click(object sender, EventArgs e)
         {
             colorDlg.ShowDialog();
-            horizonDrawer.SetMainColor(colorDlg.Color);
+            GraphicHorizon.SetMainColor(colorDlg.Color);
             btnMainColor.BackColor = colorDlg.Color;
         }
 
@@ -139,26 +139,16 @@ namespace task9
                 double deltaAngle;
                 if (Math.Abs(e.X - capturePoint.X) < Math.Abs(e.Y - capturePoint.Y))
                 {
-                    if (e.Y > capturePoint.Y)
-                    {
-                        deltaAngle = 360 * (e.Y - capturePoint.Y) / (picBox.Height - capturePoint.Y);
-                    }
-                    else
-                    {
-                        deltaAngle = 360 * (1 - (e.Y - capturePoint.Y) / (capturePoint.Y - picBox.Height));
-                    }
+                    deltaAngle = e.Y > capturePoint.Y ?
+                        360 * (e.Y - capturePoint.Y) / (picBox.Height - capturePoint.Y) :
+                        360 * (1 - (e.Y - capturePoint.Y) / (capturePoint.Y - picBox.Height));
                     trackBarX.Value = Math.Abs((int)Math.Round(deltaAngle) % 361);
                 }
                 else
                 {
-                    if (e.X > capturePoint.X)
-                    {
-                        deltaAngle = 360 * (e.X - capturePoint.X) / (picBox.Width - capturePoint.X);
-                    }
-                    else
-                    {
-                        deltaAngle = 360 * (1 - (e.X - capturePoint.X) / (capturePoint.X - picBox.Width));
-                    }
+                    deltaAngle = e.X > capturePoint.X ?
+      360 * (e.X - capturePoint.X) / (picBox.Width - capturePoint.X) :
+      360 * (1 - (e.X - capturePoint.X) / (capturePoint.X - picBox.Width));
                     trackBarY.Value = Math.Abs((int)Math.Round(deltaAngle) % 361);
                 }
 

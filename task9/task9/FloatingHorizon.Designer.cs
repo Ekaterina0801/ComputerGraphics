@@ -1,6 +1,6 @@
 ﻿namespace task9
 {
-    partial class Form1
+    partial class FloatingHorizon
     {
         /// <summary>
         /// Required designer variable.

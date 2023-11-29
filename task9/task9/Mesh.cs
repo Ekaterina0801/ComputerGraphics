@@ -33,6 +33,22 @@ namespace task9
                 return center;
             }
         }
+        public virtual void Draw(View3D graphics)
+        {
+            foreach (var ind in Indices)
+                for (int i = 0; i < ind.Length; ++i)
+                    graphics.DrawLine(new Vertex(Coordinates[ind[i]]),
+                        new Vertex(Coordinates[ind[(i + 1) % ind.Length]]));
+
+        }
+        public virtual void Draw(Graphics3D graphics)
+        {
+            foreach (var ind in Indices)
+                for (int i = 0; i < ind.Length; ++i)
+                    graphics.DrawLine(new Vertex(Coordinates[ind[i]]),
+                        new Vertex(Coordinates[ind[(i + 1) % ind.Length]]));
+
+        }
 
         public Mesh(Vector[] vertices, int[][] indices)
         {
@@ -51,10 +67,8 @@ namespace task9
             while (info[index].Equals("") || info[index][0].Equals('v'))
             {
                 var infoPoint = info[index].Split(' ');
-                double x = double.Parse(infoPoint[1]);
-                double y = double.Parse(infoPoint[2]);
-                double z = double.Parse(infoPoint[3]);
-                vertices.Add(new Vector(x, y, z));
+                vertices.Add(new Vector(double.Parse(infoPoint[1]), double.Parse(infoPoint[2]),
+                    double.Parse(infoPoint[3])));
                 index++;
             }
             while (info[index].Equals("") || !info[index][0].Equals('f'))
@@ -89,28 +103,7 @@ namespace task9
             return Color.FromArgb(r.Next(256), r.Next(256), r.Next(256));
         }
 
-        public virtual void Draw(View3D graphics)
-        {
-            foreach (var facet in Indices)
-                for (int i = 0; i < facet.Length; ++i)
-                {
-                    var a = new Vertex(Coordinates[facet[i]]);
-                    var b = new Vertex(Coordinates[facet[(i + 1) % facet.Length]]);
-                    graphics.DrawLine(a, b);
-                }
 
-        }
-        public virtual void Draw(Graphics3D graphics)
-        {
-            foreach (var facet in Indices)
-                for (int i = 0; i < facet.Length; ++i)
-                {
-                    var a = new Vertex(Coordinates[facet[i]]);
-                    var b = new Vertex(Coordinates[facet[(i + 1) % facet.Length]]);
-                    graphics.DrawLine(a, b);
-                }
-
-        }
         public void Save(string path)
         {
             string info = "# File Created: " + DateTime.Now.ToString() + "\r\n";
@@ -130,12 +123,12 @@ namespace task9
     }
     public class MeshWithNormals : Mesh
     {
-        public Vector[] Normals { get; set; }
-        public bool VisibleNormals { get; set; } = false;
+        public Vector[] VectorNormal { get; set; }
+        public bool IsNormalVisible { get; set; } = false;
 
         public MeshWithNormals(Vector[] vertices, Vector[] normals, int[][] indices) : base(vertices, indices)
         {
-            Normals = normals;
+            VectorNormal = normals;
         }
 
         public override void Apply(Matrix transformation)
@@ -144,27 +137,25 @@ namespace task9
             for (int i = 0; i < Coordinates.Length; ++i)
             {
                 Coordinates[i] *= transformation;
-                Normals[i] = (Normals[i] * normalTransformation).Normalize();
+                VectorNormal[i] = (VectorNormal[i] * normalTransformation).Normalize();
             }
         }
 
         public override void Draw(View3D graphics)
         {
-            foreach (var verge in Indices)
+            foreach (var v in Indices)
             {
-                for (int i = 1; i < verge.Length - 1; ++i)
-                {
-                    var a = new Vertex(Coordinates[verge[0]], Color.White, Normals[verge[0]]);
-                    var b = new Vertex(Coordinates[verge[i]], Color.White, Normals[verge[i]]);
-                    var c = new Vertex(Coordinates[verge[i + 1]], Color.White, Normals[verge[i + 1]]);
-                    graphics.DrawTriangle(a, b, c);
+                for (int i = 1; i < v.Length - 1; ++i)
+                {     
+                    graphics.DrawTriangle(new Vertex(Coordinates[v[0]], 
+                        Color.White, VectorNormal[v[0]]), new Vertex(Coordinates[v[i]], Color.White, VectorNormal[v[i]]),
+                        new Vertex(Coordinates[v[i + 1]], Color.White, VectorNormal[v[i + 1]]));
                 }
-                if (VisibleNormals)
+                if (IsNormalVisible)
                     for (int i = 0; i < Coordinates.Length; ++i)
                     {
-                        var a = new Vertex(Coordinates[i], Color.White, Normals[i]);
-                        var b = new Vertex(Coordinates[i] + Normals[i], Color.White, Normals[i]);
-                        graphics.DrawLine(a, b);
+                        graphics.DrawLine(new Vertex(Coordinates[i], Color.White, VectorNormal[i]), 
+                            new Vertex(Coordinates[i] + VectorNormal[i], Color.White, VectorNormal[i]));
                     }
             }
         }

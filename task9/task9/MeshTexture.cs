@@ -21,12 +21,9 @@ namespace Texturing
 
             foreach (var facet in Indices)
                 for (int i = 1; i < facet.Length - 1; ++i)
-                {
-                    var a = new Vertex(Coordinates[facet[0]], uvCoordinates[facet[0]]);
-                    var b = new Vertex(Coordinates[facet[i]], uvCoordinates[facet[i]]);
-                    var c = new Vertex(Coordinates[facet[i + 1]], uvCoordinates[facet[i + 1]]);
-                    graphics.DrawTriangle(a, b, c);
-                }
+                    graphics.DrawTriangle(new Vertex(Coordinates[facet[0]], uvCoordinates[facet[0]]), 
+                    new Vertex(Coordinates[facet[i]], uvCoordinates[facet[i]]), new Vertex(Coordinates[facet[i + 1]], 
+                    uvCoordinates[facet[i + 1]]));
         }
     }
 }
