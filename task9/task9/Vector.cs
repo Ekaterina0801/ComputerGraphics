@@ -79,7 +79,7 @@ namespace task9
             if (0.1e6 < Math.Abs(1 - resultLength)) throw new Exception("You shouldn't see these words.");
             return result;
         }
-
+        public static Vector Zero => new Vector(0, 0, 0);
         // Скалярное произведение векторов
         public static double DotProduct(Vector u, Vector v)
         {
@@ -88,7 +88,14 @@ namespace task9
                 result += u[i] * v[i];
             return result / (u.W * v.W);
         }
-
+        public static Vector Normalize(Vector v)
+        {
+            double length = Math.Sqrt(v.X * v.X + v.Y * v.Y + v.Z * v.Z);
+            double x = v.X / length;
+            double y = v.Y / length;
+            double z = v.Z / length;
+            return new Vector(x, y, z);
+        }
         public static double DotProduct4(Vector u, Vector v)
         {
             double result = 0;

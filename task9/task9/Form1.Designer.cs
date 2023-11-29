@@ -3,14 +3,14 @@
     partial class Form1
     {
         /// <summary>
-        /// Обязательная переменная конструктора.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Освободить все используемые ресурсы.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,454 +20,411 @@
             base.Dispose(disposing);
         }
 
-        #region Код, автоматически созданный конструктором форм Windows
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            ProjectionBox = new ComboBox();
-            ApplyProjection = new Button();
-            numericUpDown1 = new NumericUpDown();
-            numericUpDown2 = new NumericUpDown();
-            numericUpDown3 = new NumericUpDown();
-            numericUpDown4 = new NumericUpDown();
-            numericUpDown5 = new NumericUpDown();
-            numericUpDown6 = new NumericUpDown();
-            numericUpDown7 = new NumericUpDown();
-            numericUpDown8 = new NumericUpDown();
-            numericUpDown9 = new NumericUpDown();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            ApplyAffin = new Button();
-            SaveButton = new Button();
-            LoadButton = new Button();
-            listBox1 = new ListBox();
-            button1 = new Button();
-            sceneView1 = new Scene();
-            label7 = new Label();
-            panel1 = new Panel();
-            panel2 = new Panel();
-            label8 = new Label();
-            panel3 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown9).BeginInit();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            SuspendLayout();
+            this.picBox = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.trackBarX = new System.Windows.Forms.TrackBar();
+            this.trackBarZ = new System.Windows.Forms.TrackBar();
+            this.trackBarY = new System.Windows.Forms.TrackBar();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbBoxFunctions = new System.Windows.Forms.ComboBox();
+            this.txtBoxXBegin = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtBoxXEnd = new System.Windows.Forms.TextBox();
+            this.txtBoxXStep = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtBoxZStep = new System.Windows.Forms.TextBox();
+            this.txtBoxZEnd = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtBoxZBegin = new System.Windows.Forms.TextBox();
+            this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnMainColor = new System.Windows.Forms.Button();
+            this.btnBackColor = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.colorDlg = new System.Windows.Forms.ColorDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBoxOptions.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // ProjectionBox
+            // picBox
             // 
-            ProjectionBox.FormattingEnabled = true;
-            ProjectionBox.Items.AddRange(new object[] { "Перспективная", "Ортографическая XY", "Ортографическая XZ", "Ортографическая YZ" });
-            ProjectionBox.Location = new Point(7, 47);
-            ProjectionBox.Name = "ProjectionBox";
-            ProjectionBox.Size = new Size(176, 28);
-            ProjectionBox.TabIndex = 1;
-            // 
-            // ApplyProjection
-            // 
-            ApplyProjection.BackColor = SystemColors.ButtonHighlight;
-            ApplyProjection.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
-            ApplyProjection.FlatAppearance.BorderSize = 2;
-            ApplyProjection.FlatStyle = FlatStyle.Flat;
-            ApplyProjection.Location = new Point(7, 99);
-            ApplyProjection.Name = "ApplyProjection";
-            ApplyProjection.Size = new Size(176, 39);
-            ApplyProjection.TabIndex = 2;
-            ApplyProjection.Text = "Применить";
-            ApplyProjection.UseVisualStyleBackColor = false;
-            ApplyProjection.Click += ApplyProjection_Click;
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.DecimalPlaces = 1;
-            numericUpDown1.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericUpDown1.Location = new Point(106, 39);
-            numericUpDown1.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(59, 26);
-            numericUpDown1.TabIndex = 3;
-            numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
-            // numericUpDown2
-            // 
-            numericUpDown2.DecimalPlaces = 1;
-            numericUpDown2.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericUpDown2.Location = new Point(180, 39);
-            numericUpDown2.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDown2.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(61, 26);
-            numericUpDown2.TabIndex = 4;
-            numericUpDown2.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
-            // numericUpDown3
-            // 
-            numericUpDown3.DecimalPlaces = 1;
-            numericUpDown3.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericUpDown3.Location = new Point(259, 39);
-            numericUpDown3.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDown3.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericUpDown3.Name = "numericUpDown3";
-            numericUpDown3.Size = new Size(68, 26);
-            numericUpDown3.TabIndex = 5;
-            numericUpDown3.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
-            // numericUpDown4
-            // 
-            numericUpDown4.Increment = new decimal(new int[] { 5, 0, 0, 0 });
-            numericUpDown4.Location = new Point(106, 81);
-            numericUpDown4.Maximum = new decimal(new int[] { 180, 0, 0, 0 });
-            numericUpDown4.Minimum = new decimal(new int[] { 180, 0, 0, int.MinValue });
-            numericUpDown4.Name = "numericUpDown4";
-            numericUpDown4.Size = new Size(59, 26);
-            numericUpDown4.TabIndex = 6;
-            // 
-            // numericUpDown5
-            // 
-            numericUpDown5.Increment = new decimal(new int[] { 5, 0, 0, 0 });
-            numericUpDown5.Location = new Point(180, 81);
-            numericUpDown5.Maximum = new decimal(new int[] { 180, 0, 0, 0 });
-            numericUpDown5.Minimum = new decimal(new int[] { 180, 0, 0, int.MinValue });
-            numericUpDown5.Name = "numericUpDown5";
-            numericUpDown5.Size = new Size(61, 26);
-            numericUpDown5.TabIndex = 7;
-            // 
-            // numericUpDown6
-            // 
-            numericUpDown6.Increment = new decimal(new int[] { 5, 0, 0, 0 });
-            numericUpDown6.Location = new Point(259, 81);
-            numericUpDown6.Maximum = new decimal(new int[] { 180, 0, 0, 0 });
-            numericUpDown6.Minimum = new decimal(new int[] { 180, 0, 0, int.MinValue });
-            numericUpDown6.Name = "numericUpDown6";
-            numericUpDown6.Size = new Size(68, 26);
-            numericUpDown6.TabIndex = 8;
-            // 
-            // numericUpDown7
-            // 
-            numericUpDown7.DecimalPlaces = 2;
-            numericUpDown7.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            numericUpDown7.Location = new Point(106, 118);
-            numericUpDown7.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDown7.Minimum = new decimal(new int[] { 10, 0, 0, int.MinValue });
-            numericUpDown7.Name = "numericUpDown7";
-            numericUpDown7.Size = new Size(59, 26);
-            numericUpDown7.TabIndex = 9;
-            // 
-            // numericUpDown8
-            // 
-            numericUpDown8.DecimalPlaces = 2;
-            numericUpDown8.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            numericUpDown8.Location = new Point(180, 118);
-            numericUpDown8.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDown8.Minimum = new decimal(new int[] { 10, 0, 0, int.MinValue });
-            numericUpDown8.Name = "numericUpDown8";
-            numericUpDown8.Size = new Size(61, 26);
-            numericUpDown8.TabIndex = 10;
-            // 
-            // numericUpDown9
-            // 
-            numericUpDown9.DecimalPlaces = 2;
-            numericUpDown9.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            numericUpDown9.Location = new Point(259, 118);
-            numericUpDown9.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDown9.Minimum = new decimal(new int[] { 10, 0, 0, int.MinValue });
-            numericUpDown9.Name = "numericUpDown9";
-            numericUpDown9.Size = new Size(68, 26);
-            numericUpDown9.TabIndex = 11;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Location = new Point(126, 8);
-            label1.Name = "label1";
-            label1.Size = new Size(20, 20);
-            label1.TabIndex = 12;
-            label1.Text = "X";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Location = new Point(202, 8);
-            label2.Name = "label2";
-            label2.Size = new Size(20, 20);
-            label2.TabIndex = 13;
-            label2.Text = "Y";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Location = new Point(278, 8);
-            label3.Name = "label3";
-            label3.Size = new Size(19, 20);
-            label3.TabIndex = 14;
-            label3.Text = "Z";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Location = new Point(7, 45);
-            label4.Name = "label4";
-            label4.Size = new Size(79, 20);
-            label4.TabIndex = 15;
-            label4.Text = "Масштаб";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Location = new Point(7, 83);
-            label5.Name = "label5";
-            label5.Size = new Size(75, 20);
-            label5.TabIndex = 16;
-            label5.Text = "Поворот";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Transparent;
-            label6.Location = new Point(7, 120);
-            label6.Name = "label6";
-            label6.Size = new Size(56, 20);
-            label6.TabIndex = 17;
-            label6.Text = "Сдвиг";
-            // 
-            // ApplyAffin
-            // 
-            ApplyAffin.BackColor = SystemColors.ButtonHighlight;
-            ApplyAffin.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
-            ApplyAffin.FlatAppearance.BorderSize = 2;
-            ApplyAffin.FlatStyle = FlatStyle.Flat;
-            ApplyAffin.Location = new Point(75, 170);
-            ApplyAffin.Name = "ApplyAffin";
-            ApplyAffin.Size = new Size(185, 37);
-            ApplyAffin.TabIndex = 18;
-            ApplyAffin.Text = "Применить";
-            ApplyAffin.UseVisualStyleBackColor = false;
-            ApplyAffin.Click += ApplyAffin_Click;
-            // 
-            // SaveButton
-            // 
-            SaveButton.BackColor = SystemColors.ButtonHighlight;
-            SaveButton.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
-            SaveButton.FlatAppearance.BorderSize = 2;
-            SaveButton.FlatStyle = FlatStyle.Flat;
-            SaveButton.Location = new Point(75, 225);
-            SaveButton.Name = "SaveButton";
-            SaveButton.Size = new Size(185, 44);
-            SaveButton.TabIndex = 19;
-            SaveButton.Text = "Сохранить";
-            SaveButton.UseVisualStyleBackColor = false;
-            SaveButton.Click += SaveButton_Click;
-            // 
-            // LoadButton
-            // 
-            LoadButton.BackColor = SystemColors.ButtonHighlight;
-            LoadButton.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
-            LoadButton.FlatAppearance.BorderSize = 2;
-            LoadButton.FlatStyle = FlatStyle.Flat;
-            LoadButton.Location = new Point(75, 293);
-            LoadButton.Name = "LoadButton";
-            LoadButton.Size = new Size(185, 52);
-            LoadButton.TabIndex = 20;
-            LoadButton.Text = "Загрузить";
-            LoadButton.UseVisualStyleBackColor = false;
-            LoadButton.Click += LoadButton_Click;
-            // 
-            // listBox1
-            // 
-            listBox1.BackColor = Color.White;
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 20;
-            listBox1.Items.AddRange(new object[] { "x+y", "x*x+y*y", "sin(x)+cos(y)", "sin(x)*cos(y)", "cap", "cap2" });
-            listBox1.Location = new Point(55, 26);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(120, 124);
-            listBox1.TabIndex = 21;
-            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            this.picBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBox.Location = new System.Drawing.Point(-1, 0);
+            this.picBox.Name = "picBox";
+            this.picBox.Size = new System.Drawing.Size(995, 641);
+            this.picBox.TabIndex = 0;
+            this.picBox.TabStop = false;
+            this.picBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picBox_MouseDown);
+            this.picBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picBox_MouseMove);
+            this.picBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picBox_MouseUp);
             // 
             // button1
             // 
-            button1.BackColor = SystemColors.ButtonHighlight;
-            button1.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
-            button1.FlatAppearance.BorderSize = 2;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(36, 156);
-            button1.Name = "button1";
-            button1.Size = new Size(164, 44);
-            button1.TabIndex = 22;
-            button1.Text = "Применить";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(10, 56);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(206, 35);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Draw";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // sceneView1
+            // trackBarX
             // 
-            sceneView1.BackColor = SystemColors.ControlLightLight;
-            sceneView1.Camera = null;
-            sceneView1.Drawable = null;
-            sceneView1.ForeColor = SystemColors.ActiveCaption;
-            sceneView1.Location = new Point(534, 41);
-            sceneView1.Name = "sceneView1";
-            sceneView1.Size = new Size(707, 602);
-            sceneView1.TabIndex = 0;
-            sceneView1.Text = "sceneView1";
+            this.trackBarX.Location = new System.Drawing.Point(6, 127);
+            this.trackBarX.Maximum = 360;
+            this.trackBarX.Name = "trackBarX";
+            this.trackBarX.Size = new System.Drawing.Size(210, 45);
+            this.trackBarX.SmallChange = 10;
+            this.trackBarX.TabIndex = 2;
+            this.trackBarX.Value = 30;
+            this.trackBarX.ValueChanged += new System.EventHandler(this.trackBarX_ValueChanged);
+            // 
+            // trackBarZ
+            // 
+            this.trackBarZ.Location = new System.Drawing.Point(6, 229);
+            this.trackBarZ.Maximum = 360;
+            this.trackBarZ.Name = "trackBarZ";
+            this.trackBarZ.Size = new System.Drawing.Size(210, 45);
+            this.trackBarZ.TabIndex = 3;
+            this.trackBarZ.ValueChanged += new System.EventHandler(this.trackBarZ_ValueChanged);
+            // 
+            // trackBarY
+            // 
+            this.trackBarY.Location = new System.Drawing.Point(6, 178);
+            this.trackBarY.Maximum = 360;
+            this.trackBarY.Name = "trackBarY";
+            this.trackBarY.Size = new System.Drawing.Size(210, 45);
+            this.trackBarY.SmallChange = 10;
+            this.trackBarY.TabIndex = 4;
+            this.trackBarY.Value = 15;
+            this.trackBarY.ValueChanged += new System.EventHandler(this.trackBarY_ValueChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cmbBoxFunctions);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.trackBarY);
+            this.groupBox1.Controls.Add(this.trackBarX);
+            this.groupBox1.Controls.Add(this.trackBarZ);
+            this.groupBox1.Location = new System.Drawing.Point(1005, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(237, 285);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(10, 213);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 17);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Z Rotate:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(10, 162);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 17);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Y Rotate:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(10, 108);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 17);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "X Rotate:";
+            // 
+            // cmbBoxFunctions
+            // 
+            this.cmbBoxFunctions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBoxFunctions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBoxFunctions.FormattingEnabled = true;
+            this.cmbBoxFunctions.Location = new System.Drawing.Point(10, 19);
+            this.cmbBoxFunctions.Name = "cmbBoxFunctions";
+            this.cmbBoxFunctions.Size = new System.Drawing.Size(206, 28);
+            this.cmbBoxFunctions.TabIndex = 6;
+            // 
+            // txtBoxXBegin
+            // 
+            this.txtBoxXBegin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxXBegin.Location = new System.Drawing.Point(10, 48);
+            this.txtBoxXBegin.Name = "txtBoxXBegin";
+            this.txtBoxXBegin.Size = new System.Drawing.Size(60, 29);
+            this.txtBoxXBegin.TabIndex = 6;
+            this.txtBoxXBegin.Text = "-5";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(64, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(26, 20);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "X:";
+            // 
+            // txtBoxXEnd
+            // 
+            this.txtBoxXEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxXEnd.Location = new System.Drawing.Point(96, 48);
+            this.txtBoxXEnd.Name = "txtBoxXEnd";
+            this.txtBoxXEnd.Size = new System.Drawing.Size(60, 29);
+            this.txtBoxXEnd.TabIndex = 8;
+            this.txtBoxXEnd.Text = "5";
+            // 
+            // txtBoxXStep
+            // 
+            this.txtBoxXStep.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxXStep.Location = new System.Drawing.Point(176, 48);
+            this.txtBoxXStep.Name = "txtBoxXStep";
+            this.txtBoxXStep.Size = new System.Drawing.Size(60, 29);
+            this.txtBoxXStep.TabIndex = 9;
+            this.txtBoxXStep.Text = "0.1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(76, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(14, 20);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "-";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(179, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Step:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(179, 91);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(47, 20);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "Step:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(76, 129);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(14, 20);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "-";
+            // 
+            // txtBoxZStep
+            // 
+            this.txtBoxZStep.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxZStep.Location = new System.Drawing.Point(176, 123);
+            this.txtBoxZStep.Name = "txtBoxZStep";
+            this.txtBoxZStep.Size = new System.Drawing.Size(60, 29);
+            this.txtBoxZStep.TabIndex = 21;
+            this.txtBoxZStep.Text = "0.1";
+            // 
+            // txtBoxZEnd
+            // 
+            this.txtBoxZEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxZEnd.Location = new System.Drawing.Point(96, 123);
+            this.txtBoxZEnd.Name = "txtBoxZEnd";
+            this.txtBoxZEnd.Size = new System.Drawing.Size(60, 29);
+            this.txtBoxZEnd.TabIndex = 20;
+            this.txtBoxZEnd.Text = "5";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(64, 91);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(25, 20);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "Z:";
+            // 
+            // txtBoxZBegin
+            // 
+            this.txtBoxZBegin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxZBegin.Location = new System.Drawing.Point(10, 123);
+            this.txtBoxZBegin.Name = "txtBoxZBegin";
+            this.txtBoxZBegin.Size = new System.Drawing.Size(60, 29);
+            this.txtBoxZBegin.TabIndex = 18;
+            this.txtBoxZBegin.Text = "-5";
+            // 
+            // groupBoxOptions
+            // 
+            this.groupBoxOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxOptions.Controls.Add(this.txtBoxXBegin);
+            this.groupBoxOptions.Controls.Add(this.label10);
+            this.groupBoxOptions.Controls.Add(this.label4);
+            this.groupBoxOptions.Controls.Add(this.label11);
+            this.groupBoxOptions.Controls.Add(this.txtBoxXEnd);
+            this.groupBoxOptions.Controls.Add(this.txtBoxZStep);
+            this.groupBoxOptions.Controls.Add(this.txtBoxXStep);
+            this.groupBoxOptions.Controls.Add(this.txtBoxZEnd);
+            this.groupBoxOptions.Controls.Add(this.label5);
+            this.groupBoxOptions.Controls.Add(this.label12);
+            this.groupBoxOptions.Controls.Add(this.label6);
+            this.groupBoxOptions.Controls.Add(this.txtBoxZBegin);
+            this.groupBoxOptions.Location = new System.Drawing.Point(1005, 300);
+            this.groupBoxOptions.Name = "groupBoxOptions";
+            this.groupBoxOptions.Size = new System.Drawing.Size(237, 229);
+            this.groupBoxOptions.TabIndex = 24;
+            this.groupBoxOptions.TabStop = false;
+            this.groupBoxOptions.Text = "Options";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.btnMainColor);
+            this.groupBox2.Controls.Add(this.btnBackColor);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Location = new System.Drawing.Point(1005, 535);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(241, 114);
+            this.groupBox2.TabIndex = 25;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Colors";
+            // 
+            // btnMainColor
+            // 
+            this.btnMainColor.Location = new System.Drawing.Point(140, 72);
+            this.btnMainColor.Name = "btnMainColor";
+            this.btnMainColor.Size = new System.Drawing.Size(76, 34);
+            this.btnMainColor.TabIndex = 4;
+            this.btnMainColor.UseVisualStyleBackColor = true;
+            this.btnMainColor.Click += new System.EventHandler(this.btnMainColor_Click);
+            // 
+            // btnBackColor
+            // 
+            this.btnBackColor.Location = new System.Drawing.Point(140, 23);
+            this.btnBackColor.Name = "btnBackColor";
+            this.btnBackColor.Size = new System.Drawing.Size(76, 34);
+            this.btnBackColor.TabIndex = 3;
+            this.btnBackColor.UseVisualStyleBackColor = true;
+            this.btnBackColor.Click += new System.EventHandler(this.btnBackColor_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(14, 77);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(106, 24);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Основной:";
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.BackColor = Color.Transparent;
-            label7.Location = new Point(52, 19);
-            label7.Name = "label7";
-            label7.Size = new Size(83, 20);
-            label7.TabIndex = 23;
-            label7.Text = "Проекция";
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.Transparent;
-            panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(LoadButton);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(SaveButton);
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(ApplyAffin);
-            panel1.Controls.Add(numericUpDown1);
-            panel1.Controls.Add(numericUpDown9);
-            panel1.Controls.Add(numericUpDown4);
-            panel1.Controls.Add(numericUpDown6);
-            panel1.Controls.Add(numericUpDown8);
-            panel1.Controls.Add(numericUpDown3);
-            panel1.Controls.Add(numericUpDown7);
-            panel1.Controls.Add(numericUpDown2);
-            panel1.Controls.Add(numericUpDown5);
-            panel1.Location = new Point(40, 270);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(462, 373);
-            panel1.TabIndex = 24;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.Transparent;
-            panel2.BorderStyle = BorderStyle.Fixed3D;
-            panel2.Controls.Add(listBox1);
-            panel2.Controls.Add(label8);
-            panel2.Controls.Add(button1);
-            panel2.Location = new Point(263, 41);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(239, 223);
-            panel2.TabIndex = 25;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.Transparent;
-            label8.Location = new Point(82, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(75, 20);
-            label8.TabIndex = 26;
-            label8.Text = "Функция";
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.Transparent;
-            panel3.BorderStyle = BorderStyle.Fixed3D;
-            panel3.Controls.Add(label7);
-            panel3.Controls.Add(ProjectionBox);
-            panel3.Controls.Add(ApplyProjection);
-            panel3.Location = new Point(40, 43);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(204, 221);
-            panel3.TabIndex = 27;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(14, 33);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 24);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Фон:";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(9F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.backgroundImage;
-            ClientSize = new Size(1264, 681);
-            Controls.Add(panel3);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            Controls.Add(sceneView1);
-            Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Margin = new Padding(4);
-            MaximizeBox = false;
-            Name = "Form1";
-            Text = "Плавающий горизонт";
-            Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown9).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1244, 653);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBoxOptions);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.picBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.Name = "Form1";
+            this.Text = "Floating Horizon";
+            ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBoxOptions.ResumeLayout(false);
+            this.groupBoxOptions.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
 
-        private Scene sceneView1;
-        private System.Windows.Forms.ComboBox ProjectionBox;
-        private System.Windows.Forms.Button ApplyProjection;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
-        private System.Windows.Forms.NumericUpDown numericUpDown7;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
-        private System.Windows.Forms.NumericUpDown numericUpDown9;
+        private System.Windows.Forms.PictureBox picBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TrackBar trackBarX;
+        private System.Windows.Forms.TrackBar trackBarZ;
+        private System.Windows.Forms.TrackBar trackBarY;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cmbBoxFunctions;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtBoxXBegin;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtBoxXEnd;
+        private System.Windows.Forms.TextBox txtBoxXStep;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button ApplyAffin;
-        private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Button LoadButton;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
-        private Label label7;
-        private Panel panel1;
-        private Panel panel2;
-        private Label label8;
-        private Panel panel3;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtBoxZStep;
+        private System.Windows.Forms.TextBox txtBoxZEnd;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtBoxZBegin;
+        private System.Windows.Forms.GroupBox groupBoxOptions;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ColorDialog colorDlg;
+        private System.Windows.Forms.Button btnMainColor;
+        private System.Windows.Forms.Button btnBackColor;
     }
 }
 

@@ -91,13 +91,13 @@ namespace task9
 
         public virtual void Draw(View3D graphics)
         {
-                foreach (var facet in Indices)
-                    for (int i = 0; i < facet.Length; ++i)
-                    {
-                        var a = new Vertex(Coordinates[facet[i]]);
-                        var b = new Vertex(Coordinates[facet[(i + 1) % facet.Length]]);
-                        graphics.DrawLine(a, b);
-                    }
+            foreach (var facet in Indices)
+                for (int i = 0; i < facet.Length; ++i)
+                {
+                    var a = new Vertex(Coordinates[facet[i]]);
+                    var b = new Vertex(Coordinates[facet[(i + 1) % facet.Length]]);
+                    graphics.DrawLine(a, b);
+                }
 
         }
 
