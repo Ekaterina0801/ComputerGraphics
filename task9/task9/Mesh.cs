@@ -41,14 +41,7 @@ namespace task9
                         new Vertex(Coordinates[ind[(i + 1) % ind.Length]]));
 
         }
-        public virtual void Draw(Graphics3D graphics)
-        {
-            foreach (var ind in Indices)
-                for (int i = 0; i < ind.Length; ++i)
-                    graphics.DrawLine(new Vertex(Coordinates[ind[i]]),
-                        new Vertex(Coordinates[ind[(i + 1) % ind.Length]]));
 
-        }
 
         public Mesh(Vector[] vertices, int[][] indices)
         {

@@ -166,7 +166,6 @@ namespace task9
                 Interpolate(a.Normal, b.Normal, f),
                 Interpolate(a.UVCoordinate, b.UVCoordinate, f));
         }
-
         private class PlaneBoundary
         {
             public static readonly PlaneBoundary[] BOUNDARIES =
@@ -225,22 +224,6 @@ namespace task9
 
         public void DrawPoint(Vertex a)
         {
-            /*
-            a.Coordinate = SpaceToClip(a.Coordinate);
-            if (!ClipPoint(a.Coordinate)) return;
-            a.Coordinate = ClipToScreen(a.Coordinate);
-            const int POINT_SIZE = 5;
-            for (int dy = 0; dy < POINT_SIZE; ++dy)
-            {
-                var y = (int)a.Coordinate.Y + dy - POINT_SIZE / 2;
-                if (y < 0 || Height <= y) return;
-                for (int dx = 0; dx < POINT_SIZE; ++dx)
-                {
-                    var x = (int)a.Coordinate.X + dx - POINT_SIZE / 2;
-                    if (x < 0 || Width <= x) return;
-                    SetPixel(x, y, a.Coordinate.Z, a.Color);
-                }
-            }*/
             a.Coordinate = SpaceToClip(a.Coordinate);
             a.Coordinate = ClipToScreen(a.Coordinate);
             graphics.FillRectangle(new SolidBrush(a.Color), (float)a.Coordinate.X - 2, (float)a.Coordinate.Y - 2, 5, 5);
@@ -253,69 +236,6 @@ namespace task9
         }
         public void DrawLine(Vertex a, Vertex b)
         {
-            /*
-            // Преобразование координат
-            a.Coordinate = SpaceToClip(a.Coordinate);
-            b.Coordinate = SpaceToClip(b.Coordinate);
-
-            // Обрезка линии
-            if (!ClipLine(ref a, ref b))
-                return;
-
-            // Преобразование координат
-            a.Coordinate = ClipToScreen(a.Coordinate);
-            b.Coordinate = ClipToScreen(b.Coordinate);
-
-            // Извлечение координат
-            int x0 = (int)a.Coordinate.X;
-            int y0 = (int)a.Coordinate.Y;
-            int x1 = (int)b.Coordinate.X;
-            int y1 = (int)b.Coordinate.Y;
-
-            // Вычисление разницы между координатами
-            int dx = Math.Abs(x1 - x0);
-            int dy = Math.Abs(y1 - y0);
-
-            // Определение направления
-            int sx = x0 < x1 ? 1 : -1;
-            int sy = y0 < y1 ? 1 : -1;
-
-            // Вычисление ошибки
-            int err = dx - dy;
-
-            // Инициализация текущих координат
-            int currentX = x0;
-            int currentY = y0;
-
-            // Основной цикл отрисовки
-            while (true)
-            {
-                // Вычисление интерполированных точек
-                double f = dx < dy ? Math.Abs(currentY - a.Coordinate.Y) / dy : Math.Abs(currentX - a.Coordinate.X) / dx;
-                var point = Interpolate(a, b, f);
-
-                // Установка пикселя
-                SetPixel(currentX, currentY, point.Coordinate.Z, point.Color);
-
-                // Проверка завершения цикла
-                if (currentX == x1 && currentY == y1)
-                    break;
-
-                // Вычисление новой ошибки
-                int e2 = 2 * err;
-
-                if (e2 > -dy)
-                {
-                    err -= dy;
-                    currentX += sx;
-                }
-
-                if (e2 < dx)
-                {
-                    err += dx;
-                    currentY += sy;
-                }
-            }*/
             var t = SpaceToClip(a.Coordinate);
             var A = ClipToScreen(t);
             var u = SpaceToClip(b.Coordinate);
@@ -414,29 +334,6 @@ namespace task9
 
             if (ni * (-CamPosition.X) + nj * (-CamPosition.Y) + nk * (-CamPosition.Z) + ni * p1.X + nj * p1.Y + nk * p1.Z < 0)
                 DrawTriangleInternal(a, b, c);
-            /*
-            Color ac, bc, cc;
-            ac = bc = cc = Color.Black;
-            foreach (var lightSource in LightSources)
-            {
-                ac = NormalizedAdd(ac, calculateBright(a, lightSource));
-                bc = NormalizedAdd(bc, calculateBright(b, lightSource));
-                cc = NormalizedAdd(cc, calculateBright(c, lightSource));
-            }
-            a.Color = ac;
-            b.Color = bc;
-            c.Color = cc;
-            a.Coordinate = SpaceToClip(a.Coordinate);
-            b.Coordinate = SpaceToClip(b.Coordinate);
-            c.Coordinate = SpaceToClip(c.Coordinate);
-            var vertices = ClipTriangle(a, b, c);
-
-            if (vertices == null)
-                return;
-
-            for (int i = 0; i < vertices.Count; ++i)
-                vertices[i].Coordinate = ClipToScreen(vertices[i].Coordinate);
-            DrawPolygonInternal(vertices);*/
         }
 
         // Принимает на вход координаты в пространстве экрана.
@@ -456,21 +353,24 @@ namespace task9
             b.Coordinate = ClipToScreen(b.Coordinate);
             c.Coordinate = SpaceToClip(c.Coordinate);
             c.Coordinate = ClipToScreen(c.Coordinate);
-            if (Face.None != CullFace)
+
+            /*if (Face.None != CullFace)
             {
                 var u = b.Coordinate - a.Coordinate;
                 var v = c.Coordinate - a.Coordinate;
                 if (Face.Counterclockwise == CullFace)
                     Swap(ref u, ref v);
-                if (Vector.AngleVect(new Vector(0, 0, 1), Vector.CrossProduct(u, v)) > Math.PI / 2)
+                if (Vector.AngleBet(new Vector(0, 0, 1), Vector.CrossProduct(u, v)) > 2*Math.PI / 3)
                     return;
-            }
+            }*/
+
             if (a.Coordinate.Y > b.Coordinate.Y)
                 Swap(ref a, ref b);
             if (a.Coordinate.Y > c.Coordinate.Y)
                 Swap(ref a, ref c);
             if (b.Coordinate.Y > c.Coordinate.Y)
                 Swap(ref b, ref c);
+
             for (double y = Math.Ceiling(a.Coordinate.Y); y < c.Coordinate.Y; ++y)
             {
                 bool topHalf = y < b.Coordinate.Y;
@@ -485,7 +385,9 @@ namespace task9
                 for (double x = Math.Ceiling(left.Coordinate.X); x < right.Coordinate.X; ++x)
                 {
                     var point = Interpolate(left, right, (x - left.Coordinate.X) / (right.Coordinate.X - left.Coordinate.X));
-                    SetPixel((int)x, (int)y, point.Coordinate.Z, point.Color);
+                    colorBuffer.SetPixel((int)x, (int)y, ActiveTexture.GetPixel(
+                            (int)(point.UVCoordinate.X * (ActiveTexture.Width - 1)),
+                            (int)(point.UVCoordinate.Y * (ActiveTexture.Height - 1))));
                 }
             }
         }

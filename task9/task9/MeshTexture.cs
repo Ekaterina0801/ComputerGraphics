@@ -14,7 +14,7 @@ namespace Texturing
             this.uvCoordinates = textureCoordinates;
         }
 
-        public override void Draw(Graphics3D graphics)
+        public override void Draw(View3D graphics)
         {
             var curTexture = graphics.ActiveTexture;
             graphics.ActiveTexture = texture;

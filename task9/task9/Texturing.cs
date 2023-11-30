@@ -125,7 +125,7 @@ namespace task9
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
             //e.Graphics.FillRectangle(Brushes.Black, 0, 0, pictureBox1.Width, pictureBox1.Height);
-            var graphics3D = new Graphics3D(e.Graphics, camera.ViewProjection, pictureBox1.Width, pictureBox1.Height, cur_obj.Center, camera.Position);
+            var graphics3D = new View3D(e.Graphics, camera.ViewProjection, pictureBox1.Width, pictureBox1.Height, cur_obj.Center, camera.Position);
             var zero = new Vector(0, 0, 0);
             var x = new Vector(0.8, 0, 0);
             var y = new Vector(0, 0.8, 0);
