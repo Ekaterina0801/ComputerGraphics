@@ -307,6 +307,10 @@ namespace task9
             Vector p1 = a.Coordinate;
             Vector p2 = b.Coordinate;
             Vector p3 = c.Coordinate;
+            if (CamPosition.Y < 0.5 || CamPosition.X < 0.5 || CamPosition.Z < 0.5 || CamPosition.W < 0.5)
+            {
+                return;
+            }
 
             double[,] matrix = new double[2, 3];
             matrix[0, 0] = p2.X - p1.X;
