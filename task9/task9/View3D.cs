@@ -224,9 +224,32 @@ namespace task9
 
         public void DrawPoint(Vertex a)
         {
-            a.Coordinate = SpaceToClip(a.Coordinate);
-            a.Coordinate = ClipToScreen(a.Coordinate);
-            graphics.FillRectangle(new SolidBrush(a.Color), (float)a.Coordinate.X - 2, (float)a.Coordinate.Y - 2, 5, 5);
+            if (graphics == null)
+            {
+                a.Coordinate = SpaceToClip(a.Coordinate);
+                if (!ClipPoint(a.Coordinate)) return;
+                a.Coordinate = ClipToScreen(a.Coordinate);
+                const int POINT_SIZE = 5;
+                for (int dy = 0; dy < POINT_SIZE; ++dy)
+                {
+                    var y = (int)a.Coordinate.Y + dy - POINT_SIZE / 2;
+                    if (y < 0 || Height <= y) return;
+                    for (int dx = 0; dx < POINT_SIZE; ++dx)
+                    {
+                        var x = (int)a.Coordinate.X + dx - POINT_SIZE / 2;
+                        if (x < 0 || Width <= x) return;
+                        SetPixel(x, y, a.Coordinate.Z, a.Color);
+                    }
+                }
+            }
+            else 
+            {
+                a.Coordinate = SpaceToClip(a.Coordinate);
+                a.Coordinate = ClipToScreen(a.Coordinate);
+                graphics.FillRectangle(new SolidBrush(a.Color), (float)a.Coordinate.X - 2, (float)a.Coordinate.Y - 2, 5, 5);
+            }
+
+
         }
         private bool ShouldBeDrawn(Vector vertex)
         {
