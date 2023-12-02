@@ -69,36 +69,33 @@ namespace task9.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Texture3
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("Texture3", resourceCulture);
+        internal static System.Drawing.Bitmap Texture11 {
+            get {
+                object obj = ResourceManager.GetObject("Texture11", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Texture1
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("Texture1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Texture2
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Texture2 {
+            get {
                 object obj = ResourceManager.GetObject("Texture2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Texture3 {
+            get {
+                object obj = ResourceManager.GetObject("Texture3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
