@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using task9;
+using task9.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace task9
 {
@@ -18,11 +20,43 @@ namespace task9
 
         private Camera camera;
 
+        public string SelectedTexture = "Текстура1";
+
         public Texturing()
         {
             InitializeComponent();
             ProjectionBox.SelectedItem = ProjectionBox.Items[0];
-            cur_obj = Figures.CubeTexture(0.5);
+            comboBox1.SelectedItem = comboBox1.Items[0];
+            switch (comboBox1.SelectedItem.ToString())
+            {
+                case ("Текстура1"):
+                    {
+                        var t = Resources.backgroundImage;
+                        break;
+                    }
+                case ("Текстура2"):
+                    {
+                        var t = Resources.Texture11;
+                        break;
+                    }
+                case ("Текстура3"):
+                    {
+                        var t = Resources.Texture2;
+                        break;
+                    }
+                case ("Текстура4"):
+                    {
+                        var t = Resources.Texture3;
+                        break;
+                    }
+                default:
+                    {
+                        var t = Resources.backgroundImage;
+                        break;
+                    }
+            }
+          
+            cur_obj = Figures.CubeTexture(0.5, SelectedTexture);
             Matrix projection = Transformer.PerspectiveProjection(-0.1, 0.1, -0.1, 0.1, 0.1, 20);
             camera = new Camera(new Vector(1, 1, 1), Math.PI / 4, -Math.Atan(1 / Math.Sqrt(3)), projection);
         }
@@ -144,6 +178,45 @@ namespace task9
             graphics3D.DrawPoint(new Vertex(z, Color.Blue));
             cur_obj.Draw(graphics3D);
             e.Graphics.DrawImage(graphics3D.colorBuffer, 0, 0);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            switch (comboBox1.SelectedItem.ToString())
+            {
+                case ("Текстура1"):
+                    {
+                        SelectedTexture = "Текстура1";
+                        break;
+                    }
+                case ("Текстура2"):
+                    {
+                        SelectedTexture = "Текстура2";
+                        break;
+                    }
+                case ("Текстура3"):
+                    {
+                        SelectedTexture = "Текстура3";
+                        break;
+                    }
+                case ("Текстура4"):
+                    {
+                        SelectedTexture = "Текстура4";
+                        break;
+                    }
+                default:
+                    {
+                        SelectedTexture = "Текстура1";
+                        break;
+                    }
+            }
+            cur_obj = Figures.CubeTexture(0.5, SelectedTexture);
+            pictureBox1.Invalidate();
         }
     }
 }

@@ -28,403 +28,433 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picBox = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.trackBarX = new System.Windows.Forms.TrackBar();
-            this.trackBarZ = new System.Windows.Forms.TrackBar();
-            this.trackBarY = new System.Windows.Forms.TrackBar();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbBoxFunctions = new System.Windows.Forms.ComboBox();
-            this.txtBoxXBegin = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtBoxXEnd = new System.Windows.Forms.TextBox();
-            this.txtBoxXStep = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtBoxZStep = new System.Windows.Forms.TextBox();
-            this.txtBoxZEnd = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtBoxZBegin = new System.Windows.Forms.TextBox();
-            this.groupBoxOptions = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnMainColor = new System.Windows.Forms.Button();
-            this.btnBackColor = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.colorDlg = new System.Windows.Forms.ColorDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBoxOptions.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.SuspendLayout();
+            picBox = new PictureBox();
+            button1 = new Button();
+            trackBarX = new TrackBar();
+            trackBarZ = new TrackBar();
+            trackBarY = new TrackBar();
+            groupBox1 = new GroupBox();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            cmbBoxFunctions = new ComboBox();
+            txtBoxXBegin = new TextBox();
+            label4 = new Label();
+            txtBoxXEnd = new TextBox();
+            txtBoxXStep = new TextBox();
+            label5 = new Label();
+            label6 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            txtBoxZStep = new TextBox();
+            txtBoxZEnd = new TextBox();
+            label12 = new Label();
+            txtBoxZBegin = new TextBox();
+            groupBoxOptions = new GroupBox();
+            groupBox2 = new GroupBox();
+            btnMainColor = new Button();
+            btnBackColor = new Button();
+            label13 = new Label();
+            label7 = new Label();
+            colorDlg = new ColorDialog();
+            ((System.ComponentModel.ISupportInitialize)picBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)trackBarX).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)trackBarZ).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)trackBarY).BeginInit();
+            groupBox1.SuspendLayout();
+            groupBoxOptions.SuspendLayout();
+            groupBox2.SuspendLayout();
+            SuspendLayout();
             // 
             // picBox
             // 
-            this.picBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.picBox.Location = new System.Drawing.Point(-1, 0);
-            this.picBox.Name = "picBox";
-            this.picBox.Size = new System.Drawing.Size(995, 641);
-            this.picBox.TabIndex = 0;
-            this.picBox.TabStop = false;
-            this.picBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picBox_MouseDown);
-            this.picBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picBox_MouseMove);
-            this.picBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picBox_MouseUp);
+            picBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            picBox.Location = new Point(-1, 0);
+            picBox.Margin = new Padding(4, 5, 4, 5);
+            picBox.Name = "picBox";
+            picBox.Size = new Size(1327, 986);
+            picBox.TabIndex = 0;
+            picBox.TabStop = false;
+            picBox.MouseDown += picBox_MouseDown;
+            picBox.MouseMove += picBox_MouseMove;
+            picBox.MouseUp += picBox_MouseUp;
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(10, 56);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 35);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Draw";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            button1.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(13, 86);
+            button1.Margin = new Padding(4, 5, 4, 5);
+            button1.Name = "button1";
+            button1.Size = new Size(275, 54);
+            button1.TabIndex = 1;
+            button1.Text = "Draw";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // trackBarX
             // 
-            this.trackBarX.Location = new System.Drawing.Point(6, 127);
-            this.trackBarX.Maximum = 360;
-            this.trackBarX.Name = "trackBarX";
-            this.trackBarX.Size = new System.Drawing.Size(210, 45);
-            this.trackBarX.SmallChange = 10;
-            this.trackBarX.TabIndex = 2;
-            this.trackBarX.Value = 30;
-            this.trackBarX.ValueChanged += new System.EventHandler(this.trackBarX_ValueChanged);
+            trackBarX.Location = new Point(8, 195);
+            trackBarX.Margin = new Padding(4, 5, 4, 5);
+            trackBarX.Maximum = 360;
+            trackBarX.Name = "trackBarX";
+            trackBarX.Size = new Size(280, 56);
+            trackBarX.SmallChange = 10;
+            trackBarX.TabIndex = 2;
+            trackBarX.Value = 30;
+            trackBarX.ValueChanged += trackBarX_ValueChanged;
             // 
             // trackBarZ
             // 
-            this.trackBarZ.Location = new System.Drawing.Point(6, 229);
-            this.trackBarZ.Maximum = 360;
-            this.trackBarZ.Name = "trackBarZ";
-            this.trackBarZ.Size = new System.Drawing.Size(210, 45);
-            this.trackBarZ.TabIndex = 3;
-            this.trackBarZ.ValueChanged += new System.EventHandler(this.trackBarZ_ValueChanged);
+            trackBarZ.Location = new Point(8, 352);
+            trackBarZ.Margin = new Padding(4, 5, 4, 5);
+            trackBarZ.Maximum = 360;
+            trackBarZ.Name = "trackBarZ";
+            trackBarZ.Size = new Size(280, 56);
+            trackBarZ.TabIndex = 3;
+            trackBarZ.ValueChanged += trackBarZ_ValueChanged;
             // 
             // trackBarY
             // 
-            this.trackBarY.Location = new System.Drawing.Point(6, 178);
-            this.trackBarY.Maximum = 360;
-            this.trackBarY.Name = "trackBarY";
-            this.trackBarY.Size = new System.Drawing.Size(210, 45);
-            this.trackBarY.SmallChange = 10;
-            this.trackBarY.TabIndex = 4;
-            this.trackBarY.Value = 15;
-            this.trackBarY.ValueChanged += new System.EventHandler(this.trackBarY_ValueChanged);
+            trackBarY.Location = new Point(8, 274);
+            trackBarY.Margin = new Padding(4, 5, 4, 5);
+            trackBarY.Maximum = 360;
+            trackBarY.Name = "trackBarY";
+            trackBarY.Size = new Size(280, 56);
+            trackBarY.SmallChange = 10;
+            trackBarY.TabIndex = 4;
+            trackBarY.Value = 15;
+            trackBarY.ValueChanged += trackBarY_ValueChanged;
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.cmbBoxFunctions);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.trackBarY);
-            this.groupBox1.Controls.Add(this.trackBarX);
-            this.groupBox1.Controls.Add(this.trackBarZ);
-            this.groupBox1.Location = new System.Drawing.Point(1005, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(237, 285);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(cmbBoxFunctions);
+            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(trackBarY);
+            groupBox1.Controls.Add(trackBarX);
+            groupBox1.Controls.Add(trackBarZ);
+            groupBox1.Location = new Point(1340, 20);
+            groupBox1.Margin = new Padding(4, 5, 4, 5);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(4, 5, 4, 5);
+            groupBox1.Size = new Size(316, 438);
+            groupBox1.TabIndex = 5;
+            groupBox1.TabStop = false;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 213);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 17);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Z Rotate:";
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(13, 328);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(77, 20);
+            label3.TabIndex = 9;
+            label3.Text = "Z Rotate:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 162);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 17);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Y Rotate:";
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(13, 249);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(78, 20);
+            label2.TabIndex = 8;
+            label2.Text = "Y Rotate:";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 108);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 17);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "X Rotate:";
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(13, 166);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(79, 20);
+            label1.TabIndex = 7;
+            label1.Text = "X Rotate:";
             // 
             // cmbBoxFunctions
             // 
-            this.cmbBoxFunctions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBoxFunctions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbBoxFunctions.FormattingEnabled = true;
-            this.cmbBoxFunctions.Location = new System.Drawing.Point(10, 19);
-            this.cmbBoxFunctions.Name = "cmbBoxFunctions";
-            this.cmbBoxFunctions.Size = new System.Drawing.Size(206, 28);
-            this.cmbBoxFunctions.TabIndex = 6;
+            cmbBoxFunctions.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBoxFunctions.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cmbBoxFunctions.FormattingEnabled = true;
+            cmbBoxFunctions.Location = new Point(13, 29);
+            cmbBoxFunctions.Margin = new Padding(4, 5, 4, 5);
+            cmbBoxFunctions.Name = "cmbBoxFunctions";
+            cmbBoxFunctions.Size = new Size(273, 33);
+            cmbBoxFunctions.TabIndex = 6;
+            cmbBoxFunctions.SelectedIndexChanged += cmbBoxFunctions_SelectedIndexChanged;
             // 
             // txtBoxXBegin
             // 
-            this.txtBoxXBegin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxXBegin.Location = new System.Drawing.Point(10, 48);
-            this.txtBoxXBegin.Name = "txtBoxXBegin";
-            this.txtBoxXBegin.Size = new System.Drawing.Size(60, 29);
-            this.txtBoxXBegin.TabIndex = 6;
-            this.txtBoxXBegin.Text = "-5";
+            txtBoxXBegin.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxXBegin.Location = new Point(13, 74);
+            txtBoxXBegin.Margin = new Padding(4, 5, 4, 5);
+            txtBoxXBegin.Name = "txtBoxXBegin";
+            txtBoxXBegin.Size = new Size(79, 34);
+            txtBoxXBegin.TabIndex = 6;
+            txtBoxXBegin.Text = "-5";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(64, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 20);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "X:";
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(85, 25);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(34, 25);
+            label4.TabIndex = 7;
+            label4.Text = "X:";
             // 
             // txtBoxXEnd
             // 
-            this.txtBoxXEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxXEnd.Location = new System.Drawing.Point(96, 48);
-            this.txtBoxXEnd.Name = "txtBoxXEnd";
-            this.txtBoxXEnd.Size = new System.Drawing.Size(60, 29);
-            this.txtBoxXEnd.TabIndex = 8;
-            this.txtBoxXEnd.Text = "5";
+            txtBoxXEnd.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxXEnd.Location = new Point(128, 74);
+            txtBoxXEnd.Margin = new Padding(4, 5, 4, 5);
+            txtBoxXEnd.Name = "txtBoxXEnd";
+            txtBoxXEnd.Size = new Size(79, 34);
+            txtBoxXEnd.TabIndex = 8;
+            txtBoxXEnd.Text = "5";
             // 
             // txtBoxXStep
             // 
-            this.txtBoxXStep.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxXStep.Location = new System.Drawing.Point(176, 48);
-            this.txtBoxXStep.Name = "txtBoxXStep";
-            this.txtBoxXStep.Size = new System.Drawing.Size(60, 29);
-            this.txtBoxXStep.TabIndex = 9;
-            this.txtBoxXStep.Text = "0.1";
+            txtBoxXStep.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxXStep.Location = new Point(235, 74);
+            txtBoxXStep.Margin = new Padding(4, 5, 4, 5);
+            txtBoxXStep.Name = "txtBoxXStep";
+            txtBoxXStep.Size = new Size(79, 34);
+            txtBoxXStep.TabIndex = 9;
+            txtBoxXStep.Text = "0.1";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(76, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(14, 20);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "-";
+            label5.AutoSize = true;
+            label5.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(101, 83);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(19, 25);
+            label5.TabIndex = 10;
+            label5.Text = "-";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(179, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 20);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Step:";
+            label6.AutoSize = true;
+            label6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(239, 25);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(59, 25);
+            label6.TabIndex = 11;
+            label6.Text = "Step:";
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(179, 91);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(47, 20);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "Step:";
+            label10.AutoSize = true;
+            label10.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(239, 140);
+            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(59, 25);
+            label10.TabIndex = 23;
+            label10.Text = "Step:";
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(76, 129);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(14, 20);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "-";
+            label11.AutoSize = true;
+            label11.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.Location = new Point(101, 198);
+            label11.Margin = new Padding(4, 0, 4, 0);
+            label11.Name = "label11";
+            label11.Size = new Size(19, 25);
+            label11.TabIndex = 22;
+            label11.Text = "-";
             // 
             // txtBoxZStep
             // 
-            this.txtBoxZStep.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxZStep.Location = new System.Drawing.Point(176, 123);
-            this.txtBoxZStep.Name = "txtBoxZStep";
-            this.txtBoxZStep.Size = new System.Drawing.Size(60, 29);
-            this.txtBoxZStep.TabIndex = 21;
-            this.txtBoxZStep.Text = "0.1";
+            txtBoxZStep.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxZStep.Location = new Point(235, 189);
+            txtBoxZStep.Margin = new Padding(4, 5, 4, 5);
+            txtBoxZStep.Name = "txtBoxZStep";
+            txtBoxZStep.Size = new Size(79, 34);
+            txtBoxZStep.TabIndex = 21;
+            txtBoxZStep.Text = "0.1";
             // 
             // txtBoxZEnd
             // 
-            this.txtBoxZEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxZEnd.Location = new System.Drawing.Point(96, 123);
-            this.txtBoxZEnd.Name = "txtBoxZEnd";
-            this.txtBoxZEnd.Size = new System.Drawing.Size(60, 29);
-            this.txtBoxZEnd.TabIndex = 20;
-            this.txtBoxZEnd.Text = "5";
+            txtBoxZEnd.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxZEnd.Location = new Point(128, 189);
+            txtBoxZEnd.Margin = new Padding(4, 5, 4, 5);
+            txtBoxZEnd.Name = "txtBoxZEnd";
+            txtBoxZEnd.Size = new Size(79, 34);
+            txtBoxZEnd.TabIndex = 20;
+            txtBoxZEnd.Text = "5";
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(64, 91);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(25, 20);
-            this.label12.TabIndex = 19;
-            this.label12.Text = "Z:";
+            label12.AutoSize = true;
+            label12.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.Location = new Point(85, 140);
+            label12.Margin = new Padding(4, 0, 4, 0);
+            label12.Name = "label12";
+            label12.Size = new Size(32, 25);
+            label12.TabIndex = 19;
+            label12.Text = "Z:";
             // 
             // txtBoxZBegin
             // 
-            this.txtBoxZBegin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxZBegin.Location = new System.Drawing.Point(10, 123);
-            this.txtBoxZBegin.Name = "txtBoxZBegin";
-            this.txtBoxZBegin.Size = new System.Drawing.Size(60, 29);
-            this.txtBoxZBegin.TabIndex = 18;
-            this.txtBoxZBegin.Text = "-5";
+            txtBoxZBegin.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxZBegin.Location = new Point(13, 189);
+            txtBoxZBegin.Margin = new Padding(4, 5, 4, 5);
+            txtBoxZBegin.Name = "txtBoxZBegin";
+            txtBoxZBegin.Size = new Size(79, 34);
+            txtBoxZBegin.TabIndex = 18;
+            txtBoxZBegin.Text = "-5";
             // 
             // groupBoxOptions
             // 
-            this.groupBoxOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxOptions.Controls.Add(this.txtBoxXBegin);
-            this.groupBoxOptions.Controls.Add(this.label10);
-            this.groupBoxOptions.Controls.Add(this.label4);
-            this.groupBoxOptions.Controls.Add(this.label11);
-            this.groupBoxOptions.Controls.Add(this.txtBoxXEnd);
-            this.groupBoxOptions.Controls.Add(this.txtBoxZStep);
-            this.groupBoxOptions.Controls.Add(this.txtBoxXStep);
-            this.groupBoxOptions.Controls.Add(this.txtBoxZEnd);
-            this.groupBoxOptions.Controls.Add(this.label5);
-            this.groupBoxOptions.Controls.Add(this.label12);
-            this.groupBoxOptions.Controls.Add(this.label6);
-            this.groupBoxOptions.Controls.Add(this.txtBoxZBegin);
-            this.groupBoxOptions.Location = new System.Drawing.Point(1005, 300);
-            this.groupBoxOptions.Name = "groupBoxOptions";
-            this.groupBoxOptions.Size = new System.Drawing.Size(237, 229);
-            this.groupBoxOptions.TabIndex = 24;
-            this.groupBoxOptions.TabStop = false;
-            this.groupBoxOptions.Text = "Options";
+            groupBoxOptions.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupBoxOptions.Controls.Add(txtBoxXBegin);
+            groupBoxOptions.Controls.Add(label10);
+            groupBoxOptions.Controls.Add(label4);
+            groupBoxOptions.Controls.Add(label11);
+            groupBoxOptions.Controls.Add(txtBoxXEnd);
+            groupBoxOptions.Controls.Add(txtBoxZStep);
+            groupBoxOptions.Controls.Add(txtBoxXStep);
+            groupBoxOptions.Controls.Add(txtBoxZEnd);
+            groupBoxOptions.Controls.Add(label5);
+            groupBoxOptions.Controls.Add(label12);
+            groupBoxOptions.Controls.Add(label6);
+            groupBoxOptions.Controls.Add(txtBoxZBegin);
+            groupBoxOptions.Location = new Point(1340, 462);
+            groupBoxOptions.Margin = new Padding(4, 5, 4, 5);
+            groupBoxOptions.Name = "groupBoxOptions";
+            groupBoxOptions.Padding = new Padding(4, 5, 4, 5);
+            groupBoxOptions.Size = new Size(316, 352);
+            groupBoxOptions.TabIndex = 24;
+            groupBoxOptions.TabStop = false;
+            groupBoxOptions.Text = "Options";
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.btnMainColor);
-            this.groupBox2.Controls.Add(this.btnBackColor);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Location = new System.Drawing.Point(1005, 535);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(241, 114);
-            this.groupBox2.TabIndex = 25;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Colors";
+            groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupBox2.Controls.Add(btnMainColor);
+            groupBox2.Controls.Add(btnBackColor);
+            groupBox2.Controls.Add(label13);
+            groupBox2.Controls.Add(label7);
+            groupBox2.Location = new Point(1340, 823);
+            groupBox2.Margin = new Padding(4, 5, 4, 5);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new Padding(4, 5, 4, 5);
+            groupBox2.Size = new Size(321, 175);
+            groupBox2.TabIndex = 25;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Colors";
             // 
             // btnMainColor
             // 
-            this.btnMainColor.Location = new System.Drawing.Point(140, 72);
-            this.btnMainColor.Name = "btnMainColor";
-            this.btnMainColor.Size = new System.Drawing.Size(76, 34);
-            this.btnMainColor.TabIndex = 4;
-            this.btnMainColor.UseVisualStyleBackColor = true;
-            this.btnMainColor.Click += new System.EventHandler(this.btnMainColor_Click);
+            btnMainColor.Location = new Point(187, 111);
+            btnMainColor.Margin = new Padding(4, 5, 4, 5);
+            btnMainColor.Name = "btnMainColor";
+            btnMainColor.Size = new Size(101, 52);
+            btnMainColor.TabIndex = 4;
+            btnMainColor.UseVisualStyleBackColor = true;
+            btnMainColor.Click += btnMainColor_Click;
             // 
             // btnBackColor
             // 
-            this.btnBackColor.Location = new System.Drawing.Point(140, 23);
-            this.btnBackColor.Name = "btnBackColor";
-            this.btnBackColor.Size = new System.Drawing.Size(76, 34);
-            this.btnBackColor.TabIndex = 3;
-            this.btnBackColor.UseVisualStyleBackColor = true;
-            this.btnBackColor.Click += new System.EventHandler(this.btnBackColor_Click);
+            btnBackColor.Location = new Point(187, 35);
+            btnBackColor.Margin = new Padding(4, 5, 4, 5);
+            btnBackColor.Name = "btnBackColor";
+            btnBackColor.Size = new Size(101, 52);
+            btnBackColor.TabIndex = 3;
+            btnBackColor.UseVisualStyleBackColor = true;
+            btnBackColor.Click += btnBackColor_Click;
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(14, 77);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(106, 24);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Основной:";
+            label13.AutoSize = true;
+            label13.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.Location = new Point(19, 118);
+            label13.Margin = new Padding(4, 0, 4, 0);
+            label13.Name = "label13";
+            label13.Size = new Size(136, 29);
+            label13.TabIndex = 2;
+            label13.Text = "Основной:";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(14, 33);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 24);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Фон:";
+            label7.AutoSize = true;
+            label7.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(19, 51);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(68, 29);
+            label7.TabIndex = 1;
+            label7.Text = "Фон:";
             // 
-            // Form1
+            // FloatingHorizon
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1244, 653);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBoxOptions);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.picBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Floating Horizon";
-            ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBoxOptions.ResumeLayout(false);
-            this.groupBoxOptions.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1659, 1005);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBoxOptions);
+            Controls.Add(groupBox1);
+            Controls.Add(picBox);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            Margin = new Padding(4, 5, 4, 5);
+            MaximizeBox = false;
+            Name = "FloatingHorizon";
+            Text = "Floating Horizon";
+            ((System.ComponentModel.ISupportInitialize)picBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)trackBarX).EndInit();
+            ((System.ComponentModel.ISupportInitialize)trackBarZ).EndInit();
+            ((System.ComponentModel.ISupportInitialize)trackBarY).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBoxOptions.ResumeLayout(false);
+            groupBoxOptions.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox picBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TrackBar trackBarX;
-        private System.Windows.Forms.TrackBar trackBarZ;
-        private System.Windows.Forms.TrackBar trackBarY;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cmbBoxFunctions;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtBoxXBegin;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtBoxXEnd;
-        private System.Windows.Forms.TextBox txtBoxXStep;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtBoxZStep;
-        private System.Windows.Forms.TextBox txtBoxZEnd;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtBoxZBegin;
-        private System.Windows.Forms.GroupBox groupBoxOptions;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ColorDialog colorDlg;
-        private System.Windows.Forms.Button btnMainColor;
-        private System.Windows.Forms.Button btnBackColor;
+        private PictureBox picBox;
+        private Button button1;
+        private TrackBar trackBarX;
+        private TrackBar trackBarZ;
+        private TrackBar trackBarY;
+        private GroupBox groupBox1;
+        private ComboBox cmbBoxFunctions;
+        private Label label1;
+        private Label label3;
+        private Label label2;
+        private TextBox txtBoxXBegin;
+        private Label label4;
+        private TextBox txtBoxXEnd;
+        private TextBox txtBoxXStep;
+        private Label label5;
+        private Label label6;
+        private Label label10;
+        private Label label11;
+        private TextBox txtBoxZStep;
+        private TextBox txtBoxZEnd;
+        private Label label12;
+        private TextBox txtBoxZBegin;
+        private GroupBox groupBoxOptions;
+        private GroupBox groupBox2;
+        private Label label13;
+        private Label label7;
+        private ColorDialog colorDlg;
+        private Button btnMainColor;
+        private Button btnBackColor;
     }
 }
 

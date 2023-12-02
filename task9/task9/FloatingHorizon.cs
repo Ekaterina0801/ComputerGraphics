@@ -38,9 +38,9 @@ namespace task9
 
             cmbBoxFunctions.Items.AddRange(Functions.ToArray());
             cmbBoxFunctions.SelectedIndex = 0;
-   
 
-   
+
+
             txtBoxXBegin.Text = "-5";
             txtBoxXEnd.Text = "5";
 
@@ -48,17 +48,17 @@ namespace task9
             txtBoxZEnd.Text = "5";
             txtBoxXStep.Text = "0,05";
             txtBoxZStep.Text = "0,2";
-  
+
 
 
             btnMainColor.BackColor = Color.MediumVioletRed;
             btnBackColor.BackColor = Color.Black;
 
 
-    
+
             GraphicHorizon = new Graph(picBox.Width, picBox.Height);
             StartHorizon();
-  
+
 
             isMouseCaptured = false;
         }
@@ -161,6 +161,10 @@ namespace task9
             isMouseCaptured = false;
         }
 
+        private void cmbBoxFunctions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
