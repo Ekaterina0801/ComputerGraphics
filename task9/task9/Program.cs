@@ -13,7 +13,7 @@ namespace task9
             ApplicationConfiguration.Initialize();
             //Application.Run(new Guro());
             //Application.Run(new FloatingHorizon());
-            Application.Run(new Texturing());
+            Application.Run(new Form1());
         }
     }
 }
