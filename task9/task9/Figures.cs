@@ -9,7 +9,6 @@ namespace task9
 {
     public static class Figures
     {
-
         public static Mesh Octahedron(double sideLength)
         {
             var vertices = new Vector[6];
@@ -138,10 +137,39 @@ namespace task9
             };
             return new MeshWithNormals(vertices, normals, indices);
         }
-        public static Mesh CubeTexture(double size)
+        public static Mesh CubeTexture(double size, string SelectedTexture)
         {
+            var t = Resources.backgroundImage;
+            switch (SelectedTexture)
+            {
+                case ("Текстура1"):
+                    {
+                         t = Resources.backgroundImage;
+                        break;
+                    }
+                case ("Текстура2"):
+                    {
+                         t = Resources.Texture11;
+                        break;
+                    }
+                case ("Текстура3"):
+                    {
+                         t = Resources.Texture2;
+                        break;
+                    }
+                case ("Текстура4"):
+                    {
+                         t = Resources.Texture3;
+                        break;
+                    }
+                default:
+                    {
+                        t = Resources.backgroundImage;
+                        break;
+                    }
+            }
             double s = size / 2;
-            return new MeshWithTexture(Resources.backgroundImage,
+            return new MeshWithTexture(t,
                 new Vector[24]
                 {
                     new Vector(-s, -s, s),
