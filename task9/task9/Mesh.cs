@@ -144,12 +144,6 @@ namespace task9
                         Color.White, VectorNormal[v[0]]), new Vertex(Coordinates[v[i]], Color.White, VectorNormal[v[i]]),
                         new Vertex(Coordinates[v[i + 1]], Color.White, VectorNormal[v[i + 1]]));
                 }
-                if (IsNormalVisible)
-                    for (int i = 0; i < Coordinates.Length; ++i)
-                    {
-                        graphics.DrawLine(new Vertex(Coordinates[i], Color.White, VectorNormal[i]), 
-                            new Vertex(Coordinates[i] + VectorNormal[i], Color.White, VectorNormal[i]));
-                    }
             }
         }
     }
