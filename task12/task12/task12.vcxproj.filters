@@ -15,15 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="task12.cpp">
       <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\glad\src\glad.c">
-      <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\glad\include\glad\glad.h">
+    <ClInclude Include="..\..\..\glut-3.7\include\GL\glut.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

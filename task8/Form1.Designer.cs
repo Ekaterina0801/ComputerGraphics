@@ -1,4 +1,4 @@
-﻿namespace ComputerGraphics8
+﻿namespace task8
 {
     partial class Form1
     {

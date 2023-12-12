@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ComputerGraphics8
+namespace task8
 {
     class Camera
     {

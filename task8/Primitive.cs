@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 
 
-namespace ComputerGraphics8
+namespace task8
 {
     public class Primitive
     {

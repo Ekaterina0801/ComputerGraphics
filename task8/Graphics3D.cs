@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace ComputerGraphics8
+namespace task8
 {
     public class Graphics3D
     {
