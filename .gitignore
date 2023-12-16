@@ -80,7 +80,6 @@ x86/
 build/
 bld/
 [Bb]in/
-[Oo]bj/
 
 # Visual Studo 2015 cache/options directory
 .vs/
@@ -107,7 +106,6 @@ artifacts/
 *_i.h
 *.ilk
 *.meta
-*.obj
 *.pch
 *.pgc
 *.pgd
