@@ -161,7 +161,7 @@ const char* vertexShader3Source = "#version 410 core\n"
 "void main(void)\n"
 "{\n"
 "gl_Position = vec4(position, 0.0, 1.0);\n"
-"frag_color = vec4(color.r, color.g, color.b, 1.0);\n"
+"frag_color = vec4(position.x, position.y, 0.5, 1.0);\n"
 "}\0";
 
 const char* fragmentShader3Source = "#version 410 core\n"

@@ -55,7 +55,7 @@ namespace task9
                         break;
                     }
             }
-          
+
             cur_obj = Figures.CubeTexture(0.5, SelectedTexture);
             Matrix projection = Transformer.PerspectiveProjection(-0.1, 0.1, -0.1, 0.1, 0.1, 20);
             camera = new Camera(new Vector(1, 1, 1), Math.PI / 4, -Math.Atan(1 / Math.Sqrt(3)), projection);
@@ -217,6 +217,83 @@ namespace task9
             }
             cur_obj = Figures.CubeTexture(0.5, SelectedTexture);
             pictureBox1.Invalidate();
+        }
+
+        private void Texturing_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void ProjectionBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void numericUpDown9_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void numericUpDown8_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void numericUpDown7_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void numericUpDown6_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
         }
     }
 }

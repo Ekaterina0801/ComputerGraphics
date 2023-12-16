@@ -21,13 +21,13 @@ namespace task9
         // Свойство, говорящее о том какую сторону треугольника не рисовать.
         public Face CullFace { get; set; } = Face.Clockwise;
 
-        // List of positions of light sources
+       
         public IList<Light> LightSources { get; set; } =
-            new Light[3]
+            new Light[1]
             {
-                new Light(new Vector(1, 0, 0), Color.Red),
-                new Light(new Vector(0, 1, 0), Color.Green),
-                new Light(new Vector(0, 0, 1), Color.Blue)
+                new Light(new Vector(10, 10,10), Color.White),
+                //new Light(new Vector(0, 1, 0), Color.Green),
+                //new Light(new Vector(1, 1, 1), Color.Blue)
             };
 
         // Буфер цвета
@@ -70,18 +70,18 @@ namespace task9
         }
         public void Resize()
         {
-            colorBuffer = new Bitmap((int)Width + 1, (int)Height + 1, PixelFormat.Format24bppRgb);
-            zBuffer = new double[(int)Height + 1, (int)Width + 1];
+            colorBuffer = new Bitmap((int)sceneView.Width + 1, (int)sceneView.Height + 1, PixelFormat.Format24bppRgb);
+            zBuffer = new double[(int)sceneView.Height + 1, (int)sceneView.Width + 1];
         }
 
         public void StartDrawing()
         {
             // Очистим изображение
             using (var g = Graphics.FromImage(colorBuffer))
-                g.FillRectangle(Brushes.Black, 0, 0, (int)Width, (int)Height);
+                g.FillRectangle(Brushes.Black, 0, 0, (int)sceneView.Width, (int)sceneView.Height);
             // Очистим z-буфер
-            for (int i = 0; i < Height + 1; ++i)
-                for (int j = 0; j < Width + 1; ++j)
+            for (int i = 0; i < sceneView.Height + 1; ++i)
+                for (int j = 0; j < sceneView.Width + 1; ++j)
                     zBuffer[i, j] = 1;
             bitmapData = colorBuffer.LockBits(
                 new Rectangle(0, 0, colorBuffer.Width, colorBuffer.Height),
@@ -124,7 +124,12 @@ namespace task9
 
         private Vector NormalizedToScreen(Vector v)
         {
-            return new Vector(
+            if (sceneView != null)
+                return new Vector(
+                (v.X + 1) / 2 * sceneView.Width,
+                (-v.Y + 1) / 2 * sceneView.Height,
+                v.Z);
+            else return new Vector(
                 (v.X + 1) / 2 * Width,
                 (-v.Y + 1) / 2 * Height,
                 v.Z);

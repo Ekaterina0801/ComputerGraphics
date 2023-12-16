@@ -66,106 +66,116 @@
             // 
             numericUpDown9.DecimalPlaces = 2;
             numericUpDown9.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            numericUpDown9.Location = new Point(1046, 207);
+            numericUpDown9.Location = new Point(443, 351);
             numericUpDown9.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDown9.Minimum = new decimal(new int[] { 10, 0, 0, int.MinValue });
             numericUpDown9.Name = "numericUpDown9";
             numericUpDown9.Size = new Size(88, 30);
             numericUpDown9.TabIndex = 21;
+            numericUpDown9.ValueChanged += numericUpDown9_ValueChanged;
             // 
             // numericUpDown8
             // 
             numericUpDown8.DecimalPlaces = 2;
             numericUpDown8.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            numericUpDown8.Location = new Point(952, 207);
+            numericUpDown8.Location = new Point(349, 351);
             numericUpDown8.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDown8.Minimum = new decimal(new int[] { 10, 0, 0, int.MinValue });
             numericUpDown8.Name = "numericUpDown8";
             numericUpDown8.Size = new Size(88, 30);
             numericUpDown8.TabIndex = 20;
+            numericUpDown8.ValueChanged += numericUpDown8_ValueChanged;
             // 
             // numericUpDown7
             // 
             numericUpDown7.DecimalPlaces = 2;
             numericUpDown7.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            numericUpDown7.Location = new Point(858, 207);
+            numericUpDown7.Location = new Point(255, 351);
             numericUpDown7.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDown7.Minimum = new decimal(new int[] { 10, 0, 0, int.MinValue });
             numericUpDown7.Name = "numericUpDown7";
             numericUpDown7.Size = new Size(88, 30);
             numericUpDown7.TabIndex = 19;
+            numericUpDown7.ValueChanged += numericUpDown7_ValueChanged;
             // 
             // numericUpDown6
             // 
             numericUpDown6.Increment = new decimal(new int[] { 5, 0, 0, 0 });
-            numericUpDown6.Location = new Point(1046, 175);
+            numericUpDown6.Location = new Point(443, 319);
             numericUpDown6.Maximum = new decimal(new int[] { 180, 0, 0, 0 });
             numericUpDown6.Minimum = new decimal(new int[] { 180, 0, 0, int.MinValue });
             numericUpDown6.Name = "numericUpDown6";
             numericUpDown6.Size = new Size(88, 30);
             numericUpDown6.TabIndex = 18;
+            numericUpDown6.ValueChanged += numericUpDown6_ValueChanged;
             // 
             // numericUpDown5
             // 
             numericUpDown5.Increment = new decimal(new int[] { 5, 0, 0, 0 });
-            numericUpDown5.Location = new Point(952, 175);
+            numericUpDown5.Location = new Point(349, 319);
             numericUpDown5.Maximum = new decimal(new int[] { 180, 0, 0, 0 });
             numericUpDown5.Minimum = new decimal(new int[] { 180, 0, 0, int.MinValue });
             numericUpDown5.Name = "numericUpDown5";
             numericUpDown5.Size = new Size(88, 30);
             numericUpDown5.TabIndex = 17;
+            numericUpDown5.ValueChanged += numericUpDown5_ValueChanged;
             // 
             // numericUpDown4
             // 
             numericUpDown4.Increment = new decimal(new int[] { 5, 0, 0, 0 });
-            numericUpDown4.Location = new Point(858, 175);
+            numericUpDown4.Location = new Point(255, 319);
             numericUpDown4.Maximum = new decimal(new int[] { 180, 0, 0, 0 });
             numericUpDown4.Minimum = new decimal(new int[] { 180, 0, 0, int.MinValue });
             numericUpDown4.Name = "numericUpDown4";
             numericUpDown4.Size = new Size(88, 30);
             numericUpDown4.TabIndex = 16;
+            numericUpDown4.ValueChanged += numericUpDown4_ValueChanged;
             // 
             // numericUpDown3
             // 
             numericUpDown3.DecimalPlaces = 1;
             numericUpDown3.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericUpDown3.Location = new Point(1046, 143);
+            numericUpDown3.Location = new Point(443, 287);
             numericUpDown3.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDown3.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new Size(88, 30);
             numericUpDown3.TabIndex = 15;
             numericUpDown3.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown3.ValueChanged += numericUpDown3_ValueChanged;
             // 
             // numericUpDown2
             // 
             numericUpDown2.DecimalPlaces = 1;
             numericUpDown2.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericUpDown2.Location = new Point(952, 143);
+            numericUpDown2.Location = new Point(349, 287);
             numericUpDown2.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDown2.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(88, 30);
             numericUpDown2.TabIndex = 14;
             numericUpDown2.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
             // 
             // numericUpDown1
             // 
             numericUpDown1.DecimalPlaces = 1;
             numericUpDown1.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericUpDown1.Location = new Point(858, 143);
+            numericUpDown1.Location = new Point(255, 287);
             numericUpDown1.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(88, 30);
             numericUpDown1.TabIndex = 13;
             numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // ApplyAffin
             // 
-            ApplyAffin.Location = new Point(961, 241);
+            ApplyAffin.Font = new Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ApplyAffin.Location = new Point(231, 401);
             ApplyAffin.Name = "ApplyAffin";
-            ApplyAffin.Size = new Size(173, 56);
+            ApplyAffin.Size = new Size(258, 73);
             ApplyAffin.TabIndex = 25;
             ApplyAffin.Text = "Применить";
             ApplyAffin.UseVisualStyleBackColor = true;
@@ -173,9 +183,10 @@
             // 
             // ApplyProjection
             // 
-            ApplyProjection.Location = new Point(961, 60);
+            ApplyProjection.Font = new Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ApplyProjection.Location = new Point(303, 162);
             ApplyProjection.Name = "ApplyProjection";
-            ApplyProjection.Size = new Size(173, 56);
+            ApplyProjection.Size = new Size(252, 71);
             ApplyProjection.TabIndex = 24;
             ApplyProjection.Text = "Применить";
             ApplyProjection.UseVisualStyleBackColor = true;
@@ -184,91 +195,104 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(985, 5);
+            label1.Font = new Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(349, 75);
             label1.Name = "label1";
-            label1.Size = new Size(186, 22);
+            label1.Size = new Size(229, 35);
             label1.TabIndex = 23;
             label1.Text = "Выберите проекцию";
+            label1.Click += label1_Click;
             // 
             // ProjectionBox
             // 
             ProjectionBox.FormattingEnabled = true;
             ProjectionBox.Items.AddRange(new object[] { "Перспективная", "Ортографическая XY", "Ортографическая XZ", "Ортографическая YZ" });
-            ProjectionBox.Location = new Point(961, 27);
+            ProjectionBox.Location = new Point(382, 117);
             ProjectionBox.Name = "ProjectionBox";
             ProjectionBox.Size = new Size(173, 30);
             ProjectionBox.TabIndex = 22;
+            ProjectionBox.SelectedIndexChanged += ProjectionBox_SelectedIndexChanged;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(805, 214);
+            label7.Font = new Font("Segoe Print", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(167, 351);
             label7.Name = "label7";
-            label7.Size = new Size(61, 22);
+            label7.Size = new Size(61, 30);
             label7.TabIndex = 33;
             label7.Text = "Сдвиг";
+            label7.Click += label7_Click;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(789, 182);
+            label6.Font = new Font("Segoe Print", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(148, 319);
             label6.Name = "label6";
-            label6.Size = new Size(82, 22);
+            label6.Size = new Size(93, 30);
             label6.TabIndex = 32;
             label6.Text = "Поворот";
+            label6.Click += label6_Click;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(786, 150);
+            label5.Font = new Font("Segoe Print", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(148, 284);
             label5.Name = "label5";
-            label5.Size = new Size(87, 22);
+            label5.Size = new Size(101, 30);
             label5.TabIndex = 31;
             label5.Text = "Масштаб";
+            label5.Click += label5_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(1086, 121);
+            label4.Location = new Point(483, 265);
             label4.Name = "label4";
             label4.Size = new Size(21, 22);
             label4.TabIndex = 30;
             label4.Text = "Z";
+            label4.Click += label4_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(985, 121);
+            label3.Location = new Point(382, 265);
             label3.Name = "label3";
             label3.Size = new Size(24, 22);
             label3.TabIndex = 29;
             label3.Text = "Y";
+            label3.Click += label3_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(889, 121);
+            label2.Location = new Point(286, 265);
             label2.Name = "label2";
             label2.Size = new Size(24, 22);
             label2.TabIndex = 28;
             label2.Text = "X";
+            label2.Click += label2_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = SystemColors.ControlLight;
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Location = new Point(12, 9);
+            pictureBox1.Location = new Point(593, 75);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(718, 467);
+            pictureBox1.Size = new Size(766, 601);
             pictureBox1.TabIndex = 34;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             pictureBox1.Paint += PictureBox1_Paint;
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Текстура1", "Текстура2", "Текстура3", "Текстура4" });
-            comboBox1.Location = new Point(786, 345);
+            comboBox1.Location = new Point(303, 528);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(173, 30);
             comboBox1.TabIndex = 35;
@@ -276,9 +300,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(786, 394);
+            button1.Font = new Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(255, 576);
             button1.Name = "button1";
-            button1.Size = new Size(173, 56);
+            button1.Size = new Size(267, 78);
             button1.TabIndex = 36;
             button1.Text = "Применить";
             button1.UseVisualStyleBackColor = true;
@@ -288,7 +313,8 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1145, 488);
+            BackgroundImage = Properties.Resources.backgroundImage;
+            ClientSize = new Size(1380, 801);
             Controls.Add(button1);
             Controls.Add(comboBox1);
             Controls.Add(pictureBox1);
@@ -317,6 +343,7 @@
             MaximizeBox = false;
             Name = "Texturing";
             Text = "Текстурирование";
+            Load += Texturing_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown9).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown8).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown7).EndInit();
