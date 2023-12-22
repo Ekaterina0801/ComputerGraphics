@@ -313,6 +313,129 @@ const char* FragShaderToon = R"(
 		frag_color = vec4(result, 1.0);
     } 
 )";
+
+const char* FragShaderRim = R"(
+    #version 330 core
+
+    struct Light {
+        vec3 position;
+        vec3 direction; //dir and spot
+
+        vec3 ambient;
+        vec3 diffuse;
+        vec3 specular;
+
+        //point
+        float constant;
+        float linear;
+        float quadratic;
+
+        //spot
+        float cutOff;
+        float outerCutOff;
+    };
+
+    uniform Light light;
+
+    in vec2 coord_tex;
+    in vec3 frag_pos;
+    in vec3 normal;
+    in float intensity;
+
+    out vec4 frag_color;
+
+    uniform sampler2D texture_diffuse1;
+    uniform vec3 viewPos;
+    uniform int shininess;
+    uniform int type_light;
+
+    void main()
+    {
+        vec3 lightDir;
+
+        if(type_light == 0)
+        {
+            lightDir = normalize(-light.direction); //dir
+        }
+        else
+        {
+            lightDir = normalize(light.position - frag_pos); //point and spot
+        }
+
+        vec3 viewDir = normalize (viewPos - frag_pos);
+        vec3 halfwayDir = normalize (lightDir + viewDir);
+        vec3 norm = normalize(normal);
+
+        vec3 specColor = vec3(0.0, 1.0, 0.7);
+        //float specPower = 40.0;
+        float rimPower = 8.0;
+        float bias = 0.5;
+
+        float diff = max(dot(norm, lightDir), 0.0);
+        vec3 diffuse = diff * texture(texture_diffuse1, coord_tex).rgb;
+
+        float spec = pow(max(dot(norm, halfwayDir), 0.0), shininess);
+        vec3 specular = spec * specColor;
+        float rim = pow(1.0 + bias - max(dot(norm, viewDir), 0.0), rimPower);
+
+        if(type_light == 1 || type_light == 2)
+        {
+            //point and spot
+            float distance = length(light.position - frag_pos);
+            float attenuation = 1.0 / (light.constant + light.linear * distance
+            + light.quadratic * (distance * distance));
+
+            diffuse *= attenuation;
+            specular *= attenuation;
+            //end point and spot
+
+            if(type_light == 2)
+            { 
+                //spot
+                float theta = dot(lightDir, normalize(-light.direction));
+                float epsilon = light.cutOff - light.outerCutOff;
+                float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
+
+                diffuse *= intensity;
+                specular *= intensity;
+                //end spot
+            }
+        }
+
+        vec3 result = diffuse + rim * vec3(0.5, 0.0, 0.2) + specular * specColor;
+        frag_color = vec4(result, 1.0);
+
+    }
+    )";
+
+const char* VertexShaderRim = R"(
+    #version 330 core
+
+    layout (location = 0) in vec3 coord_pos;
+    layout (location = 1) in vec3 normal_in;
+    layout (location = 2) in vec2 tex_coord_in;
+
+    out vec2 coord_tex;
+    out vec3 normal;
+    out vec3 frag_pos;
+
+    uniform mat4 model;
+    uniform mat4 view;
+    uniform mat4 projection;
+
+    void main()
+    {
+        gl_Position = projection * view * model * vec4(coord_pos, 1.0);
+        coord_tex = tex_coord_in;
+        frag_pos = vec3(model * vec4(coord_pos, 1.0));
+        normal = mat3(transpose(inverse(model))) * normal_in;
+
+
+        //coord_tex = vec2(tex_coord_in.x, 1.0f - tex_coord_in.y);
+    }
+    )";
+
+
 void checkOpenGLerror()
 {
     GLenum err = glGetError();
