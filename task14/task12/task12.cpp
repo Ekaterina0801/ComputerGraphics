@@ -36,9 +36,6 @@ enum dir_or_pos_label {
     p,
 };
 
-
-
-
 enum type_light_label {
     dir,//направленный
     point, //точечный
@@ -73,7 +70,6 @@ float last_y = 450.0f;
 GLuint Phong_mode;
 GLuint Toon_mode;
 GLuint Rim_mode;
-GLuint LightingCube_mode;
 
 // ID атрибута
 GLint Attrib_vertex;
@@ -94,7 +90,7 @@ const char* VertexShaderPhong = R"(
     layout (location = 1) in vec3 normal_in;
     layout (location = 2) in vec2 tex_coord_in;
 
-    out vec2 coord_tex;
+    out vec2 tex_coords;
 	out vec3 normal;
 	out vec3 frag_pos;
 
@@ -105,10 +101,9 @@ const char* VertexShaderPhong = R"(
     void main() 
     { 
         gl_Position = projection * view * model * vec4(coord_pos, 1.0);
-        coord_tex = tex_coord_in;
+        tex_coords = tex_coord_in;
 		frag_pos = vec3(model * vec4(coord_pos, 1.0));
 		normal =  mat3(transpose(inverse(model))) * normal_in;
-        //coord_tex = vec2(tex_coord_in.x, 1.0f - tex_coord_in.y); //если текстуры ннеправильно наложились
     }
     )";
 
@@ -119,25 +114,25 @@ const char* FragShaderPhong = R"(
 
 	struct Light {
 		vec3 position;
-		vec3 direction; //dir and spot
+		vec3 direction; //направленный и прожекторный
   
 		vec3 ambient;
 		vec3 diffuse;
 		vec3 specular;
 
-	//point (для затухания)
+	//точечный (для затухания)
 		float constant;
 		float linear;
 		float quadratic;
 
-	//spot
+	//прожектор
 		float cutOff;
 		float outerCutOff;
 	};
 
 	uniform Light light;  
 
-    in vec2 coord_tex;
+    in vec2 tex_coords;
     in vec3 frag_pos;
     in vec3 normal;
 
@@ -155,7 +150,7 @@ const char* FragShaderPhong = R"(
 
 		if(type_light == 0)
 		{
-            //from light to object
+            //от источника к объекту
 			lightDir = normalize(-light.direction);  //dir
 		}
 		else
@@ -163,16 +158,16 @@ const char* FragShaderPhong = R"(
 			lightDir = normalize(light.position - frag_pos);  //point and spot
 		}
 		
-		vec3 ambient = light.ambient * texture(texture_diffuse1, coord_tex).rgb; 
+		vec3 ambient = light.ambient * texture(texture_diffuse1, tex_coords).rgb; 
 
 		float diff = max(dot(norm, lightDir), 0.0);
-		vec3 diffuse = light.diffuse * (diff * texture(texture_diffuse1, coord_tex).rgb); 
+		vec3 diffuse = light.diffuse * (diff * texture(texture_diffuse1, tex_coords).rgb); 
 
 		vec3 viewDir = normalize(viewPos - frag_pos);
 		vec3 reflectDir = reflect(-lightDir, norm);  
 
 		float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
-		vec3 specular = light.specular * (spec * texture(texture_diffuse1, coord_tex).rgb); 
+		vec3 specular = light.specular * (spec * texture(texture_diffuse1, tex_coords).rgb); 
 
 		if(type_light == 1 || type_light == 2)
 		{
@@ -205,7 +200,7 @@ const char* FragShaderPhong = R"(
     } 
 )";
 
-//Исходный код вершинного шейдера для Toon
+//toon
 const char* VertexShaderToon = R"(
     #version 330 core
 
@@ -213,7 +208,7 @@ const char* VertexShaderToon = R"(
     layout (location = 1) in vec3 normal_in;
     layout (location = 2) in vec2 tex_coord_in;
 
-    out vec2 coord_tex;
+    out vec2 tex_coords;
 	out vec3 normal;
 	out vec3 frag_pos;
 
@@ -224,33 +219,32 @@ const char* VertexShaderToon = R"(
     void main() 
     { 
         gl_Position = projection * view * model * vec4(coord_pos, 1.0);
-        coord_tex = tex_coord_in;
+        tex_coords = tex_coord_in;
 		frag_pos = vec3(model * vec4(coord_pos, 1.0));
 		normal =  mat3(transpose(inverse(model))) * normal_in;
-        //coord_tex = vec2(tex_coord_in.x, 1.0f - tex_coord_in.y); //если текстуры ннеправильно наложились
     }
     )";
 
-//Исходный код фрагментного шейдера для Toon
+
+//toon
 const char* FragShaderToon = R"(
     #version 330 core
 
-	struct Light {
+    struct Light {
 		vec3 position;
-		vec3 direction; //направленный и прожекторный
+		vec3 direction; //направленный и прожектор
 
-	//point (для затухания)
+	//точечный
 		float constant;
 		float linear;
 		float quadratic;
 
-	//spot
+	//прожектор
 		float cutOff;
 	};
 
-	uniform Light light;  
-
-    in vec2 coord_tex;
+	uniform Light light; 
+    in vec2 tex_coords;
     in vec3 frag_pos;
     in vec3 normal;
 
@@ -262,50 +256,45 @@ const char* FragShaderToon = R"(
 
     void main()  
     {
-		vec3 norm = normalize(normal);
 		vec3 lightDir;
-
+		
 		if(type_light == 0)
 		{
-            //from light to object
 			lightDir = normalize(-light.direction);  //dir
 		}
 		else
 		{
 			lightDir = normalize(light.position - frag_pos);  //point and spot
 		}
+
+		vec3 norm = normalize(normal);
+		float intensivity = max(dot(norm, lightDir), 0.0);
+
+		vec3 result;
 		
-       float intensity = max(dot(norm, lightDir), 0.0);
-       vec3 result;
-	   if (intensity > 0.95)
-       {
-          result = vec3(1.0,1.0,1.0)*texture(texture_diffuse1, coord_tex).rgb;
-       }
-       else if (intensity > 0.5)
-       {
-         result = vec3(0.6,0.6,0.6) * texture(texture_diffuse1, coord_tex).rgb;
-       }
-       else if (intensity > 0.25)
-       {
-         result = vec3(0.4,0.4,0.4) * texture(texture_diffuse1, coord_tex).rgb;
-       }
-       else 
-         result = vec3(0.2,0.2,0.2) * texture(texture_diffuse1, coord_tex).rgb;
-        float theta = dot(lightDir, normalize(-light.direction)); 
-		frag_color = vec4(result, 1.0);
-        if(type_light == 1 || type_light == 2)
+		if (intensivity > 0.95)
+			result = vec3(1.0, 1.0, 1.0) * texture(texture_diffuse1, tex_coords).rgb;
+		else if (intensivity > 0.5)
+			result = vec3(0.6, 0.6, 0.6) * texture(texture_diffuse1, tex_coords).rgb;
+		else if (intensivity > 0.25)
+			result = vec3(0.4, 0.4, 0.4) * texture(texture_diffuse1, tex_coords).rgb;
+		else
+			result = vec3(0.2, 0.2, 0.2) * texture(texture_diffuse1, tex_coords).rgb;
+
+		float theta = dot(lightDir, normalize(-light.direction)); 
+
+		if(type_light == 1 || type_light == 2)
 		{
-			//точечный и прожекторный
+			//точечный и прожектор
 				float distance    = length(light.position - frag_pos);
-				float attenuation = 1.0 / (light.constant + light.linear * distance 
-									+ light.quadratic * (distance * distance));
+				float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
 				result *= attenuation;   
-			//end точечный м прожекторный
+			//end точечный и прожектор
 
 				if(type_light == 2 && theta <= light.cutOff)
 				{	
 					//прожектор
-						result = vec3(0.2, 0.2, 0.2) * texture(texture_diffuse1, coord_tex).rgb;	
+						result = vec3(0.2, 0.2, 0.2) * texture(texture_diffuse1, tex_coords).rgb;	
 					//end прожектор
 				}	
 		}
@@ -314,12 +303,13 @@ const char* FragShaderToon = R"(
     } 
 )";
 
+
 const char* FragShaderRim = R"(
     #version 330 core
 
     struct Light {
         vec3 position;
-        vec3 direction; //dir and spot
+        vec3 direction; //направленный и прожекторный
 
         vec3 ambient;
         vec3 diffuse;
@@ -337,7 +327,7 @@ const char* FragShaderRim = R"(
 
     uniform Light light;
 
-    in vec2 coord_tex;
+    in vec2 tex_coords;
     in vec3 frag_pos;
     in vec3 normal;
     in float intensity;
@@ -355,11 +345,11 @@ const char* FragShaderRim = R"(
 
         if(type_light == 0)
         {
-            lightDir = normalize(-light.direction); //dir
+            lightDir = normalize(-light.direction); //направленный
         }
         else
         {
-            lightDir = normalize(light.position - frag_pos); //point and spot
+            lightDir = normalize(light.position - frag_pos); //точечный и прожекторный
         }
 
         vec3 viewDir = normalize (viewPos - frag_pos);
@@ -367,12 +357,11 @@ const char* FragShaderRim = R"(
         vec3 norm = normalize(normal);
 
         vec3 specColor = vec3(0.0, 1.0, 0.7);
-        //float specPower = 40.0;
         float rimPower = 8.0;
         float bias = 0.5;
 
         float diff = max(dot(norm, lightDir), 0.0);
-        vec3 diffuse = diff * texture(texture_diffuse1, coord_tex).rgb;
+        vec3 diffuse = diff * texture(texture_diffuse1, tex_coords).rgb;
 
         float spec = pow(max(dot(norm, halfwayDir), 0.0), shininess);
         vec3 specular = spec * specColor;
@@ -380,25 +369,25 @@ const char* FragShaderRim = R"(
 
         if(type_light == 1 || type_light == 2)
         {
-            //point and spot
+            //точечный и прожектор
             float distance = length(light.position - frag_pos);
             float attenuation = 1.0 / (light.constant + light.linear * distance
             + light.quadratic * (distance * distance));
 
             diffuse *= attenuation;
             specular *= attenuation;
-            //end point and spot
+            //end точечный и прожектор
 
             if(type_light == 2)
             { 
-                //spot
+                //прожектор
                 float theta = dot(lightDir, normalize(-light.direction));
                 float epsilon = light.cutOff - light.outerCutOff;
                 float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
 
                 diffuse *= intensity;
                 specular *= intensity;
-                //end spot
+                //end прожектор
             }
         }
 
@@ -415,7 +404,7 @@ const char* VertexShaderRim = R"(
     layout (location = 1) in vec3 normal_in;
     layout (location = 2) in vec2 tex_coord_in;
 
-    out vec2 coord_tex;
+    out vec2 tex_coords;
     out vec3 normal;
     out vec3 frag_pos;
 
@@ -426,12 +415,9 @@ const char* VertexShaderRim = R"(
     void main()
     {
         gl_Position = projection * view * model * vec4(coord_pos, 1.0);
-        coord_tex = tex_coord_in;
+        tex_coords = tex_coord_in;
         frag_pos = vec3(model * vec4(coord_pos, 1.0));
         normal = mat3(transpose(inverse(model))) * normal_in;
-
-
-        //coord_tex = vec2(tex_coord_in.x, 1.0f - tex_coord_in.y);
     }
     )";
 
@@ -534,10 +520,43 @@ void InitShaderToon()
     }
     checkOpenGLerror();
 }
+
+void InitShaderRim()
+{
+    GLuint vShaderRim = glCreateShader(GL_VERTEX_SHADER);
+    //компиляция шейдера
+    glShaderSource(vShaderRim, 1, &VertexShaderRim, NULL);
+    glCompileShader(vShaderRim);
+    std::cout << "vertex shader \n";
+    ShaderLog(vShaderRim);
+
+    GLuint fShaderRim = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fShaderRim, 1, &FragShaderRim, NULL);
+    glCompileShader(fShaderRim);
+    std::cout << "fragment shader \n";
+    // Функция печати лога шейдера
+    ShaderLog(fShaderRim);
+    Rim_mode = glCreateProgram();
+    glAttachShader(Rim_mode, vShaderRim);
+    glAttachShader(Rim_mode, fShaderRim);
+    // Линкуем шейдерную программу
+    glLinkProgram(Rim_mode);
+    // Проверяем статус сборки
+    int link_ok;
+    glGetProgramiv(Rim_mode, GL_LINK_STATUS, &link_ok);
+
+    if (!link_ok)
+    {
+        std::cout << "error attach shaders \n";
+        return;
+    }
+    checkOpenGLerror();
+}
 void InitShader()
 {
-    InitShaderPhong();
-    InitShaderToon();
+   InitShaderPhong();
+   InitShaderToon();
+   InitShaderRim();
 }
 
 
@@ -558,55 +577,61 @@ void Draw(sf::Clock clock, vector<Model> mod, GLint shader, int count)
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 900.0f / 900.0f, 0.1f, 100.0f);
     glUseProgram(shader);
     view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+    //------------------Юниформы---------------------------------
+    glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
     glUniform3f(glGetUniformLocation(shader, "light.position"), lightPos.x, lightPos.y, lightPos.z);
-    glUniform3f(glGetUniformLocation(shader, "viewPos"), cameraPos.x, cameraPos.y, cameraPos.z);
-    glUniform1i(glGetUniformLocation(shader, "type_light"), type_light);
     glUniform3f(glGetUniformLocation(shader, "light.ambient"), 0.2f, 0.2f, 0.2f);
     glUniform3f(glGetUniformLocation(shader, "light.diffuse"), 0.9f, 0.9f, 0.9);
     glUniform3f(glGetUniformLocation(shader, "light.specular"), 1.0f, 1.0f, 1.0f);
-    glUniform1i(glGetUniformLocation(shader, "shininess"), 16);
     glUniform3f(glGetUniformLocation(shader, "light.direction"), lightDirection.x, lightDirection.y, lightDirection.z);
     glUniform1f(glGetUniformLocation(shader, "light.constant"), 1.0f);
     glUniform1f(glGetUniformLocation(shader, "light.linear"), 0.045f);
     glUniform1f(glGetUniformLocation(shader, "light.quadratic"), 0.0075f);
     glUniform1f(glGetUniformLocation(shader, "light.cutOff"), glm::cos(glm::radians(conus)));
     glUniform1f(glGetUniformLocation(shader, "light.outerCutOff"), glm::cos(glm::radians(conus * 1.4f)));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
+    glUniform1i(glGetUniformLocation(shader, "shininess"), 16);
+    glUniform3f(glGetUniformLocation(shader, "viewPos"), cameraPos.x, cameraPos.y, cameraPos.z);
+    glUniform1i(glGetUniformLocation(shader, "type_light"), type_light);
 
     float angle = 90.0f;
-    //--------------------------ChristmasTree----------------------------------
-    model = glm::scale(model, glm::vec3(2.5f, 2.5f, 2.5f));
+    //--------------------------ChristmasTree!!!----------------------------------
+    model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
     model = glm::translate(model, glm::vec3(0.0f, 0, 0.0f));
     //model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.0f, 0.0f));
     model = glm::rotate(model, glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
     mod[0].Draw(shader, count);
 
-    //--------------------------ChristmasTree----------------------------------
-    model = glm::rotate(model, glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
+    //--------------------------House!!!----------------------------------
     model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(5.0f, 5, 5.0f));
+    model = glm::translate(model, glm::vec3(-8.0f, 1, 0.0f));
+
+    model = glm::scale(model, glm::vec3(2.5f, 2.5f, 2.5f));
+    model = glm::rotate(model, glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
     mod[1].Draw(shader, count);
 
-    //--------------------------ChristmasTree----------------------------------
+    //--------------------------Bear!!!!----------------------------------
     model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(4.0f, 1.4f, 2.0f));
+    model = glm::translate(model, glm::vec3(-3.0f, 0.0f, 2.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
     mod[2].Draw(shader, count);
 
-    //--------------------------ChristmasTree----------------------------------
+    //--------------------------Deer!!!----------------------------------
     model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(2.5f, 0.0f, 3.0f));
+    model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+    model = glm::translate(model, glm::vec3(2.5f, 0.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
     mod[3].Draw(shader, count);
 
-    //--------------------------Pinguin----------------------------------
+    //--------------------------Pinguin!!!----------------------------------
     model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(7.0f, 0.0f, 2.0f));
+
+    model = glm::translate(model, glm::vec3(7.0f, 1.0f, 0.0f));
     model = glm::rotate(model, glm::radians(-angle), glm::vec3(1.0f, 0.0f, 0.0f));
+    model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
     mod[4].Draw(shader, count);
 
@@ -627,7 +652,9 @@ void ReleaseShader()
 {
     // Передавая ноль, мы отключаем шейдерную программу
     glUseProgram(0);
-
+    glDeleteProgram(Toon_mode);
+    glDeleteProgram(Phong_mode);
+    glDeleteProgram(Rim_mode);
 }
 
 
@@ -645,7 +672,7 @@ void Release()
 void runner() {
 
     std::setlocale(LC_ALL, "Russian");
-    sf::Window window(sf::VideoMode(900, 900), "Lab13", sf::Style::Default, sf::ContextSettings(24));
+    sf::Window window(sf::VideoMode(1000, 1000), "Lab14", sf::Style::Default, sf::ContextSettings(24));
     window.setVerticalSyncEnabled(true);
     window.setActive(true);
     glewInit();
@@ -667,11 +694,14 @@ void runner() {
     vector<Model> models;
 
     Model tree("tree/source/Christmas_tree.obj");
-    Model pin("planet1/penguin02.fbx");
+    Model pin("pin/penguin02.fbx");
+    Model vinni("bear/Vinny.obj");
+    Model deer("deer/Xmas deer.obj");
+    Model house("house/model2.obj");
     models.push_back(tree);
-    models.push_back(tree);
-    models.push_back(tree);
-    models.push_back(tree);
+    models.push_back(house);
+    models.push_back(vinni);
+    models.push_back(deer);
     models.push_back(pin);
 
     
@@ -797,16 +827,16 @@ void runner() {
                     }
                     break;
                 case sf::Keyboard::Num1:
-                    sh = rim;
-                    std::cout << "rim" << std::endl;
+                    sh = fong;
+                    std::cout << "fong" << std::endl;
                     break;
                 case sf::Keyboard::Num2:
                     sh = toon;
                     std::cout << "toon" << std::endl;
                     break;
                 case sf::Keyboard::Num3:
-                    sh = fong;
-                    std::cout << "fong" << std::endl;
+                    sh = rim;
+                    std::cout << "rim" << std::endl;
                     break;
                 case sf::Keyboard::Num4:
                     type_light = dir;
